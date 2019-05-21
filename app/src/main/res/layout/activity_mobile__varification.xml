@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2A2E43"
+    android:orientation="vertical"
+    tools:context=".Mobile_Varification">
+
+    <LinearLayout
+        android:layout_width="327dp"
+        android:layout_height="357dp"
+        android:layout_marginTop="98dp"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:textSize="42sp"
+            android:textColor="#fff"
+            android:text="Enter your phone number:"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/reg_edit_field"
+            android:drawableLeft="@drawable/phone"
+            android:drawablePadding="10dp"
+            android:hint="+880-1XXXXXXXXX"
+            android:textColor="#fff"
+            android:paddingLeft="20dp"
+            android:textColorHint="@color/colorRegEditFieldText" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/reg_button_continue"
+            android:text="Next Step"
+            android:textAllCaps="true"
+            android:textSize="15sp"
+            android:textColor="#fff"
+            android:layout_marginTop="60dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

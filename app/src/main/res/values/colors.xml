@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#454F63</color>
+    <color name="colorPrimaryDark">#3C4557</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorLoginBackground">#2A2E43</color>
+    <color name="colorRegButton">#5773FF</color>
+    <color name="colorRegEditField">#454F63</color>
+    <color name="colorRegEditFieldText">#959DAD</color>
+    <color name="colorRegContButton">#665EFF</color>
+
+</resources>
