@@ -1,4 +1,28 @@
 <resources>
     <string name="app_name">Hurry</string>
     <string name="from">From :</string>
+
+    <string-array name="NoOFPPL">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="vehicleList">
+        <item>Model of Car</item>
+        <item>Private Car</item>
+        <item>Micro-Bus</item>
+    </string-array>
+    <string-array name="vehicleList2">
+        <item>Model of Car</item>
+        <item>Micro-Bus</item>
+    </string-array>
 </resources>

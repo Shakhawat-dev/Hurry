@@ -5,7 +5,10 @@ import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -19,6 +22,9 @@ public class rentCar extends AppCompatActivity {
            TextView  datePicker  , timePicker ;
     DatePickerDialog  datePickerDialog ;
     String amPmChecker ;
+    Spinner noOfppl , typeOfVehical ;
+    ArrayAdapter<String>adapter , arrayAdapter ;
+
 
 
     Calendar c ;
@@ -30,6 +36,75 @@ public class rentCar extends AppCompatActivity {
 
         timePicker = findViewById(R.id.timeEdit);
         datePicker = findViewById(R.id.dateEdit);
+        noOfppl = findViewById(R.id.no_of_people_spinner) ;
+        typeOfVehical = findViewById(R.id.type_of_vehicle_spinner);
+
+
+
+        adapter = new ArrayAdapter<String>(getApplicationContext() , android.R.layout.simple_spinner_item
+                ,getResources().getStringArray(R.array.NoOFPPL));
+        adapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
+        noOfppl.setAdapter(adapter);
+
+
+
+
+        noOfppl.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                String num =    noOfppl.getSelectedItem().toString() ;
+
+                typeOfVehical.setVisibility(View.VISIBLE);
+
+                if(
+                    Integer.valueOf(num)>4
+                )
+                {
+
+                    arrayAdapter = new ArrayAdapter<String>(getApplicationContext() , android.R.layout.simple_spinner_item
+                            ,getResources().getStringArray(R.array.vehicleList2));
+                    arrayAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
+                    typeOfVehical.setAdapter(arrayAdapter);
+
+
+                }
+                else if(
+                        Integer.valueOf(num)<=4
+                )  {
+
+                    arrayAdapter = new ArrayAdapter<String>(getApplicationContext() , android.R.layout.simple_spinner_item
+                            ,getResources().getStringArray(R.array.vehicleList));
+                    arrayAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
+                    typeOfVehical.setAdapter(arrayAdapter);
+
+                }
+                else {
+                    typeOfVehical.setVisibility(View.INVISIBLE);
+                }
+
+
+
+
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
 
 
         datePicker.setOnClickListener(new View.OnClickListener() {
