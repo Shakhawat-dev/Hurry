@@ -1,4 +1,4 @@
-package com.metacoders.hurry;
+package com.metacoders.hurry.homeFragments;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -9,9 +9,11 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.metacoders.hurry.R;
+
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity {
+public class rentCar extends AppCompatActivity {
 
 
            TextView  datePicker  , timePicker ;
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_rentcar);
 
         timePicker = findViewById(R.id.timeEdit);
         datePicker = findViewById(R.id.dateEdit);
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 int month = c.get(Calendar.MONTH);
                 int year = c.get(Calendar.YEAR);
 
-                datePickerDialog = new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
+                datePickerDialog = new DatePickerDialog(rentCar.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //calling the time picker
 
-                TimePickerDialog timePickerDialog  = new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog  = new TimePickerDialog(rentCar.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
