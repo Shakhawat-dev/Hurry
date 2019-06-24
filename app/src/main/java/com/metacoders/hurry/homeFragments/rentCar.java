@@ -2,7 +2,8 @@ package com.metacoders.hurry.homeFragments;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,8 +13,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.metacoders.hurry.R;
+import com.metacoders.hurry.model.modelForSpinner;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class rentCar extends AppCompatActivity {
@@ -22,9 +30,10 @@ public class rentCar extends AppCompatActivity {
            TextView  datePicker  , timePicker ;
     DatePickerDialog  datePickerDialog ;
     String amPmChecker ;
-    Spinner noOfppl , typeOfVehical ;
+    Spinner noOfppl , typeOfVehical , citySpinner , TownSpinner  ;
     ArrayAdapter<String>adapter , arrayAdapter ;
-
+    ArrayList<modelForSpinner> locList = new ArrayList<>();
+    ArrayList<String> locNameList = new ArrayList<>();
 
 
     Calendar c ;
@@ -38,13 +47,18 @@ public class rentCar extends AppCompatActivity {
         datePicker = findViewById(R.id.dateEdit);
         noOfppl = findViewById(R.id.no_of_people_spinner) ;
         typeOfVehical = findViewById(R.id.type_of_vehicle_spinner);
+        citySpinner = findViewById(R.id.citySpinner) ;
+        TownSpinner = findViewById(R.id.townSpinner) ;
 
+        GettingSpinnerDataFromFireBase();
 
 
         adapter = new ArrayAdapter<String>(getApplicationContext() , android.R.layout.simple_spinner_item
                 ,getResources().getStringArray(R.array.NoOFPPL));
         adapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
         noOfppl.setAdapter(adapter);
+
+
 
 
 
@@ -165,4 +179,72 @@ public class rentCar extends AppCompatActivity {
 
 
     }
+
+
+    public  void GettingSpinnerDataFromFireBase(){
+
+        DatabaseReference deptReference = FirebaseDatabase.getInstance().getReference("city");
+        deptReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                locList.clear();
+                locNameList.clear();
+
+                //iterating through all the nodes
+                for (DataSnapshot deptSnapshot : dataSnapshot.getChildren()) {
+                    //getting departments
+                    modelForSpinner departments = deptSnapshot.getValue(modelForSpinner.class);
+                    //adding department to the list
+                    locList.add(departments);
+                }
+
+                if(locList.size() > 0){
+                    for(int i=0; i<locList.size(); i++){
+                        locNameList.add(locList.get(i).getName());
+                    }
+                }
+
+                //creating adapter
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(rentCar.this, android.R.layout.simple_list_item_activated_1, locNameList);
+                citySpinner.setAdapter(arrayAdapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+
+                //  String a = FinalTextPriceFloatBar.getText().toString() ;
+
+                //  totlal = Integer.parseInt(a) ;
+
+                // totlal = totlal+ (DeliveryCharge - oldCharge) ;
+                // oldCharge =DeliveryCharge ;
+                // txtTotalPrice.setText(totlal+" BDT");
+                // FinalTextPriceFloatBar.setText(totlal+"" );
+
+
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
+
+
 }
