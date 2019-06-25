@@ -86,14 +86,28 @@
                         android:layout_height="wrap_content"
                         android:text="To : " />
 
-                    <EditText
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edit_text_outline"
-                        android:drawableLeft="@drawable/from_location_icon"
-                        android:drawablePadding="10dp"
-                        android:hint="Enter your Place"
-                        android:padding="10dp" />
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:id="@+id/citySpinnerTo"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="10dp"
+                            android:padding="10dp"
+                            />
+                        <Spinner
+                            android:id="@+id/townSpinnerTo"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="10dp"
+                            android:padding="10dp" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"

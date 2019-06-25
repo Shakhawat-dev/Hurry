@@ -30,10 +30,19 @@ public class rentCar extends AppCompatActivity {
            TextView  datePicker  , timePicker ;
     DatePickerDialog  datePickerDialog ;
     String amPmChecker ;
-    Spinner noOfppl , typeOfVehical , citySpinner , TownSpinner  ;
+    Spinner noOfppl , typeOfVehical , citySpinner , TownSpinner , citySpinnerTo , townSpinnerTO  ;
     ArrayAdapter<String>adapter , arrayAdapter ;
     ArrayList<modelForSpinner> locList = new ArrayList<>();
     ArrayList<String> locNameList = new ArrayList<>();
+    ArrayList<modelForSpinner> TownList = new ArrayList<>();
+    ArrayList<String> TownNameList = new ArrayList<>();
+
+    ArrayList<modelForSpinner> TownListTo = new ArrayList<>();
+    ArrayList<String> TownNameListTo = new ArrayList<>();
+
+    ArrayList<modelForSpinner> cityListTo = new ArrayList<>();
+    ArrayList<String> CityNameListto = new ArrayList<>();
+
 
 
     Calendar c ;
@@ -49,20 +58,23 @@ public class rentCar extends AppCompatActivity {
         typeOfVehical = findViewById(R.id.type_of_vehicle_spinner);
         citySpinner = findViewById(R.id.citySpinner) ;
         TownSpinner = findViewById(R.id.townSpinner) ;
+        citySpinnerTo = findViewById(R.id.citySpinnerTo) ;
+        townSpinnerTO = findViewById(R.id.townSpinnerTo);
+
+
+
+        TownSpinner.setVisibility(View.GONE);
+
+        // calling funtion for dwnlding spinner data
 
         GettingSpinnerDataFromFireBase();
+        gettingToCitySpinnerData();
 
 
         adapter = new ArrayAdapter<String>(getApplicationContext() , android.R.layout.simple_spinner_item
                 ,getResources().getStringArray(R.array.NoOFPPL));
         adapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
         noOfppl.setAdapter(adapter);
-
-
-
-
-
-
         noOfppl.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -112,15 +124,7 @@ public class rentCar extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
+        // date picker
         datePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,7 +151,7 @@ public class rentCar extends AppCompatActivity {
         });
 
 
-
+        //time picker
         timePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,6 +184,10 @@ public class rentCar extends AppCompatActivity {
 
     }
 
+
+
+
+    // this function for From Spinners
 
     public  void GettingSpinnerDataFromFireBase(){
 
@@ -223,15 +231,9 @@ public class rentCar extends AppCompatActivity {
 
 
 
-                //  String a = FinalTextPriceFloatBar.getText().toString() ;
+                    TownSpinner.setVisibility(View.VISIBLE);
 
-                //  totlal = Integer.parseInt(a) ;
-
-                // totlal = totlal+ (DeliveryCharge - oldCharge) ;
-                // oldCharge =DeliveryCharge ;
-                // txtTotalPrice.setText(totlal+" BDT");
-                // FinalTextPriceFloatBar.setText(totlal+"" );
-
+                    GettingSpinnerOfTown(locList.get(position).getName());
 
 
 
@@ -245,6 +247,185 @@ public class rentCar extends AppCompatActivity {
 
     }
 
+    public  void GettingSpinnerOfTown(String db){
+
+        DatabaseReference deptReference = FirebaseDatabase.getInstance().getReference("town").child(db);
+        deptReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                TownList.clear();
+                TownNameList.clear();
+
+                //iterating through all the nodes
+                for (DataSnapshot deptSnapshot : dataSnapshot.getChildren()) {
+                    //getting departments
+                    modelForSpinner departments = deptSnapshot.getValue(modelForSpinner.class);
+                    //adding department to the list
+                    TownList.add(departments);
+                }
+
+                if(TownList.size() > 0){
+                    for(int i=0; i<TownList.size(); i++){
+                        TownNameList.add(TownList.get(i).getName());
+                    }
+                }
+
+                //creating adapter
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(rentCar.this, android.R.layout.simple_list_item_activated_1, TownNameList);
+                TownSpinner.setAdapter(arrayAdapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        TownSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+
+            //    TownSpinner.setVisibility(View.VISIBLE);
+
+           //     GettingSpinnerOfTown(locList.get(position).getName());
+
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
+    }
+
+// this function for To Spinners
+
+    public  void  gettingToCitySpinnerData(){
+
+        DatabaseReference deptReference = FirebaseDatabase.getInstance().getReference("city");
+        deptReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                cityListTo.clear();
+                CityNameListto.clear();
+
+                //iterating through all the nodes
+                for (DataSnapshot deptSnapshot : dataSnapshot.getChildren()) {
+                    //getting departments
+                    modelForSpinner departments = deptSnapshot.getValue(modelForSpinner.class);
+                    //adding department to the list
+                    cityListTo.add(departments);
+                }
+
+                if(cityListTo.size() > 0){
+                    for(int i=0; i<cityListTo.size(); i++){
+                        CityNameListto.add(cityListTo.get(i).getName());
+                    }
+                }
+
+                //creating adapter
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(rentCar.this, android.R.layout.simple_list_item_activated_1, CityNameListto);
+                citySpinnerTo.setAdapter(arrayAdapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        citySpinnerTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+                townSpinnerTO.setVisibility(View.VISIBLE);
+
+                GettingToSpinnerOfTown(cityListTo.get(position).getName());
+
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
+    private void GettingToSpinnerOfTown(String name) {
+
+        DatabaseReference deptReference = FirebaseDatabase.getInstance().getReference("town").child(name);
+        deptReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                TownListTo.clear();
+                TownNameListTo.clear();
+
+                //iterating through all the nodes
+                for (DataSnapshot deptSnapshot : dataSnapshot.getChildren()) {
+                    //getting departments
+                    modelForSpinner departments = deptSnapshot.getValue(modelForSpinner.class);
+                    //adding department to the list
+                    TownListTo.add(departments);
+                }
+
+                if(TownListTo.size() > 0){
+                    for(int i=0; i<TownListTo.size(); i++){
+                        TownNameListTo.add(TownListTo.get(i).getName());
+                    }
+                }
+
+                //creating adapter
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(rentCar.this, android.R.layout.simple_list_item_activated_1, TownNameListTo);
+                townSpinnerTO.setAdapter(arrayAdapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        townSpinnerTO.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+
+                //    TownSpinner.setVisibility(View.VISIBLE);
+
+                //     GettingSpinnerOfTown(locList.get(position).getName());
+
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+    }
 
 
 }
