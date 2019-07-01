@@ -3,7 +3,7 @@ package com.metacoders.hurry.model;
 public class modelForCarRequest {
 
      String postId  , userId  , userNotificationID  , driverId  , driverNotificationID ,
-    toLoc , fromLoc ,  TimeDate , carModl , DriverName , status  , carLicNum , fare , carType ,
+    toLoc , fromLoc ,  timeDate , carModl , driverName , status  , carLicNum , fare , carType ,
     reqDate , tripDetails  ;
 
     public modelForCarRequest() {
@@ -17,22 +17,14 @@ public class modelForCarRequest {
         this.driverNotificationID = driverNotificationID;
         this.toLoc = toLoc;
         this.fromLoc = fromLoc;
-        TimeDate = timeDate;
+        this.timeDate = timeDate;
         this.carModl = carModl;
-        DriverName = driverName;
+        this.driverName = driverName;
         this.status = status;
         this.carLicNum = carLicNum;
         this.fare = fare;
         this.carType = carType;
         this.reqDate = reqDate;
-        this.tripDetails = tripDetails;
-    }
-
-    public String getTripDetails() {
-        return tripDetails;
-    }
-
-    public void setTripDetails(String tripDetails) {
         this.tripDetails = tripDetails;
     }
 
@@ -93,11 +85,11 @@ public class modelForCarRequest {
     }
 
     public String getTimeDate() {
-        return TimeDate;
+        return timeDate;
     }
 
     public void setTimeDate(String timeDate) {
-        TimeDate = timeDate;
+        this.timeDate = timeDate;
     }
 
     public String getCarModl() {
@@ -109,11 +101,11 @@ public class modelForCarRequest {
     }
 
     public String getDriverName() {
-        return DriverName;
+        return driverName;
     }
 
     public void setDriverName(String driverName) {
-        DriverName = driverName;
+        this.driverName = driverName;
     }
 
     public String getStatus() {
@@ -154,5 +146,13 @@ public class modelForCarRequest {
 
     public void setReqDate(String reqDate) {
         this.reqDate = reqDate;
+    }
+
+    public String getTripDetails() {
+        return tripDetails;
+    }
+
+    public void setTripDetails(String tripDetails) {
+        this.tripDetails = tripDetails;
     }
 }

@@ -16,12 +16,16 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.metacoders.hurry.R;
+import com.metacoders.hurry.model.modelForCarRequest;
 import com.metacoders.hurry.model.modelForSpinner;
 
 import java.util.ArrayList;
@@ -49,6 +53,7 @@ public class rentCar extends AppCompatActivity {
     Button submit ;
     String tripDetails , TripDate , TripTime , TripLocto , TripLocFrom , cityto  , townto , cityfrom , townfrom  , carType  = "null"  ;
 
+DatabaseReference  mref ;
 
     EditText  tripDetailsEditText ;
 
@@ -58,6 +63,7 @@ public class rentCar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rentcar);
+        mref  = FirebaseDatabase.getInstance().getReference("reqCarDb");
 
         timePicker = findViewById(R.id.timeEdit);
         datePicker = findViewById(R.id.dateEdit);
@@ -229,12 +235,40 @@ public class rentCar extends AppCompatActivity {
 
             carType = typeOfVehical.getSelectedItem().toString() ;
 
+      //  String postId  , userId  , userNotificationID  , driverId  , driverNotificationID ,
+           //     toLoc , fromLoc ,  TimeDate , carModl , DriverName , status  , carLicNum , fare , carType ,
+           //     reqDate , tripDetails  ;
 
 
+        String postId   = mref.push().getKey()  ;
+
+        modelForCarRequest  model = new modelForCarRequest(postId , "uId", "userNotfonID" , "dirveRID", "dirverNotiId"
+        , TripLocto  , TripLocFrom , TripTime + ""+ TripDate , carType  , "drivernamee" , "Pending" , "carlice" , "fare00"
+                ,  carType , "TOday" , tripDetails
+
+        ) ;
+
+        mref.child(postId).setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                /// completed data uploiaed ;
+
+                    finish();
 
 
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
 
-        Toast.makeText(getApplicationContext()   ,  "From  :::: To:" +carType   ,Toast.LENGTH_SHORT).show();
+
+                //on fail
+                Toast.makeText(getApplicationContext()  , "Error : "+ e.getMessage()  , Toast.LENGTH_LONG).show();
+
+            }
+        }) ;
+
 
 
 
