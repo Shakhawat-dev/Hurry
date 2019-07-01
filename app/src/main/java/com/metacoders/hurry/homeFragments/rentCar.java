@@ -8,10 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,8 +45,12 @@ public class rentCar extends AppCompatActivity {
 
     ArrayList<modelForSpinner> cityListTo = new ArrayList<>();
     ArrayList<String> CityNameListto = new ArrayList<>();
+    String numofPPl;
+    Button submit ;
+    String tripDetails , TripDate , TripTime , TripLocto , TripLocFrom , cityto  , townto , cityfrom , townfrom  , carType  = "null"  ;
 
 
+    EditText  tripDetailsEditText ;
 
     Calendar c ;
 
@@ -60,6 +67,8 @@ public class rentCar extends AppCompatActivity {
         TownSpinner = findViewById(R.id.townSpinner) ;
         citySpinnerTo = findViewById(R.id.citySpinnerTo) ;
         townSpinnerTO = findViewById(R.id.townSpinnerTo);
+        tripDetailsEditText = findViewById(R.id.cardetailsEdit);
+        submit = findViewById(R.id.sumbitBtn);
 
 
 
@@ -79,12 +88,12 @@ public class rentCar extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                String num =    noOfppl.getSelectedItem().toString() ;
+              numofPPl =    noOfppl.getSelectedItem().toString() ;
 
                 typeOfVehical.setVisibility(View.VISIBLE);
 
                 if(
-                    Integer.valueOf(num)>4
+                    Integer.valueOf(numofPPl)>4
                 )
                 {
 
@@ -94,9 +103,11 @@ public class rentCar extends AppCompatActivity {
                     typeOfVehical.setAdapter(arrayAdapter);
 
 
+
+
                 }
                 else if(
-                        Integer.valueOf(num)<=4
+                        Integer.valueOf(numofPPl)<=4
                 )  {
 
                     arrayAdapter = new ArrayAdapter<String>(getApplicationContext() , android.R.layout.simple_spinner_item
@@ -181,10 +192,58 @@ public class rentCar extends AppCompatActivity {
             }
         });
 
+        // listening for submit button
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                tripDetails = tripDetailsEditText.getText().toString().trim() ;
+                
+                
+                
+                
+                //sent Data To Firebase function ; 
+                sentDataToFireBase() ; 
+                
+                
+            }
+        });
+
+
+
 
     }
 
+    private void sentDataToFireBase() {
 
+        // trip time & date
+        TripDate = datePicker.getText().toString() ;
+        TripTime = timePicker.getText().toString() ;
+
+        // getting the trip loc
+        TripLocFrom = cityfrom+ " ," + townfrom  ;
+        TripLocto = cityto + " , "+ townto ;
+
+        // noOf PPL
+
+            carType = typeOfVehical.getSelectedItem().toString() ;
+
+
+
+
+
+
+        Toast.makeText(getApplicationContext()   ,  "From  :::: To:" +carType   ,Toast.LENGTH_SHORT).show();
+
+
+
+
+
+
+
+
+    }
 
 
     // this function for From Spinners
@@ -232,6 +291,9 @@ public class rentCar extends AppCompatActivity {
 
 
                     TownSpinner.setVisibility(View.VISIBLE);
+                    cityfrom = locList.get(position).getName() ; // getting thhe city Name From the spinner
+
+
 
                     GettingSpinnerOfTown(locList.get(position).getName());
 
@@ -291,7 +353,12 @@ public class rentCar extends AppCompatActivity {
 
             //    TownSpinner.setVisibility(View.VISIBLE);
 
+                townfrom = TownList.get(position).getName() ;
+
+
            //     GettingSpinnerOfTown(locList.get(position).getName());
+
+
 
 
 
@@ -353,6 +420,10 @@ public class rentCar extends AppCompatActivity {
 
                 townSpinnerTO.setVisibility(View.VISIBLE);
 
+
+                cityto  = cityListTo.get(position).getName() ;
+
+
                 GettingToSpinnerOfTown(cityListTo.get(position).getName());
 
 
@@ -410,6 +481,7 @@ public class rentCar extends AppCompatActivity {
 
 
                 //    TownSpinner.setVisibility(View.VISIBLE);
+                        townto = TownListTo.get(position).getName() ;
 
                 //     GettingSpinnerOfTown(locList.get(position).getName());
 
