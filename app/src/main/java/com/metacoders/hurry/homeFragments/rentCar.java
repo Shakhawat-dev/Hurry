@@ -243,7 +243,7 @@ DatabaseReference  mref ;
         String postId   = mref.push().getKey()  ;
 
         modelForCarRequest  model = new modelForCarRequest(postId , "uId", "userNotfonID" , "dirveRID", "dirverNotiId"
-        , TripLocto  , TripLocFrom , TripTime + ""+ TripDate , carType  , "drivernamee" , "Pending" , "carlice" , "fare00"
+        , TripLocto  , TripLocFrom , TripTime + " at "+ TripDate , carType  , "drivernamee" , "Pending" , "carlice" , "fare00"
                 ,  carType , "TOday" , tripDetails
 
         ) ;

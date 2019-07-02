@@ -3,10 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#968C8C"
+
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
+        android:layout_marginTop="8dp"
+        app:cardElevation="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -47,6 +49,7 @@
                     android:orientation="horizontal"
                     android:weightSum="2">
                     <TextView
+                        android:id="@+id/dateOfRow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="27 jun 2019 at 2:30 AM"
@@ -56,6 +59,7 @@
                         android:layout_weight="2"
                         />
                     <TextView
+                        android:id="@+id/fareRow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="$350"
@@ -83,6 +87,7 @@
                         android:text="Pickup Location"/>
 
                     <TextView
+                        android:id="@+id/locationFrom"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
@@ -105,6 +110,7 @@
                         android:text="Drop of Location"/>
 
                     <TextView
+                        android:id="@+id/locationTo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
