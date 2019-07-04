@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
@@ -26,15 +26,18 @@
                     android:layout_width="120dp"
                     android:layout_height="100dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center"
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="12dp"
                     app:cardCornerRadius="8dp">
 
                     <ImageView
-                        android:layout_width="match_parent"
+                        android:id="@+id/driverImageBidonID"
+                        android:layout_width="wrap_content"
                         android:layout_height="100dp"
                         android:adjustViewBounds="true"
+                        android:layout_gravity="center"
                         android:cropToPadding="true"
                         android:scaleType="centerCrop"
                         android:src="@drawable/mapslocation" />
@@ -59,7 +62,7 @@
                     android:weightSum="2">
 
                     <TextView
-                        android:id="@+id/dateOfRow"
+                        android:id="@+id/driverNameOfBidRow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -98,6 +101,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/carModelBid"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Toyota Premio 2019"
@@ -109,6 +113,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/conditionRateBidRow"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Condition Rating: "
@@ -138,6 +143,7 @@
                                 android:textSize="16sp" />
 
                             <TextView
+                                android:id="@+id/priceViewInBidRow"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="4dp"
@@ -175,7 +181,7 @@
                             android:text="Driver Rating"/>
 
                         <RatingBar
-                            android:id="@+id/ratingBar"
+                            android:id="@+id/ratingBarBidRow"
                             style="@style/Widget.AppCompat.RatingBar.Small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

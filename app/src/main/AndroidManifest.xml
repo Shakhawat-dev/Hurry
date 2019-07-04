@@ -11,19 +11,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".homeFragments.bidFunction.bidListPage"></activity>
         <activity android:name=".homeFragments.homePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".Mobile_Varification"></activity>
-        <activity android:name=".Sign_in"></activity>
-        <activity android:name=".homeFragments.rentCar">
-
-        </activity>
+        <activity android:name=".Mobile_Varification" />
+        <activity android:name=".Sign_in" />
+        <activity android:name=".homeFragments.rentCar" />
     </application>
 
 </manifest>
