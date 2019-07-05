@@ -21,6 +21,18 @@ public class viewholderForBidList extends RecyclerView.ViewHolder {
         mview = itemView ;
 
 
+        //item click
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                mClicklistener.onItemClick(v , getAdapterPosition());
+
+            }
+        });
+
+
 
     }
 
@@ -49,13 +61,27 @@ public class viewholderForBidList extends RecyclerView.ViewHolder {
 
 
 
+    }
+
+    private  static  viewholderForBidList.Clicklistener mClicklistener ;
 
 
+
+    // interface
+    public  interface  Clicklistener{
+
+        void onItemClick(View view ,  int   position ) ;
 
 
 
     }
 
+    public  static void setOnClickListener(viewholderForBidList.Clicklistener clickListener){
+
+        mClicklistener = clickListener ;
+
+
+    }
 
 
 

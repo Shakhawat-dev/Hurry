@@ -4,7 +4,7 @@ public class modelForBid {
 
     String  postID ,tripID , driverUid , driverName , driverCarModel , driverRating  , bidPrice  ,drivercarcondition ,driverImageLink;
 
-
+//postID means bid id
     public modelForBid() {
     }
 
@@ -20,16 +20,7 @@ public class modelForBid {
         this.driverImageLink = driverImageLink;
     }
 
-    public modelForBid(String postID, String tripID, String driverUid, String driverName, String driverCarModel, String driverRating, String bidPrice, String drivercarcondition) {
-        this.postID = postID;
-        this.tripID = tripID;
-        this.driverUid = driverUid;
-        this.driverName = driverName;
-        this.driverCarModel = driverCarModel;
-        this.driverRating = driverRating;
-        this.bidPrice = bidPrice;
-        this.drivercarcondition = drivercarcondition;
-    }
+
 
     public String getDriverImageLink() {
         return driverImageLink;

@@ -1,6 +1,7 @@
 package com.metacoders.hurry.homeFragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.metacoders.hurry.R;
+import com.metacoders.hurry.homeFragments.bidFunction.bidListPage;
 import com.metacoders.hurry.model.modelForCarRequest;
 import com.metacoders.hurry.viewHolders.viewholdersForCurrentTrip;
 
@@ -75,7 +77,7 @@ FirebaseRecyclerAdapter<modelForCarRequest , viewholdersForCurrentTrip>firebaseR
             options = new FirebaseRecyclerOptions.Builder<modelForCarRequest>().setQuery(mref , modelForCarRequest.class).build();
             firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<modelForCarRequest, viewholdersForCurrentTrip>(options) {
                 @Override
-                protected void onBindViewHolder(@NonNull viewholdersForCurrentTrip viewholdersForCurrentTrip, int i, @NonNull modelForCarRequest model) {
+                protected void onBindViewHolder(@NonNull viewholdersForCurrentTrip viewholdersForCurrentTrip,final int i, @NonNull modelForCarRequest model) {
 
 
                     viewholdersForCurrentTrip.setDataToView(getContext() ,
@@ -83,6 +85,8 @@ FirebaseRecyclerAdapter<modelForCarRequest , viewholdersForCurrentTrip>firebaseR
                               model.getToLoc() , model.getFromLoc() ,  model.getTimeDate() , model.getCarModl() , model.getDriverName() ,
                              model.getStatus()  , model.getCarLicNum() , model.getFare() , model.getCarType() ,
                             model.getReqDate() , model.getTripDetails() );
+
+
 
 
 
@@ -95,6 +99,28 @@ FirebaseRecyclerAdapter<modelForCarRequest , viewholdersForCurrentTrip>firebaseR
 
                     View iteamVIew = LayoutInflater.from(parent.getContext()).inflate(R.layout.last_trip_view_module, parent, false);
                     viewholdersForCurrentTrip viewholders = new viewholdersForCurrentTrip(iteamVIew);
+
+
+
+                    viewholdersForCurrentTrip.setOnClickListener(new viewholdersForCurrentTrip.Clicklistener() {
+                        @Override
+                        public void onItemClick(View view, final  int postion) {
+
+
+                            Intent o = new Intent(getContext() , bidListPage.class );
+                            String postID  = getItem(postion).getPostId();
+
+
+                            o.putExtra("POSTID" ,postID);
+
+                            startActivity(o);
+
+
+
+
+
+                        }
+                    });
 
 
                     return viewholders;
