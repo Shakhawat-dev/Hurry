@@ -20,6 +20,18 @@ public class viewholdersForCurrentTrip extends RecyclerView.ViewHolder {
         mview = itemView ;
 
 
+        //item click
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                mclicklistener.onItemClick(v , getAdapterPosition());
+
+            }
+        });
+
+
     }
 
     public   void setDataToView(Context context ,String postId  , String userId  ,String  userNotificationID  , String driverId  ,String driverNotificationID ,
@@ -36,6 +48,24 @@ public class viewholdersForCurrentTrip extends RecyclerView.ViewHolder {
         fareView.setText(fare);
         locaTo.setText(toLoc);
         locaFrom.setText(fromLoc);
+
+
+    }
+
+private  static  viewholdersForCurrentTrip.Clicklistener mclicklistener ;
+
+
+
+    public   interface  Clicklistener {
+
+        void onItemClick( View view , int postion );
+
+    }
+
+    public  static  void  setOnClickListener (viewholdersForCurrentTrip.Clicklistener clickListener ){
+
+
+        mclicklistener = clickListener ;
 
 
     }

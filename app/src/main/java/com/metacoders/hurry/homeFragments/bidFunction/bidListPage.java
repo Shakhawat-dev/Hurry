@@ -6,10 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -24,6 +26,8 @@ public class bidListPage extends AppCompatActivity {
     RecyclerView mrecyclerview ;
     LinearLayoutManager linearLayoutManager;
     DatabaseReference mref ;
+    String db  ;
+
 
     FirebaseRecyclerAdapter <modelForBid , viewholderForBidList> firebaseRecyclerAdapter  ;
     FirebaseRecyclerOptions<modelForBid>options ;
@@ -33,11 +37,15 @@ public class bidListPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bid_list_page);
 
+        Intent o = getIntent();
+
+        db = o.getStringExtra("POSTID");
+
 
 
         mrecyclerview = findViewById(R.id.recyclerviewInBidLIst) ;
 
-        mref = FirebaseDatabase.getInstance().getReference("TempBidRepo");
+        mref = FirebaseDatabase.getInstance().getReference("reqCarDb").child(db).child("bids");
 
         linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setReverseLayout(true);
@@ -81,10 +89,23 @@ firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<modelForBid, viewholderFor
         viewholderForBidList  viewholderForBidList  = new viewholderForBidList(mview);
 
 
+        viewholderForBidList.setOnClickListener(new viewholderForBidList.Clicklistener() {
+            @Override
+            public void onItemClick(View view, int position) {
+
+
+                Toast.makeText(getApplicationContext() , "ITEM CLICKED" , Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+
+
+
         return  viewholderForBidList;
     }
 } ;
-
+ mrecyclerview.setLayoutManager(linearLayoutManager) ;
 firebaseRecyclerAdapter.startListening();
 mrecyclerview.setAdapter(firebaseRecyclerAdapter);
 
