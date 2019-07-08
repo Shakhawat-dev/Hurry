@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".homeFragments.bidFunction.bidListPage"></activity>
+        <activity android:name=".Trip_Running_details"></activity>
+        <activity android:name=".homeFragments.bidFunction.bidListPage" />
         <activity android:name=".homeFragments.homePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
