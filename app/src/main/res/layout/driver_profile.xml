@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:drawableLeft="@drawable/phone_icon"
+
                 android:drawablePadding="8dp"
                 android:text="Mobile: "/>
             <TextView
@@ -53,7 +53,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:drawablePadding="8dp"
-                android:drawableLeft="@drawable/driver_license_icon"
                 android:text="License: "/>
             <TextView
                 android:layout_width="wrap_content"
@@ -72,7 +71,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:drawablePadding="8dp"
-                android:drawableLeft="@drawable/car_icon"
                 android:textSize="18sp"
                 android:text="Car Model: "/>
             <TextView

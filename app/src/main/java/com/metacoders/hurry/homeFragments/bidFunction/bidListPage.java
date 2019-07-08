@@ -18,6 +18,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.metacoders.hurry.R;
+import com.metacoders.hurry.driverProfile.driverProfile;
 import com.metacoders.hurry.model.modelForBid;
 import com.metacoders.hurry.viewHolders.viewholderForBidList;
 
@@ -86,15 +87,28 @@ firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<modelForBid, viewholderFor
     public viewholderForBidList onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View mview = LayoutInflater.from(parent.getContext()).inflate(R.layout.bid_row_view_model, parent, false);
-        viewholderForBidList  viewholderForBidList  = new viewholderForBidList(mview);
+        final viewholderForBidList  viewholder  = new viewholderForBidList(mview);
 
 
         viewholderForBidList.setOnClickListener(new viewholderForBidList.Clicklistener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(View view,final int position) {
 
 
-                Toast.makeText(getApplicationContext() , "ITEM CLICKED" , Toast.LENGTH_LONG).show();
+        //        Toast.makeText(getApplicationContext() , "ITEM CLICKED" , Toast.LENGTH_LONG).show();
+
+                Intent o = new Intent(getApplicationContext() , driverProfile.class);
+                // feed some data to the driverpage
+
+                o.putExtra("DRIVERUID" , getItem(position).getDriverUid()) ;
+                o.putExtra("FARE" , getItem(position).getBidPrice());
+
+
+
+
+
+
+                startActivity(o);
 
 
             }
@@ -102,7 +116,7 @@ firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<modelForBid, viewholderFor
 
 
 
-        return  viewholderForBidList;
+        return  viewholder;
     }
 } ;
  mrecyclerview.setLayoutManager(linearLayoutManager) ;

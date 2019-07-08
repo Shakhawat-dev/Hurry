@@ -13,7 +13,7 @@ import com.metacoders.hurry.R;
 
 public class viewholderForBidList extends RecyclerView.ViewHolder {
      View mview ;
-
+    TextView  drivername , drivercarmodel ,  drivercarcondition , bidprice  ;
 
     public viewholderForBidList(@NonNull View itemView) {
         super(itemView);
@@ -40,7 +40,7 @@ public class viewholderForBidList extends RecyclerView.ViewHolder {
     public  void setBidData(Context context , String tripID ,String driverUid ,String driverName ,String driverCarModel ,String driverRating  ,String bidPrice , String driverCarCondition , String driverImageLink )
     {
 
-        TextView  drivername , drivercarmodel ,  drivercarcondition , bidprice  ;
+
         RatingBar ratingBar ;
         ImageView driverimage ;
 

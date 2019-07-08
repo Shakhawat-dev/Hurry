@@ -23,6 +23,7 @@
         <activity android:name=".Mobile_Varification" />
         <activity android:name=".Sign_in" />
         <activity android:name=".homeFragments.rentCar" />
+        <activity android:name=".driverProfile.driverProfile" />
     </application>
 
 </manifest>

@@ -18,6 +18,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.metacoders.hurry.R;
+import com.metacoders.hurry.Trip_Running_details;
 import com.metacoders.hurry.homeFragments.bidFunction.bidListPage;
 import com.metacoders.hurry.model.modelForCarRequest;
 import com.metacoders.hurry.viewHolders.viewholdersForCurrentTrip;
@@ -106,14 +107,45 @@ FirebaseRecyclerAdapter<modelForCarRequest , viewholdersForCurrentTrip>firebaseR
                         @Override
                         public void onItemClick(View view, final  int postion) {
 
+                            String DriverName  = getItem(postion).getDriverName() ;
+                            String Status = getItem(postion).getStatus() ;
 
-                            Intent o = new Intent(getContext() , bidListPage.class );
-                            String postID  = getItem(postion).getPostId();
+
+                            if (!DriverName.contains("drivernamee") && Status.equals("Pending"))
+                            {
+                                //go to the Trip details page to mark it done
+
+                                Intent o = new Intent(getContext() , Trip_Running_details.class );
+                                //carry data to their
+                                o.putExtra("DRIVERNAME" , getItem(postion).getDriverName()) ;
+                                o.putExtra("CARMODEL", getItem(postion).getCarModl()) ;
+                                o.putExtra("FORMLOC", getItem(postion).getFromLoc()) ;
+                                o.putExtra("TOLOC", getItem(postion).getToLoc()) ;
+                                o.putExtra("FARE", getItem(postion).getFare()) ;
+                                o.putExtra("TIME", getItem(postion).getTimeDate()) ;
+                                o.putExtra("POSTID", getItem(postion).getPostId()) ;
+                                o.putExtra("DRIVERUID", getItem(postion).getDriverId()) ;
+                                o.putExtra("DRIVERNOTIFICATIONID", getItem(postion).getDriverNotificationID()) ;
+
+                                startActivity(o);
 
 
-                            o.putExtra("POSTID" ,postID);
+                            }
+                            else {
 
-                            startActivity(o);
+                                Intent o = new Intent(getContext() , bidListPage.class );
+                                String postID  = getItem(postion).getPostId();
+
+
+                                o.putExtra("POSTID" ,postID);
+
+                                startActivity(o);
+
+                            }
+
+
+
+
 
 
 
