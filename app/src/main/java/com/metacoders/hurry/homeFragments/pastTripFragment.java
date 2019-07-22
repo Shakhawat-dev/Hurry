@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.metacoders.hurry.R;
@@ -25,8 +26,8 @@ import com.metacoders.hurry.viewHolders.viewholdersForCurrentTrip;
 
 public class pastTripFragment extends  Fragment {
 
-
-
+        String  uid ;
+        FirebaseAuth  mauth ;
         RecyclerView mrecyclerview  ;
         LinearLayoutManager linearLayoutManager ;
         DatabaseReference mref;
@@ -65,7 +66,7 @@ FirebaseRecyclerAdapter<modelForCarRequest , viewholdersForCurrentTrip>firebaseR
 
             mref.keepSynced(true);
 
-            loadDataToFireBase()  ;
+     //       loadDataToFireBase()  ;
 
 
 

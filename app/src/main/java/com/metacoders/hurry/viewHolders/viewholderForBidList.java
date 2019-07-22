@@ -15,6 +15,7 @@ public class viewholderForBidList extends RecyclerView.ViewHolder {
      View mview ;
     TextView  drivername , drivercarmodel ,  drivercarcondition , bidprice  ;
 
+
     public viewholderForBidList(@NonNull View itemView) {
         super(itemView);
 
@@ -46,6 +47,7 @@ public class viewholderForBidList extends RecyclerView.ViewHolder {
 
 
         drivername = mview.findViewById(R.id.driverNameOfBidRow);
+
         drivercarmodel = mview.findViewById(R.id.carModelBid);
         drivercarcondition = mview.findViewById(R.id.conditionRateBidRow) ;
         bidprice = mview.findViewById(R.id.priceViewInBidRow);

@@ -1,6 +1,7 @@
 package com.metacoders.hurry.homeFragments;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -53,11 +56,15 @@ public class rentCar extends AppCompatActivity {
     Button submit ;
     String tripDetails , TripDate , TripTime , TripLocto , TripLocFrom , cityto  , townto , cityfrom , townfrom  , carType  = "null"  ;
 
+    CheckBox oneWay , TwoWay ;
+
 DatabaseReference  mref ;
 
     EditText  tripDetailsEditText ;
 
     Calendar c ;
+    Dialog dialog ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +82,11 @@ DatabaseReference  mref ;
         townSpinnerTO = findViewById(R.id.townSpinnerTo);
         tripDetailsEditText = findViewById(R.id.cardetailsEdit);
         submit = findViewById(R.id.sumbitBtn);
+        oneWay = findViewById(R.id.oneWay_check);
+        TwoWay = findViewById(R.id.round_check) ;
+
+
+
 
 
 
@@ -85,6 +97,51 @@ DatabaseReference  mref ;
         GettingSpinnerDataFromFireBase();
         gettingToCitySpinnerData();
 
+
+
+        TwoWay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if (b){
+
+                    //rowund Trip is now Checked
+
+                    oneWay.setChecked(false); // setting one way unchecked
+
+
+                }
+                else if (!b) {
+
+
+
+                }
+
+            }
+        });
+
+
+
+        oneWay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+
+                if (b){
+
+                    TwoWay.setChecked(false);
+                }
+
+                else if (!b) {
+
+
+
+
+
+                }
+
+            }
+        });
 
         adapter = new ArrayAdapter<String>(getApplicationContext() , android.R.layout.simple_spinner_item
                 ,getResources().getStringArray(R.array.NoOFPPL));
@@ -254,7 +311,7 @@ DatabaseReference  mref ;
 
                 /// completed data uploiaed ;
 
-                    finish();
+                startDialogue();
 
 
             }
@@ -531,6 +588,31 @@ DatabaseReference  mref ;
 
 
 
+    }
+    public  void  startDialogue() {
+
+        dialog = new Dialog(rentCar.this);
+        dialog.setContentView(R.layout.custom_loading_layout);
+        dialog.setTitle("Request Sent !!");
+        Button button = dialog.findViewById(R.id.okButtonInDialogue);
+
+        dialog.show();
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                stopDialogue();
+                finish();
+            }
+        });
+
+
+    }
+    public  void stopDialogue (){
+
+        dialog.dismiss();
     }
 
 

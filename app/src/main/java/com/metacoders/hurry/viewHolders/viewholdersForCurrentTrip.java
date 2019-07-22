@@ -40,15 +40,17 @@ public class viewholdersForCurrentTrip extends RecyclerView.ViewHolder {
                                 String reqDate ,String tripDetails   ){
 
         TextView dateView = mview.findViewById(R.id.dateOfRow);
-        TextView fareView = mview.findViewById(R.id.fareRow);
+      //  TextView fareView = mview.findViewById(R.id.fareRow);
         TextView locaTo = mview.findViewById(R.id.locationTo);
         TextView locaFrom = mview.findViewById(R.id.locationFrom);
+        TextView statusTv = mview.findViewById(R.id.statusRow) ;
+
 
         dateView.setText(timeDate);
-        fareView.setText(fare);
+    //    fareView.setText(fare);
         locaTo.setText(toLoc);
         locaFrom.setText(fromLoc);
-
+        statusTv.setText(status);
 
     }
 

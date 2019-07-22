@@ -16,13 +16,16 @@ EditText description ;
 Button submit  ;
 
 
-TextView DriverNAME , CARMODEL  , FROMLOC  ,TOLOC , FARE ,TIME , POSTID , DRIVERID , DRIVERNOTTIFICATIONID  ;
+TextView DriverNAME , CARMODEL ,drivername2  , FROMLOC  ,TOLOC , FARE ,TIME , POSTID , DRIVERID , DRIVERNOTTIFICATIONID  ;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip__running_details);
+
+        getSupportActionBar().setTitle("Finish Your Trip");
+
         /*                       o.putExtra("DRIVERNAME" , getItem(postion).getDriverName()) ;
                                 o.putExtra("CARMODEL", getItem(postion).getCarModl()) ;
                                 o.putExtra("FORMLOC", getItem(postion).getFromLoc()) ;
@@ -48,8 +51,9 @@ TextView DriverNAME , CARMODEL  , FROMLOC  ,TOLOC , FARE ,TIME , POSTID , DRIVER
 
 
         //init The View ;
+        drivername2 = findViewById(R.id.driverNameTripDeatils2);
         DriverNAME =findViewById(R.id.driverNameTripDeatils)  ;
-        CARMODEL=findViewById(R.id.driverNameTripDeatils2)  ;
+        CARMODEL=findViewById(R.id.carModelTripDetails)  ;
         FROMLOC =findViewById(R.id.locationFromTripDetails) ;
         TOLOC=findViewById(R.id.locationToTripDetalis) ;
         FARE=findViewById(R.id.priceViewInTripDetails) ;
@@ -61,6 +65,7 @@ TextView DriverNAME , CARMODEL  , FROMLOC  ,TOLOC , FARE ,TIME , POSTID , DRIVER
         //setting the data to the views ;
 
         DriverNAME.setText(driverName);
+        drivername2.setText(driverName);
         CARMODEL.setText(carModel);
         FROMLOC.setText(fromLoc);
         TOLOC.setText(toLoc);

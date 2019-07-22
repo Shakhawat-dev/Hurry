@@ -8,9 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -28,6 +32,11 @@ public class bidListPage extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     DatabaseReference mref ;
     String db  ;
+    ImageView imageView ;
+    ProgressBar progressBar ;
+
+    TextView textView ;
+
 
 
     FirebaseRecyclerAdapter <modelForBid , viewholderForBidList> firebaseRecyclerAdapter  ;
@@ -37,6 +46,13 @@ public class bidListPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bid_list_page);
+
+
+        textView = findViewById(R.id.textOnBidList);
+        progressBar = findViewById(R.id.progressBarONBidList);
+        imageView = findViewById(R.id.imageOnBid);
+
+        progressBar.setVisibility(View.VISIBLE);
 
         Intent o = getIntent();
 
@@ -60,6 +76,31 @@ public class bidListPage extends AppCompatActivity {
 
 
         loadDataToFirebase() ;
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                if(linearLayoutManager.getItemCount()==0){
+                    progressBar.setVisibility(View.GONE);
+
+                    textView.setVisibility(View.VISIBLE);
+                    imageView.setVisibility(View.VISIBLE);
+                    //Toast.makeText(getApplicationContext(), "You Do not Have Any Service", Toast.LENGTH_SHORT).show();
+
+
+                }
+                else {
+
+                    progressBar.setVisibility(View.GONE);
+
+                }
+
+            }
+        }, 3000);
+
+
+
 
 
 

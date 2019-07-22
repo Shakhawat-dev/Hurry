@@ -59,10 +59,10 @@
                         android:layout_weight="2"
                         />
                     <TextView
-                        android:id="@+id/fareRow"
+                        android:id="@+id/statusRow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="$350"
+                        android:text="Pending"
                         android:paddingLeft="10dp"
                         android:paddingRight="4dp"
                         android:paddingTop="2dp"
@@ -70,7 +70,7 @@
                         android:background="@drawable/price_tag_round_bg"
                         android:textColor="#fff"
                         android:textAlignment="textEnd"
-                        android:textSize="12dp"
+                        android:textSize="14sp"
                         />
                 </LinearLayout>
 

@@ -31,8 +31,10 @@ public class homePage extends AppCompatActivity {
         viewPagerAdapter adapter = new viewPagerAdapter(getSupportFragmentManager());
 
         adapter.AddFragment(new selectTripFragment() , "Plan Trip");
+        adapter.AddFragment(new onGoingList() , "Ongoing Trip");
         adapter.AddFragment(new pastTripFragment() , "Past Trip");
         adapter.AddFragment(new profileFragment() , "Profile");
+
 
         viewPager.setAdapter(adapter) ;
         tabLayout.setupWithViewPager(viewPager) ;
