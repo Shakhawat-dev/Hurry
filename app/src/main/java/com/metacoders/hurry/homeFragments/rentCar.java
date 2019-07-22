@@ -14,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -57,6 +58,7 @@ public class rentCar extends AppCompatActivity {
     String tripDetails , TripDate , TripTime , TripLocto , TripLocFrom , cityto  , townto , cityfrom , townfrom  , carType  = "null"  ;
 
     CheckBox oneWay , TwoWay ;
+        LinearLayout linearLayout ;
 
 DatabaseReference  mref ;
 
@@ -84,12 +86,10 @@ DatabaseReference  mref ;
         submit = findViewById(R.id.sumbitBtn);
         oneWay = findViewById(R.id.oneWay_check);
         TwoWay = findViewById(R.id.round_check) ;
+        linearLayout = findViewById(R.id.tripEndingLayout);
 
 
-
-
-
-
+        linearLayout.setVisibility(View.GONE);
         TownSpinner.setVisibility(View.GONE);
 
         // calling funtion for dwnlding spinner data
@@ -107,13 +107,15 @@ DatabaseReference  mref ;
 
                     //rowund Trip is now Checked
 
+                    linearLayout.setVisibility(View.VISIBLE);
+
                     oneWay.setChecked(false); // setting one way unchecked
 
 
                 }
                 else if (!b) {
 
-
+                    linearLayout.setVisibility(View.GONE);
 
                 }
 
@@ -130,6 +132,7 @@ DatabaseReference  mref ;
                 if (b){
 
                     TwoWay.setChecked(false);
+                    linearLayout.setVisibility(View.GONE);
                 }
 
                 else if (!b) {

@@ -177,6 +177,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -196,6 +197,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/tripEndingLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -215,6 +217,7 @@
                                 android:text="Time : " />
 
                             <TextView
+                                android:id="@+id/tripEndingTime"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/edit_text_outline"

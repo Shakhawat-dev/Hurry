@@ -52,8 +52,8 @@ TextView DriverNAME , CARMODEL ,drivername2  , FROMLOC  ,TOLOC , FARE ,TIME , PO
 
         //init The View ;
         drivername2 = findViewById(R.id.driverNameTripDeatils2);
-        DriverNAME =findViewById(R.id.driverNameTripDeatils)  ;
-        CARMODEL=findViewById(R.id.carModelTripDetails)  ;
+    //    DriverNAME =findViewById(R.id.driverNameTripDeatils)  ;
+     //   CARMODEL=findViewById(R.id.carModelTripDetails)  ;
         FROMLOC =findViewById(R.id.locationFromTripDetails) ;
         TOLOC=findViewById(R.id.locationToTripDetalis) ;
         FARE=findViewById(R.id.priceViewInTripDetails) ;
@@ -64,9 +64,9 @@ TextView DriverNAME , CARMODEL ,drivername2  , FROMLOC  ,TOLOC , FARE ,TIME , PO
 
         //setting the data to the views ;
 
-        DriverNAME.setText(driverName);
+      //  DriverNAME.setText(driverName);
         drivername2.setText(driverName);
-        CARMODEL.setText(carModel);
+      //  CARMODEL.setText(carModel);
         FROMLOC.setText(fromLoc);
         TOLOC.setText(toLoc);
         TIME.setText(time);

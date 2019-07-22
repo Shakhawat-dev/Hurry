@@ -75,7 +75,7 @@ public class bidListPage extends AppCompatActivity {
         mref.keepSynced(true);
 
 
-        loadDataToFirebase() ;
+       loadDataToFirebase() ;
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -98,7 +98,6 @@ public class bidListPage extends AppCompatActivity {
 
             }
         }, 3000);
-
 
 
 
@@ -143,11 +142,6 @@ firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<modelForBid, viewholderFor
 
                 o.putExtra("DRIVERUID" , getItem(position).getDriverUid()) ;
                 o.putExtra("FARE" , getItem(position).getBidPrice());
-
-
-
-
-
 
                 startActivity(o);
 
