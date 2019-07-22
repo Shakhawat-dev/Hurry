@@ -22,26 +22,14 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="120dp"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_gravity="center"
                     android:layout_marginRight="8dp"
-                    android:layout_marginBottom="12dp"
-                    app:cardCornerRadius="8dp">
-
-                    <ImageView
-                        android:id="@+id/driverImageBidonID"
-                        android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:adjustViewBounds="true"
-                        android:layout_gravity="center"
-                        android:cropToPadding="true"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/placeholderman" />
-                </com.google.android.material.card.MaterialCardView>
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:src="@drawable/avatar"/>
 
             </LinearLayout>
 
