@@ -142,11 +142,7 @@
                                 android:textStyle="bold"
                                 android:padding="10dp" />
 
-                            <CheckBox
-                                android:id="@+id/oneWay_check"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="One Way" />
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -176,15 +172,92 @@
                                 android:hint="dd/mm/yyyy"
                                 android:padding="10dp" />
 
-                            <CheckBox
-                                android:id="@+id/round_check"
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/oneWay_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="One Way" />
+
+                        <CheckBox
+                            android:id="@+id/round_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Round Trip" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="2dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Round Trip" />
+                                android:layout_marginTop="8dp"
+                                android:text="Time : " />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/edit_text_outline"
+                                android:drawableLeft="@drawable/time_icon"
+                                android:drawablePadding="10dp"
+                                android:hint="00:00"
+                                android:gravity="start|center"
+                                android:textSize="15sp"
+                                android:textColor="#000"
+                                android:textStyle="bold"
+                                android:padding="10dp" />
+
+
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Date : " />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/edit_text_outline"
+                                android:drawableStart="@drawable/date_icon"
+                                android:drawablePadding="10dp"
+                                android:gravity="center|start"
+                                android:textSize="15sp"
+                                android:textColor="#000"
+                                android:textStyle="bold"
+                                android:hint="dd/mm/yyyy"
+                                android:padding="10dp" />
 
 
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

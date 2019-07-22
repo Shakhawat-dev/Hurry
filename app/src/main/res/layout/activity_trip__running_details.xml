@@ -109,29 +109,6 @@
                             android:textStyle="bold"
                             android:text="Bashundhara Shopping Complex, Dhaka"/>
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="10sp"
-                            android:text="Driver Name: "/>
-
-                        <TextView
-                            android:id="@+id/driverNameTripDeatils"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="4dp"
-                            android:textSize="12sp"
-                            android:textColor="#000"
-                            android:textStyle="bold"
-                            android:text="Christina Perry"/>
-                    </LinearLayout>
-
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -157,8 +134,95 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginLeft="8dp"
+                        android:layout_marginBottom="8dp"
                         android:orientation="vertical">
-                        <TextView
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/avatar"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="12dp"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="#000"
+                                    android:textStyle="bold"
+                                    android:textSize="16sp"
+                                    android:text="Cristina Perry"/>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+
+                                        android:drawablePadding="8dp"
+                                        android:text="Mobile: "/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="8dp"
+                                        android:text="+8801856508888"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:weightSum="2"
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:drawablePadding="8dp"
+                                        android:text="License: "/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="8dp"
+                                        android:text="xxksjd2232xz44"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:weightSum="2"
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:drawablePadding="8dp"
+                                        android:textSize="14sp"
+                                        android:text="Car Model: "/>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="8dp"
+                                        android:textSize="14sp"
+                                        android:textColor="#000000"
+                                        android:text="Toyota Premio 2019"/>
+                                </LinearLayout>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+
+
+
+
+                        <!--<TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="10sp"
@@ -172,31 +236,31 @@
                             android:textSize="12sp"
                             android:textColor="#000"
                             android:textStyle="bold"
-                            android:text="Christina Perry"/>
+                            android:text="Christina Perry"/>-->
                     </LinearLayout>
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginLeft="8dp"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="10sp"
                             android:text="Car Model"/>
 
                         <TextView
                             android:id="@+id/carModelTripDetails"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:textSize="12sp"
                             android:textColor="#000"
                             android:textStyle="bold"
                             android:text="Toyota Premio 2019"/>
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
