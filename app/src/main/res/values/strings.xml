@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Hurry</string>
     <string name="from">From :</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="having_trouble_login">Having Trouble Login?</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
 
     <string-array name="NoOFPPL">
         <item>1</item>

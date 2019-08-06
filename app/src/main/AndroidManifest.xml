@@ -11,7 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".PastTrip"></activity>
+        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".LoginSignupActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".PastTrip" />
         <activity android:name=".Trip_Running_details" />
         <activity android:name=".homeFragments.bidFunction.bidListPage" />
         <activity android:name=".homeFragments.homePage">

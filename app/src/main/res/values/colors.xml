@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#D54946</color>
-    <color name="colorPrimaryDark">#D54946</color>
+    <color name="colorPrimaryDark">#B14947</color>
     <color name="colorAccent">#D54946</color>
     <color name="redBack">#D54946</color>
     <color name="colorLoginBackground">#2A2E43</color>
@@ -9,5 +9,8 @@
     <color name="colorRegEditField">#454F63</color>
     <color name="colorRegEditFieldText">#959DAD</color>
     <color name="colorRegContButton">#665EFF</color>
+    <color name="background_color">#D54946</color>
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
 
 </resources>
