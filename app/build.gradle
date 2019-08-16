@@ -37,6 +37,8 @@ dependencies {
 
     // Circle Image View
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+    // Gif Image View
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
 
     // firebase m
     implementation 'com.firebaseui:firebase-ui-database:4.3.1'
