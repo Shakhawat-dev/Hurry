@@ -49,7 +49,7 @@
                     android:orientation="horizontal"
                     android:weightSum="2">
                     <TextView
-                        android:id="@+id/dateOfRows"
+                        android:id="@+id/dateOfRow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="27 jun 2019 at 2:30 AM"
@@ -59,18 +59,17 @@
                         android:layout_weight="2"
                         />
                     <TextView
-                        android:id="@+id/statusRows"
+                        android:id="@+id/statusRow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Completed"
                         android:paddingLeft="10dp"
                         android:paddingRight="4dp"
                         android:paddingTop="2dp"
-                        android:paddingBottom="2dp"
-                        android:background="@drawable/price_green"
-                        android:textColor="#fff"
-
                         android:textStyle="bold"
+                        android:paddingBottom="2dp"
+                        android:background="@drawable/price_tag_round_bg"
+                        android:textColor="#fff"
                         android:textAlignment="textEnd"
                         android:textSize="14sp"
                         />
@@ -89,7 +88,7 @@
                         android:text="Pickup Location"/>
 
                     <TextView
-                        android:id="@+id/locationFroms"
+                        android:id="@+id/locationFrom"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
@@ -112,7 +111,7 @@
                         android:text="Drop of Location"/>
 
                     <TextView
-                        android:id="@+id/locationTos"
+                        android:id="@+id/locationTo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"

@@ -9,12 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?actionBarSize"
+        android:background="@color/colorPrimary"
         app:tabGravity="fill"
+        android:layout_gravity="center_horizontal"
         app:tabIndicatorColor="#fff"
-        app:tabIndicatorHeight="4dp"
         app:tabBackground="@color/redBack"
         app:tabTextColor="#fff"
-        app:tabMode="fixed">
+        app:tabMaxWidth="0dp"
+        app:tabMode="scrollable">
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager

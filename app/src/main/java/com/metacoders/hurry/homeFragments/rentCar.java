@@ -38,7 +38,7 @@ import java.util.Calendar;
 public class rentCar extends AppCompatActivity {
 
 
-           TextView  datePicker  , timePicker ;
+           TextView  datePicker  , timePicker , endTime , endDate ;
     DatePickerDialog  datePickerDialog ;
     String amPmChecker ;
     Spinner noOfppl , typeOfVehical , citySpinner , TownSpinner , citySpinnerTo , townSpinnerTO  ;
@@ -53,8 +53,8 @@ public class rentCar extends AppCompatActivity {
 
     ArrayList<modelForSpinner> cityListTo = new ArrayList<>();
     ArrayList<String> CityNameListto = new ArrayList<>();
-    String numofPPl;
-    Button submit ;
+    String numofPPl , returnTime = "null" , returnDate = "null";
+    Button submit  ;
     String tripDetails , TripDate , TripTime , TripLocto , TripLocFrom , cityto  , townto , cityfrom , townfrom  , carType  = "null"  ;
 
     CheckBox oneWay , TwoWay ;
@@ -87,6 +87,10 @@ DatabaseReference  mref ;
         oneWay = findViewById(R.id.oneWay_check);
         TwoWay = findViewById(R.id.round_check) ;
         linearLayout = findViewById(R.id.tripEndingLayout);
+        endTime = findViewById(R.id.tripEndingTime) ;
+        endDate = findViewById(R.id.tripEndingDate)  ;
+
+
 
 
         linearLayout.setVisibility(View.GONE);
@@ -96,6 +100,64 @@ DatabaseReference  mref ;
 
         GettingSpinnerDataFromFireBase();
         gettingToCitySpinnerData();
+
+
+
+        // return time click
+
+        endDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Calendar c = Calendar.getInstance();
+
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                int month = c.get(Calendar.MONTH);
+                int year = c.get(Calendar.YEAR);
+
+                datePickerDialog = new DatePickerDialog(rentCar.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                        endDate.setText(dayOfMonth + "/"+(month+1)+"/"+year);
+
+                    }
+                } ,year , month , day);
+
+                datePickerDialog.show();
+
+
+            }
+        });
+
+        endTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog timePickerDialog  = new TimePickerDialog(rentCar.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                        if (hourOfDay >= 12){
+                            amPmChecker = "AM";
+
+                        }
+                        else  {
+                            amPmChecker= "PM";
+                        }
+
+                        endTime.setText(hourOfDay+":"+minute+" "+amPmChecker);
+
+                    }
+                }, 0,0, false);
+
+
+                timePickerDialog.show();
+
+
+
+            }
+        });
 
 
 
@@ -287,6 +349,13 @@ DatabaseReference  mref ;
         TripDate = datePicker.getText().toString() ;
         TripTime = timePicker.getText().toString() ;
 
+        returnDate = endDate.getText().toString();
+        returnTime = endTime.getText().toString() ;
+
+            returnTime = returnTime + " "+returnDate ;
+
+
+
         // getting the trip loc
         TripLocFrom = cityfrom+ " ," + townfrom  ;
         TripLocto = cityto + " , "+ townto ;
@@ -304,7 +373,7 @@ DatabaseReference  mref ;
 
         modelForCarRequest  model = new modelForCarRequest(postId , "uId", "userNotfonID" , "dirveRID", "dirverNotiId"
         , TripLocto  , TripLocFrom , TripTime + " at "+ TripDate , carType  , "drivernamee" , "Pending" , "carlice" , "fare00"
-                ,  carType , "TOday" , tripDetails
+                ,  carType , "TOday" , tripDetails , returnTime
 
         ) ;
 

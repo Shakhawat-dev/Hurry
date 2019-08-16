@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PastTrip">
+    tools:context=".PastTripDetails">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -49,6 +49,7 @@
                             />
                         <TextView
                             android:id="@+id/fareRow"
+                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="$350"
@@ -284,7 +285,6 @@
             </com.google.android.material.card.MaterialCardView>
 
 
-
             <com.google.android.material.tabs.TabLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -292,26 +292,27 @@
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Monday" />
+                    android:text="Receipt" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tuesday" />
+                    android:text="Help" />
 
             </com.google.android.material.tabs.TabLayout>
 
             <Button
                 android:id="@+id/sumbutBTnTripdetails"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="12dp"
+                android:layout_gravity="center"
                 android:layout_marginBottom="8dp"
                 android:textColor="#fff"
                 android:background="@drawable/complete_button"
-                android:text="Complete Trip"/>
+                android:text="Done !!!"/>
         </LinearLayout>
     </ScrollView>
 

@@ -7,9 +7,10 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="115dp"
         android:layout_marginTop="8dp"
-        app:cardElevation="8dp">
+        app:cardElevation="8dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,7 +30,7 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
-                    android:src="@drawable/avatar"/>
+                    android:src="@drawable/placeholderman"/>
 
             </LinearLayout>
 
@@ -54,7 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="Shakhawat Hossain Shaheenn"
+                        android:text="Shakhawat Hossain Shaheen"
                         android:textAlignment="textStart"
                         android:textColor="#000000"
                         android:textStyle="bold" />
@@ -139,8 +140,8 @@
                                 android:layout_marginTop="4dp"
                                 android:text="1050"
                                 android:textAlignment="center"
-                                android:textColor="#000"
-                                android:textSize="20sp"
+                                android:textColor="@color/green"
+                                android:textSize="19sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -150,8 +151,9 @@
                                 android:layout_marginLeft="4dp"
                                 android:layout_marginTop="4dp"
                                 android:text="Tk"
+
                                 android:textAlignment="center"
-                                android:textColor="#000"
+                                android:textColor="@color/green"
                                 android:textSize="16sp" />
                         </LinearLayout>
 

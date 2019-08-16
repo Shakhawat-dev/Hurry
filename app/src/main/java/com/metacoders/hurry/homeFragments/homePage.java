@@ -32,7 +32,7 @@ public class homePage extends AppCompatActivity {
 
         adapter.AddFragment(new selectTripFragment() , "Plan Trip");
         adapter.AddFragment(new onGoingList() , "Ongoing Trip");
-        adapter.AddFragment(new pastTripFragment() , "Past Trip");
+        adapter.AddFragment(new pastTripListFragment() , "Past Trip");
         adapter.AddFragment(new profileFragment() , "Profile");
 
 

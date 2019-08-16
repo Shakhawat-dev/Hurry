@@ -9,5 +9,7 @@
     <color name="colorRegEditField">#454F63</color>
     <color name="colorRegEditFieldText">#959DAD</color>
     <color name="colorRegContButton">#665EFF</color>
+    <color name="green">#2ECC71</color>
+    <color name="blue">#19B5FE</color>
 
 </resources>

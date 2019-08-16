@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,12 +44,12 @@ public class onGoingList extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        view = inflater.inflate(R.layout.past_trip_fragment, container, false);
+        view = inflater.inflate(R.layout.fragment_ongoing_list, container, false);
 
         mref = FirebaseDatabase.getInstance().getReference("reqCarDb"); // db link
 
 
-        mrecyclerview = view.findViewById(R.id.recycerviewForCurrentList) ;
+        mrecyclerview = view.findViewById(R.id.currentList) ;
 
         linearLayoutManager = new LinearLayoutManager(getContext());
 
@@ -81,7 +82,7 @@ public class onGoingList extends Fragment {
                         model.getPostId() , model.getUserId()  ,model.getUserNotificationID()   , model.getDriverId()  , model.getDriverNotificationID() ,
                         model.getToLoc() , model.getFromLoc() ,  model.getTimeDate() , model.getCarModl() , model.getDriverName() ,
                         model.getStatus()  , model.getCarLicNum() , model.getFare() , model.getCarType() ,
-                        model.getReqDate() , model.getTripDetails() );
+                        model.getReqDate() , model.getTripDetails() , model.getReturnTimee() );
 
 
 
@@ -94,8 +95,8 @@ public class onGoingList extends Fragment {
             @Override
             public viewholdersForCurrentTrip onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-                View iteamVIew = LayoutInflater.from(parent.getContext()).inflate(R.layout.last_trip_view_module, parent, false);
-                viewholdersForCurrentTrip viewholders = new viewholdersForCurrentTrip(iteamVIew);
+                View iteamVIew = LayoutInflater.from(parent.getContext()).inflate(R.layout.all_trip_view_module, parent, false);
+                final viewholdersForCurrentTrip viewholders = new viewholdersForCurrentTrip(iteamVIew);
 
 
 
@@ -107,7 +108,9 @@ public class onGoingList extends Fragment {
                         String Status = getItem(postion).getStatus() ;
 
 
-                        if (!DriverName.contains("drivernamee") && Status.equals("Driver Found") )
+
+
+                        if ( Status.equals("Driver Found") )
                         {
                             //go to the Trip details page to mark it done
 
@@ -127,7 +130,8 @@ public class onGoingList extends Fragment {
 
 
                         }
-                        else {
+
+                        else if (Status.contains("Bid Found")) {
 
                             Intent o = new Intent(getContext() , bidListPage.class );
                             String postID  = getItem(postion).getPostId();
@@ -137,6 +141,9 @@ public class onGoingList extends Fragment {
 
                             startActivity(o);
 
+                        }
+                        else {
+                            Toast.makeText(getContext() , "No One Has Bidded On Your Request"  , Toast.LENGTH_SHORT).show();
                         }
 
 

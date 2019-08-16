@@ -49,6 +49,7 @@
                             android:layout_weight="2"
                             />
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/fareRow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -153,6 +154,7 @@
                                 android:layout_marginLeft="12dp"
                                 android:orientation="vertical">
                                 <TextView
+                                    android:id="@+id/driverNameinTripDetails"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="#000"
@@ -171,6 +173,7 @@
                                         android:drawablePadding="8dp"
                                         android:text="Mobile: "/>
                                     <TextView
+                                        android:id="@+id/phoneNumINTripDetails"
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent"
                                         android:layout_marginLeft="8dp"
@@ -187,11 +190,13 @@
                                         android:layout_height="match_parent"
                                         android:drawablePadding="8dp"
                                         android:text="License: "/>
+
                                     <TextView
+                                        android:id="@+id/driverIDInTripDetails"
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent"
                                         android:layout_marginLeft="8dp"
-                                        android:text="xxksjd2232xz44"/>
+                                        android:text="xxksjd2232xz44" />
                                 </LinearLayout>
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -206,6 +211,7 @@
                                         android:textSize="14sp"
                                         android:text="Car Model: "/>
                                     <TextView
+                                        android:id="@+id/carModelInTripDetais"
                                         android:layout_width="wrap_content"
                                         android:layout_height="match_parent"
                                         android:layout_marginLeft="8dp"
@@ -301,7 +307,7 @@
                             android:layout_marginTop="4dp"
                             android:text="1050"
                             android:textAlignment="center"
-                            android:textColor="#000"
+                            android:textColor="@color/green"
                             android:textSize="30sp"
                             android:textStyle="bold" />
 
@@ -313,7 +319,7 @@
                             android:layout_marginTop="4dp"
                             android:text="Tk"
                             android:textAlignment="center"
-                            android:textColor="#000"
+                            android:textColor="@color/green"
                             android:textSize="16sp" />
                     </LinearLayout>
 
@@ -369,6 +375,7 @@
                         />
 
                     <Button
+
                         android:id="@+id/sumbutBTnTripdetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

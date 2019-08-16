@@ -16,7 +16,7 @@ EditText description ;
 Button submit  ;
 
 
-TextView DriverNAME , CARMODEL ,drivername2  , FROMLOC  ,TOLOC , FARE ,TIME , POSTID , DRIVERID , DRIVERNOTTIFICATIONID  ;
+TextView DriverNAME , CARMODEL ,drivername  , FROMLOC  ,TOLOC , FARE ,TIME , POSTID , DRIVERID , DRIVERNOTTIFICATIONID  ;
 
 
     @Override
@@ -51,7 +51,7 @@ TextView DriverNAME , CARMODEL ,drivername2  , FROMLOC  ,TOLOC , FARE ,TIME , PO
 
 
         //init The View ;
-        drivername2 = findViewById(R.id.driverNameTripDeatils2);
+        drivername= findViewById(R.id.driverNameinTripDetails);
     //    DriverNAME =findViewById(R.id.driverNameTripDeatils)  ;
      //   CARMODEL=findViewById(R.id.carModelTripDetails)  ;
         FROMLOC =findViewById(R.id.locationFromTripDetails) ;
@@ -65,7 +65,7 @@ TextView DriverNAME , CARMODEL ,drivername2  , FROMLOC  ,TOLOC , FARE ,TIME , PO
         //setting the data to the views ;
 
       //  DriverNAME.setText(driverName);
-        drivername2.setText(driverName);
+        drivername.setText(driverName);
       //  CARMODEL.setText(carModel);
         FROMLOC.setText(fromLoc);
         TOLOC.setText(toLoc);

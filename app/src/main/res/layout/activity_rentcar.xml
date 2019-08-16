@@ -203,6 +203,8 @@
                         android:orientation="horizontal"
                         android:weightSum="2">
 
+
+
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -210,11 +212,12 @@
                             android:layout_weight="1"
                             android:orientation="vertical">
 
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                android:text="Time : " />
+                                android:text="Return Time : " />
 
                             <TextView
                                 android:id="@+id/tripEndingTime"
@@ -244,9 +247,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                android:text="Date : " />
+                                android:text="Return Date : " />
 
                             <TextView
+                                android:id="@+id/tripEndingDate"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/edit_text_outline"

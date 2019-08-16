@@ -4,12 +4,12 @@ public class modelForCarRequest {
 
      String postId  , userId  , userNotificationID  , driverId  , driverNotificationID ,
     toLoc , fromLoc ,  timeDate , carModl , driverName , status  , carLicNum , fare , carType ,
-    reqDate , tripDetails  ;
+    reqDate , tripDetails  , returnTimee ;
 
     public modelForCarRequest() {
     }
 
-    public modelForCarRequest(String postId, String userId, String userNotificationID, String driverId, String driverNotificationID, String toLoc, String fromLoc, String timeDate, String carModl, String driverName, String status, String carLicNum, String fare, String carType, String reqDate, String tripDetails) {
+    public modelForCarRequest(String postId, String userId, String userNotificationID, String driverId, String driverNotificationID, String toLoc, String fromLoc, String timeDate, String carModl, String driverName, String status, String carLicNum, String fare, String carType, String reqDate, String tripDetails, String returnTimee) {
         this.postId = postId;
         this.userId = userId;
         this.userNotificationID = userNotificationID;
@@ -26,6 +26,15 @@ public class modelForCarRequest {
         this.carType = carType;
         this.reqDate = reqDate;
         this.tripDetails = tripDetails;
+        this.returnTimee = returnTimee;
+    }
+
+    public String getReturnTimee() {
+        return returnTimee;
+    }
+
+    public void setReturnTimee(String returnTimee) {
+        this.returnTimee = returnTimee;
     }
 
     public String getPostId() {
