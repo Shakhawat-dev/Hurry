@@ -15,14 +15,21 @@
         <activity android:name=".Trip_Running_details" />
         <activity android:name=".homeFragments.bidFunction.bidListPage" />
         <activity android:name=".homeFragments.homePage">
+
+        </activity>
+        <activity android:name=".Mobile_Varification" >
+
+
+        </activity>
+        <activity android:name=".Sign_in" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".Mobile_Varification" />
-        <activity android:name=".Sign_in" />
+
+
+            </activity>
         <activity android:name=".homeFragments.rentCar" />
         <activity android:name=".driverProfile.driverProfile" />
     </application>
