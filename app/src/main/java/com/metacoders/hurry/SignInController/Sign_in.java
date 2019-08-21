@@ -1,4 +1,4 @@
-package com.metacoders.hurry;
+package com.metacoders.hurry.SignInController;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
+import com.metacoders.hurry.R;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class Sign_in extends AppCompatActivity {

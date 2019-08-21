@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="13dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/back_arrow"
+        />
+
+    
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:background="@drawable/terms_con"/>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:lineSpacingExtra="7dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="30dp"
+        android:text="By tapping the arrow below,you agree to Hurry's Terms of Usre and acknowledge that you have read the Privacy Policy"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginStart="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:text="To learn more , see our"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/blue"
+            android:text=" Terms &amp; Conditions"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:linksClickable="true"
+        android:textColor="@color/black"
+        android:text=" and"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:linksClickable="true"
+            android:textColor="@color/blue"
+            android:text=" Privacy Policy"/>
+
+    </LinearLayout>
+
+
+
+    <ImageButton
+        android:id="@+id/signin_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="12dp"
+        android:baselineAlignBottom="true"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/circle_button"
+        android:src="@drawable/ar"
+        android:layout_gravity="end|bottom"
+        android:padding="8dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"/>
+
+
+
+</LinearLayout>

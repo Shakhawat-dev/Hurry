@@ -47,7 +47,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:18.1.0'
 
     //lottie anim
-    
+
     implementation 'com.airbnb.android:lottie:3.0.7'
 
 
@@ -56,7 +56,11 @@ dependencies {
 //count down timer
     implementation 'ir.samanjafari.easycountdowntimer:easycountdowntimer:2.1'
 
+    //stepview
+    implementation 'com.shuhart.stepview:stepview:1.5.0'
+
     // fancy toast
     implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.6'
+
 
 }

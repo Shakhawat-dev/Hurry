@@ -24,7 +24,7 @@ allprojects {
         maven {
             url 'https://dl.bintray.com/samanjafaridotir/easyCountDownTimerTextview'
         }
-
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         
     }
 }

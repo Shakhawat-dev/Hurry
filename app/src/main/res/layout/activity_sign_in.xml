@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#2A2E43"
     android:orientation="vertical"
-    tools:context=".Sign_in">
+    tools:context=".SignInController.Sign_in">
 
     <LinearLayout
         android:layout_width="match_parent"
