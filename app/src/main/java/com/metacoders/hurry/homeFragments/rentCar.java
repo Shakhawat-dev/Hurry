@@ -55,12 +55,12 @@ public class rentCar extends AppCompatActivity {
     ArrayList<String> CityNameListto = new ArrayList<>();
     String numofPPl , returnTime = "null" , returnDate = "null";
     Button submit  ;
-    String tripDetails , TripDate , TripTime , TripLocto , TripLocFrom , cityto  , townto , cityfrom , townfrom  , carType  = "null"  ;
+    String tripDetails , TripDate , TripTime , TripLocto , TripLocFrom , cityto  , townto , cityfrom , townfrom  , carType  = "null"   , rideType;
 
     CheckBox oneWay , TwoWay ;
         LinearLayout linearLayout ;
 
-DatabaseReference  mref ;
+    DatabaseReference  mref ;
 
     EditText  tripDetailsEditText ;
 
@@ -169,6 +169,7 @@ DatabaseReference  mref ;
 
                     //rowund Trip is now Checked
 
+                    rideType = "Round";
                     linearLayout.setVisibility(View.VISIBLE);
 
                     oneWay.setChecked(false); // setting one way unchecked
@@ -176,7 +177,7 @@ DatabaseReference  mref ;
 
                 }
                 else if (!b) {
-
+                    rideType = "One-Way";
                     linearLayout.setVisibility(View.GONE);
 
                 }
@@ -192,14 +193,14 @@ DatabaseReference  mref ;
 
 
                 if (b){
-
+                    rideType = "One-Way";
                     TwoWay.setChecked(false);
                     linearLayout.setVisibility(View.GONE);
                 }
 
                 else if (!b) {
 
-
+                    rideType = "Round";
 
 
 
@@ -373,7 +374,7 @@ DatabaseReference  mref ;
 
         modelForCarRequest  model = new modelForCarRequest(postId , "uId", "userNotfonID" , "dirveRID", "dirverNotiId"
         , TripLocto  , TripLocFrom , TripTime + " at "+ TripDate , carType  , "drivernamee" , "Pending" , "carlice" , "fare00"
-                ,  carType , "TOday" , tripDetails , returnTime
+                ,  carType , "TOday" , tripDetails , returnTime , numofPPl,rideType
 
         ) ;
 

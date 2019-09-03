@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:text="What's your name ?"
+
         android:layout_marginTop="30dp"
         android:layout_marginStart="35dp"
         android:textSize="22sp"
@@ -37,7 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:hint="First"
-             android:textSize="17sp"
+            android:textSize="17sp"
+            android:id="@+id/fnameIN"
             android:backgroundTint="@color/colorPrimary"
             android:defaultFocusHighlightEnabled="true"
             android:layout_weight="1"
@@ -48,6 +50,7 @@
             android:layout_weight="1"
             android:hint="Last"
             android:textSize="17sp"
+            android:id="@+id/snameIN"
             android:backgroundTint="@color/colorPrimary"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="15dp"
@@ -57,7 +60,7 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/signin_btn"
+        android:id="@+id/nextBtn"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="180dp"

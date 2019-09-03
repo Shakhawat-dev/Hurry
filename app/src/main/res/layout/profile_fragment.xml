@@ -26,7 +26,8 @@
                     android:layout_marginTop="20dp"
                     app:cardCornerRadius="8dp"
                     android:layout_gravity="center">
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imageViewOnProfileFragment"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center"

@@ -44,7 +44,6 @@ public class Mobile_Varification extends AppCompatActivity {
     private final static  int RC_SIGN_IN =2 ;
     FirebaseAuth.AuthStateListener mAuthListener ;
     SignInButton google_btn ;
-    GoogleApiClient mGoogleApiClient ;
     private OtpTextView editText;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mcallbacks ;
     ImageButton signInBtn ;
@@ -185,13 +184,12 @@ public class Mobile_Varification extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(Mobile_Varification.this,"GOOD", Toast.LENGTH_LONG).show();
 
-                           // Intent intent = new Intent(Mobile_Varification.this, homePage.class);
-//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            //intent.putExtra("GOOGLE" , "Phone");
-                           // startActivity(intent);
-                          //  finish();
+
+                            Intent intent = new Intent(Mobile_Varification.this, homePage.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            finish();
 
                         } else {
 

@@ -4,12 +4,12 @@ public class modelForCarRequest {
 
      String postId  , userId  , userNotificationID  , driverId  , driverNotificationID ,
     toLoc , fromLoc ,  timeDate , carModl , driverName , status  , carLicNum , fare , carType ,
-    reqDate , tripDetails  , returnTimee ;
+    reqDate , tripDetails  , returnTimee  , numOfPpl , rideType;
 
     public modelForCarRequest() {
     }
 
-    public modelForCarRequest(String postId, String userId, String userNotificationID, String driverId, String driverNotificationID, String toLoc, String fromLoc, String timeDate, String carModl, String driverName, String status, String carLicNum, String fare, String carType, String reqDate, String tripDetails, String returnTimee) {
+    public modelForCarRequest(String postId, String userId, String userNotificationID, String driverId, String driverNotificationID, String toLoc, String fromLoc, String timeDate, String carModl, String driverName, String status, String carLicNum, String fare, String carType, String reqDate, String tripDetails, String returnTimee, String numOfPpl, String rideType) {
         this.postId = postId;
         this.userId = userId;
         this.userNotificationID = userNotificationID;
@@ -27,14 +27,8 @@ public class modelForCarRequest {
         this.reqDate = reqDate;
         this.tripDetails = tripDetails;
         this.returnTimee = returnTimee;
-    }
-
-    public String getReturnTimee() {
-        return returnTimee;
-    }
-
-    public void setReturnTimee(String returnTimee) {
-        this.returnTimee = returnTimee;
+        this.numOfPpl = numOfPpl;
+        this.rideType = rideType;
     }
 
     public String getPostId() {
@@ -163,5 +157,29 @@ public class modelForCarRequest {
 
     public void setTripDetails(String tripDetails) {
         this.tripDetails = tripDetails;
+    }
+
+    public String getReturnTimee() {
+        return returnTimee;
+    }
+
+    public void setReturnTimee(String returnTimee) {
+        this.returnTimee = returnTimee;
+    }
+
+    public String getNumOfPpl() {
+        return numOfPpl;
+    }
+
+    public void setNumOfPpl(String numOfPpl) {
+        this.numOfPpl = numOfPpl;
+    }
+
+    public String getRideType() {
+        return rideType;
+    }
+
+    public void setRideType(String rideType) {
+        this.rideType = rideType;
     }
 }

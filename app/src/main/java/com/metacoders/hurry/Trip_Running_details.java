@@ -118,6 +118,15 @@ StepView stepView ;
         }, 800);
 
 
+
+        final Handler handdr = new Handler();
+        handdr.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                stepView.go(3, true);
+            }
+        }, 1000);
+
         // listening for submit button click
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

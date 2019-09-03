@@ -1,4 +1,4 @@
-package com.metacoders.hurry.homeFragments;
+package com.metacoders.hurry.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.metacoders.hurry.R;
+import com.metacoders.hurry.homeFragments.rentCar;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class selectTripFragment  extends Fragment {
 
     View view;
+    FirebaseAuth mauth ;
+
 
     public selectTripFragment() {
 
@@ -34,7 +40,11 @@ public class selectTripFragment  extends Fragment {
 
         car = (LinearLayout) view.findViewById(R.id.carLatout);
 
+        mauth = FirebaseAuth.getInstance() ;
 
+
+       Toast.makeText(getContext() , "UID : " + mauth.getUid()  , Toast.LENGTH_LONG )
+      .show();
 
         // getting the fare
         car.setOnClickListener(new View.OnClickListener() {

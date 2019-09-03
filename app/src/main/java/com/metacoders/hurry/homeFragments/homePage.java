@@ -5,6 +5,10 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.metacoders.hurry.fragments.pastTripListFragment;
+import com.metacoders.hurry.fragments.profileFragment;
+import com.metacoders.hurry.fragments.selectTripFragment;
 import com.metacoders.hurry.R;
 
 public class homePage extends AppCompatActivity {

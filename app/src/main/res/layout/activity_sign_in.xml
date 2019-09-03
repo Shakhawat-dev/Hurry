@@ -81,6 +81,7 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:paddingLeft="20dp"
+
             android:textColorHint="@color/colorRegEditFieldText"
             android:background="@drawable/reg_edit_field"/>
 
