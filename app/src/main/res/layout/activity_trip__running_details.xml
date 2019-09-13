@@ -130,6 +130,7 @@
                 app:sv_doneStepLineColor="@color/colorAccent"
                 app:sv_doneCircleRadius="12dp"
                 app:sv_nextStepCircleEnabled="true"
+                android:visibility="visible"
                 app:sv_selectedCircleRadius="12dp"
                 app:sv_selectedStepNumberColor="@color/white"
                 app:sv_stepViewStyle="@style/StepView"
@@ -460,6 +461,14 @@
                         android:textColor="#fff"
                         android:background="@drawable/complete_button"
                         android:text="Complete Trip"/>
+                    <Button
+
+                        android:id="@+id/cancelBTnTripdetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#fff"
+                        android:background="@drawable/complete_button"
+                        android:text="Cancel Trip"/>
                 </LinearLayout>
 
 
