@@ -13,8 +13,6 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.metacoders.hurry.R;
-import com.metacoders.hurry.homeFragments.rentCar;
-import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class selectTripFragment  extends Fragment {
 

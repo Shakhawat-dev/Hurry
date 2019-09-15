@@ -1,4 +1,4 @@
-package com.metacoders.hurry.homeFragments;
+package com.metacoders.hurry.fragments;
 
 
 

@@ -1,4 +1,4 @@
-package com.metacoders.hurry.homeFragments.bidFunction;
+package com.metacoders.hurry.fragments;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

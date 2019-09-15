@@ -1,4 +1,4 @@
-package com.metacoders.hurry.homeFragments;
+package com.metacoders.hurry.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,8 +18,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.metacoders.hurry.R;
-import com.metacoders.hurry.Trip_Running_details;
-import com.metacoders.hurry.homeFragments.bidFunction.bidListPage;
+import com.metacoders.hurry.Activity.Trip_Running_details;
 import com.metacoders.hurry.model.modelForCarRequest;
 import com.metacoders.hurry.viewHolders.viewholdersForCurrentTrip;
 
@@ -107,7 +106,7 @@ public class onGoingList extends Fragment {
                         String DriverName  = getItem(postion).getDriverName() ;
                         String Status = getItem(postion).getStatus() ;
 
-
+            // TODo Remember there is  4 status now
 
 
                         if ( Status.equals("Driver Found") )
@@ -116,6 +115,7 @@ public class onGoingList extends Fragment {
 
                             Intent o = new Intent(getContext() , Trip_Running_details.class );
                             //carry data to their
+                            o.putExtra("STATUS", getItem(postion).getStatus()) ;
                             o.putExtra("DRIVERNAME" , getItem(postion).getDriverName()) ;
                             o.putExtra("CARMODEL", getItem(postion).getCarModl()) ;
                             o.putExtra("FORMLOC", getItem(postion).getFromLoc()) ;
@@ -143,6 +143,7 @@ public class onGoingList extends Fragment {
                             startActivity(o);
 
                         }
+
                         else {
                             Toast.makeText(getContext() , "No One Has Bidded On Your Request"  , Toast.LENGTH_SHORT).show();
                         }

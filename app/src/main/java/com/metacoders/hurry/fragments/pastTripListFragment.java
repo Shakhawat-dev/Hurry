@@ -17,7 +17,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.metacoders.hurry.PastTripDetails;
+import com.metacoders.hurry.Activity.PastTripDetails;
 import com.metacoders.hurry.R;
 import com.metacoders.hurry.model.modelForCarRequest;
 import com.metacoders.hurry.viewHolders.viewholderForPastTrips;
@@ -110,8 +110,6 @@ FirebaseRecyclerAdapter<modelForCarRequest , viewholderForPastTrips>firebaseRecy
 
 
                                 //go to the Trip details page to mark it done
-
-
 
                       //      Toast.makeText(getContext() , "No One Has Bidded On Your Request"  , Toast.LENGTH_LONG).show();
 

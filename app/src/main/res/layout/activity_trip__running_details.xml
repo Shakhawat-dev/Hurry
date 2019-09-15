@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:focusableInTouchMode="true"
-    tools:context=".Trip_Running_details">
+    tools:context=".Activity.Trip_Running_details">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -123,6 +123,7 @@
                 app:sv_selectedTextColor="@color/colorAccent"
                 app:sv_stepLineWidth="1dp"
                 app:sv_stepPadding="4dp"
+                android:layout_marginBottom="10dp"
                 app:sv_nextTextColor="@color/grey"
                 app:sv_nextStepLineColor="@color/grey"
                 app:sv_doneCircleColor="@color/colorAccent"
@@ -142,6 +143,8 @@
                 />
 
             <com.google.android.material.card.MaterialCardView
+                android:foreground="?attr/selectableItemBackground"
+                android:id="@+id/advacePayInfoCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp">
@@ -194,6 +197,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/driverInfoCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -418,7 +422,6 @@
 
                         <RatingBar
                             android:id="@+id/ratingBarBidTripDetails"
-                            style="@style/Widget.AppCompat.RatingBar.Indicator"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
@@ -426,7 +429,7 @@
                             android:layout_marginRight="8dp"
                             android:layout_weight="1"
                             android:numStars="5"
-                            android:rating="4" />
+                            android:rating="1" />
                     </LinearLayout>
 
                     <TextView

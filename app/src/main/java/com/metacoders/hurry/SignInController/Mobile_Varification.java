@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
@@ -24,7 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.metacoders.hurry.R;
-import com.metacoders.hurry.homeFragments.homePage;
+import com.metacoders.hurry.Activity.homePage;
 import java.util.concurrent.TimeUnit;
 import in.aabhasjindal.otptextview.OtpTextView;
 import ir.samanjafari.easycountdowntimer.CountDownInterface;

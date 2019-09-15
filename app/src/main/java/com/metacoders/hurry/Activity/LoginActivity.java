@@ -1,14 +1,16 @@
-package com.metacoders.hurry;
+package com.metacoders.hurry.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class PastTripDetails extends AppCompatActivity {
+import com.metacoders.hurry.R;
+
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_past_trip_details);
+        setContentView(R.layout.activity_login);
     }
 }

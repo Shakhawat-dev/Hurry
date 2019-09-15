@@ -9,9 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.metacoders.hurry.R;
-import com.metacoders.hurry.homeFragments.homePage;
 
 public class accountSetupPage extends AppCompatActivity {
 
@@ -38,6 +36,8 @@ public class accountSetupPage extends AppCompatActivity {
 
         fname = fnameIn.getText().toString();
         sname = snameIn.getText().toString();
+
+
 
 
         imageButton.setOnClickListener(new View.OnClickListener() {

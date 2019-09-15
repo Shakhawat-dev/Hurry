@@ -11,14 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".PaymentDetails"></activity>
-        <activity android:name=".AmbulanceType" />
+        <activity android:name=".Activity.MakeAdvancePaymentActivity"></activity>
+        <activity android:name=".Activity.AmbulanceType" />
         <activity android:name=".SignInController.termsAndCondition" />
         <activity android:name=".SignInController.accountSetupPage" />
-        <activity android:name=".PastTripDetails" />
-        <activity android:name=".Trip_Running_details" />
-        <activity android:name=".homeFragments.bidFunction.bidListPage" />
-        <activity android:name=".homeFragments.homePage" />
+        <activity android:name=".Activity.PastTripDetails" />
+        <activity android:name=".Activity.Trip_Running_details" />
+        <activity android:name=".fragments.bidListPage" />
+        <activity android:name=".Activity.homePage" />
         <activity android:name=".SignInController.Mobile_Varification" />
         <activity android:name=".SignInController.Sign_in">
             <intent-filter>
@@ -27,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".homeFragments.rentCar" />
+        <activity android:name=".fragments.rentCar" />
         <activity android:name=".driverProfile.driverProfile" />
     </application>
 

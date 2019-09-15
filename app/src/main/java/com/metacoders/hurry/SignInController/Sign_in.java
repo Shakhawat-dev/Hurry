@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.metacoders.hurry.Activity.homePage;
 import com.metacoders.hurry.R;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
@@ -61,14 +64,18 @@ public class Sign_in extends AppCompatActivity {
 
 
 
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser muser  = FirebaseAuth.getInstance().getCurrentUser();
 
-
-
-
-
-
-
+        if (muser != null){
+            Intent i = new Intent(getApplicationContext() , homePage.class);
+            startActivity(i);
+            finish();
+        }
 
     }
 }

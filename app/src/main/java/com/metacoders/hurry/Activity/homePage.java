@@ -1,4 +1,4 @@
-package com.metacoders.hurry.homeFragments;
+package com.metacoders.hurry.Activity;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
@@ -6,10 +6,12 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.metacoders.hurry.R;
+import com.metacoders.hurry.fragments.onGoingList;
 import com.metacoders.hurry.fragments.pastTripListFragment;
 import com.metacoders.hurry.fragments.profileFragment;
 import com.metacoders.hurry.fragments.selectTripFragment;
-import com.metacoders.hurry.R;
+import com.metacoders.hurry.fragments.viewPagerAdapter;
 
 public class homePage extends AppCompatActivity {
 

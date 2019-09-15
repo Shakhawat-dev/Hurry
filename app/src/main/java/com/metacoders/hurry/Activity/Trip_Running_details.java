@@ -1,4 +1,4 @@
-package com.metacoders.hurry;
+package com.metacoders.hurry.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,14 +9,20 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.card.MaterialCardView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.metacoders.hurry.Constants.constants;
+import com.metacoders.hurry.R;
 import com.shuhart.stepview.StepView;
 
 import java.text.DateFormat;
@@ -26,15 +32,13 @@ import java.util.HashMap;
 
 public class Trip_Running_details extends AppCompatActivity {
 
-String driverName , carModel  , fromLoc , toLoc , fare , time , postID , driverID   , driverNottificationID ,tripDetails ;
+String driverName , carModel  , fromLoc , toLoc , fare , time , postID , driverID   , driverNottificationID ,tripDetails ,status ;
 EditText description ;
 Button submit ,cancel   ;
-
+MaterialCardView  payInfoCard   , driverInfoCard ;
+RatingBar mRateBar ;
 String uid = "TEST" ;
-
-TextView DriverNAME , CARMODEL ,drivername  , FROMLOC  ,TOLOC , FARE ,TIME , POSTID , DRIVERID , DRIVERNOTTIFICATIONID    ;
-
-
+TextView DriverNAME , CARMODEL ,drivername  , FROMLOC  ,TOLOC , FARE ,TIME , POSTID , DRIVERID , DRIVERNOTTIFICATIONID     ;
 StepView stepView ;
 
     @Override
@@ -42,28 +46,14 @@ StepView stepView ;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip__running_details);
 
-        getSupportActionBar().setTitle("Finish Your Trip");
+        getSupportActionBar().setTitle("Trip Details ");
 
 
-
-
-
-        /*                       o.putExtra("DRIVERNAME" , getItem(postion).getDriverName()) ;
-                                o.putExtra("CARMODEL", getItem(postion).getCarModl()) ;
-                                o.putExtra("FORMLOC", getItem(postion).getFromLoc()) ;
-                                o.putExtra("TOLOC", getItem(postion).getToLoc()) ;
-                                o.putExtra("FARE", getItem(postion).getFare()) ;
-                                o.putExtra("TIME", getItem(postion).getTimeDate()) ;
-                                o.putExtra("POSTID", getItem(postion).getPostId()) ;
-                                o.putExtra("DRIVERUID", getItem(postion).getDriverId()) ;
-                                o.putExtra("DRIVERNOTIFICATIONID", getItem(postion).getDriverNotificationID()) ;
-
-        */
-        String action;
         Intent i = getIntent();
         driverName =  i.getStringExtra("DRIVERNAME" ) ;
         carModel =  i.getStringExtra("CARMODEL")  ;
         fromLoc =  i.getStringExtra("FORMLOC") ;
+        status = i.getStringExtra("STATUS") ;
         toLoc =  i.getStringExtra("TOLOC") ;
         fare =  i.getStringExtra("FARE") ;
         time =  i.getStringExtra("TIME");
@@ -71,6 +61,10 @@ StepView stepView ;
         driverID  =  i.getStringExtra("DRIVERUID")  ;
         driverNottificationID  =  i.getStringExtra("DRIVERNOTIFICATIONID");
         tripDetails = i.getStringExtra("DESC") ;
+
+
+
+
 
 
 
@@ -88,14 +82,36 @@ StepView stepView ;
         submit = findViewById(R.id.sumbutBTnTripdetails);
         stepView  = findViewById(R.id.step_view);
         cancel = findViewById(R.id.cancelBTnTripdetails);
+        payInfoCard =findViewById(R.id.advacePayInfoCard) ;
+        driverInfoCard = findViewById(R.id.driverInfoCard) ;
+        mRateBar= findViewById(R.id.ratingBarBidTripDetails);
 
 
+
+        //determine what to show
+
+        if (status.equals("Driver Found"))
+        {
+            //TODO Bring The Advance Payment App Tab
+
+            payInfoCard.setVisibility(View.VISIBLE);
+            stepView.setVisibility(View.VISIBLE);
+            driverInfoCard.setVisibility(View.GONE);
+        }
+        else {
+            //TODO Show Dirver Details
+             driverInfoCard.setVisibility(View.VISIBLE);
+             payInfoCard.setVisibility(View.GONE);
+             stepView.setVisibility(View.GONE);
+
+
+        }
 
         //setting the data to the views ;
 
         //    DriverNAME.setText(driverName);
             drivername.setText(driverName);
-//            CARMODEL.setText(carModel);
+        // CARMODEL.setText(carModel);
             FROMLOC.setText(fromLoc);
             TOLOC.setText(toLoc);
             TIME.setText(time);
@@ -110,43 +126,22 @@ StepView stepView ;
                 .animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime))
                 .commit();
 
+        setAnimationtoStepVIews();
 
-
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                stepView.go(0, true);
-            }
-        }, 100);
-
-        final Handler handsler = new Handler();
-        handsler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                stepView.go(1, true);
-            }
-        }, 400);
-
-        final Handler handdsler = new Handler();
-        handdsler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                stepView.go(2, true);
-            }
-        }, 800);
-
-
-
-        final Handler handdr = new Handler();
-        handdr.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                stepView.go(3, true);
-            }
-        }, 1000);
 
         // listening for submit button click
+        payInfoCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(getApplicationContext() , MakeAdvancePaymentActivity.class);
+                startActivity(i);
+
+
+            }
+        });
+
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,7 +154,8 @@ StepView stepView ;
                 DatabaseReference driverRef  = FirebaseDatabase.getInstance().getReference(constants.driverProfileLink).child(driverID)
                         .child(constants.succfulllistDir);
 
-                final DatabaseReference userRef = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child(uid);
+                final DatabaseReference userRef = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child(uid)
+                        .child(constants.succfulllistDir);
 
                 final HashMap map = new HashMap();
                 map.put("tripID"  , postID ) ;
@@ -173,6 +169,8 @@ StepView stepView ;
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
+
+
 
 
                                 userRef.child(postID).setValue(map)
@@ -257,13 +255,72 @@ StepView stepView ;
 
 
     public  void downloadDriverData(){
-        //TODO Download Driver Data
+        // Download Driver Data
+        DatabaseReference mref = FirebaseDatabase.getInstance().getReference(constants.driverProfileLink).child(driverID);
+        mref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
 
 
     }
 
     public  void dwldUserData(){
+
+
+
+
+    }
+
+    public  void setAnimationtoStepVIews(){
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                stepView.go(0, true);
+            }
+        }, 400);
+
+        final Handler handsler = new Handler();
+        handsler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                stepView.go(1, true);
+            }
+        }, 800);
+
+        final Handler handdsler = new Handler();
+        handdsler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                stepView.go(2, true);
+            }
+        }, 1200);
+
+
+
+        final Handler handdr = new Handler();
+        handdr.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                stepView.go(3, true);
+            }
+        }, 1500);
+
+
 
     }
 
