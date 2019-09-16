@@ -126,6 +126,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:textSize="20sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Trip Details"
@@ -156,6 +157,7 @@
                                 android:textColor="@color/white"
                                 android:textStyle="bold"/>
                             <TextView
+                                android:id="@+id/fareTv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="1205 Taka "
@@ -180,6 +182,7 @@
                                 android:textColor="@color/white"
                                 android:textStyle="bold"/>
                             <TextView
+                                android:id="@+id/typeTv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Round Trip "
@@ -209,6 +212,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
+                        android:id="@+id/descTv"
                         android:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
                         android:textColor="@color/black" />
 

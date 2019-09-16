@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -23,23 +24,33 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.metacoders.hurry.Constants.constants;
 import com.metacoders.hurry.R;
+import com.metacoders.hurry.model.driverProfileModel;
+import com.metacoders.hurry.model.userModel;
 import com.shuhart.stepview.StepView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Trip_Running_details extends AppCompatActivity {
 
-String driverName , carModel  , fromLoc , toLoc , fare , time , postID , driverID   , driverNottificationID ,tripDetails ,status ;
+String driverName , carModel  , fromLoc , toLoc , fare , time , postID , driverID   , driverNottificationID ,
+        tripDetails ,status , triptype ,  driverFine , driverTotalTrip= "0" , driverIncome= "0" , driverTripCountThisMOn= "0" ,
+        driverLifeTimeIncome = "0";
 EditText description ;
+String  userTotalTrip  = "0", userFined , userSpent  = "0" ;
+
 Button submit ,cancel   ;
 MaterialCardView  payInfoCard   , driverInfoCard ;
 RatingBar mRateBar ;
 String uid = "TEST" ;
-TextView DriverNAME , CARMODEL ,drivername  , FROMLOC  ,TOLOC , FARE ,TIME , POSTID , DRIVERID , DRIVERNOTTIFICATIONID     ;
+TextView DriverNAME , CARMODEL ,drivername  , FROMLOC  ,TOLOC , FARE ,TIME , POSTID , DRIVERID , DRIVERNOTTIFICATIONID , descTv  , typeTv
+        , fareTv ;
 StepView stepView ;
+String driverNewLifetimeEarn , driverNewThisMonthEarn  ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +72,7 @@ StepView stepView ;
         driverID  =  i.getStringExtra("DRIVERUID")  ;
         driverNottificationID  =  i.getStringExtra("DRIVERNOTIFICATIONID");
         tripDetails = i.getStringExtra("DESC") ;
+        triptype = i.getStringExtra("TYPE") ;
 
 
 
@@ -85,6 +97,13 @@ StepView stepView ;
         payInfoCard =findViewById(R.id.advacePayInfoCard) ;
         driverInfoCard = findViewById(R.id.driverInfoCard) ;
         mRateBar= findViewById(R.id.ratingBarBidTripDetails);
+        fareTv = findViewById(R.id.fareTv);
+        typeTv = findViewById(R.id.typeTv);
+        descTv = findViewById(R.id.descTv);
+
+
+
+
 
 
 
@@ -116,7 +135,10 @@ StepView stepView ;
             TOLOC.setText(toLoc);
             TIME.setText(time);
             FARE.setText(fare);
-     //   description.setText();
+            descTv.setText(tripDetails);
+            fareTv.setText(fare);
+            typeTv.setText(triptype);
+
 
 
 
@@ -148,7 +170,7 @@ StepView stepView ;
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Calendar cal = Calendar.getInstance();
-            String date =dateFormat.format(cal); //2016/11/16 12:08:43
+            String date ="016/11/16 12:08:43"; //2016/11/16 12:08:43
 
                 //1st Upload It To The Driver profile
                 DatabaseReference driverRef  = FirebaseDatabase.getInstance().getReference(constants.driverProfileLink).child(driverID)
@@ -159,7 +181,7 @@ StepView stepView ;
 
                 final HashMap map = new HashMap();
                 map.put("tripID"  , postID ) ;
-                map.put("status" , "Completed") ;
+           //     map.put("status" , "Completed") ;
                 map.put("fromLocation" ,fromLoc );
                 map.put("toLocation" , toLoc) ;
                 map.put("fareGained" , fare) ;
@@ -170,15 +192,63 @@ StepView stepView ;
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
 
-
-
-
+                                // Writing in user dir
                                 userRef.child(postID).setValue(map)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
 
-                                                // also increase the user Profile
+
+                                                DatabaseReference mreff = FirebaseDatabase.getInstance().getReference(constants.driverProfileLink).child(driverID);
+
+                                                final Map<String, Object> updates = new HashMap<String,Object>();
+                                                updates.put("driverEarnedLifeLong" ,driverNewLifetimeEarn ) ;
+                                                updates.put("driverEarnedThisMonth" , driverNewThisMonthEarn) ;
+                                                updates.put("totalRides" , driverTotalTrip) ;
+                                                updates.put("tripCounter", driverTripCountThisMOn) ;
+
+
+                                                mreff.updateChildren(updates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                     DatabaseReference updateUserref = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child(uid);
+                                                        Map<String, Object> updatesuserData = new HashMap<String,Object>();
+
+                                                        updatesuserData.put("userTotalSpent" ,userSpent) ;
+                                                        updatesuserData.put("userTripCount" , userTotalTrip) ;
+
+
+                                                        updateUserref.updateChildren(updatesuserData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                                                //TODO DONE ! ! UPDATING DATA
+                                                                Toast.makeText(getApplicationContext() , "Error" , Toast.LENGTH_SHORT)
+                                                                        .show();
+
+
+                                                            }
+                                                        })
+                                                                .addOnFailureListener(new OnFailureListener() {
+                                                                    @Override
+                                                                    public void onFailure(@NonNull Exception e) {
+
+
+
+                                                                    }
+                                                                }) ;
+
+
+
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+
+
+                                                    }
+                                                });
 
 
 
@@ -192,10 +262,6 @@ StepView stepView ;
                                             }
                                         }) ;
 
-
-
-
-
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -206,20 +272,6 @@ StepView stepView ;
 
                             }
                         }) ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -236,30 +288,21 @@ StepView stepView ;
         });
 
 
-
+        downloadDriverData();
+        dwldUserData();
     }
 
     public  void updateTheDriver()
     {
-        DatabaseReference driverRef  = FirebaseDatabase.getInstance().getReference(constants.driverProfileLink) ;
+        DatabaseReference driverRef  = FirebaseDatabase.getInstance().getReference(constants.driverProfileLink).child(driverID) ;
 
         //TODO Upadate the Driver Profile For PAYMENT UPDATE  ;
 
-
-
-
-
-
-
-    }
-
-
-    public  void downloadDriverData(){
-        // Download Driver Data
-        DatabaseReference mref = FirebaseDatabase.getInstance().getReference(constants.driverProfileLink).child(driverID);
-        mref.addListenerForSingleValueEvent(new ValueEventListener() {
+        driverRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
 
 
 
@@ -275,11 +318,78 @@ StepView stepView ;
 
 
 
+
+
+
+
+    }
+
+
+    public  void downloadDriverData(){
+        // Download Driver Data
+        DatabaseReference mref = FirebaseDatabase.getInstance().getReference(constants.driverProfileLink).child(driverID);
+        mref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                driverProfileModel model = dataSnapshot.getValue(driverProfileModel.class) ;
+
+                driverFine  = model.getDriverFined() ;
+                driverTotalTrip = model.getTotalRides() ;
+                driverIncome = model.getDriverEarnedThisMonth() ;
+                driverTripCountThisMOn  = model.getTripCounter() ;
+
+                driverLifeTimeIncome = model.getDriverEarnedLifeLong() ;
+
+                driverNewLifetimeEarn = String.valueOf(Integer.valueOf(driverLifeTimeIncome)+Integer.valueOf(fare) ) ;
+                driverNewThisMonthEarn = String.valueOf(Integer.valueOf(driverIncome)+ Integer.valueOf(fare)) ;
+                driverTotalTrip = String.valueOf(Integer.valueOf(driverTotalTrip) + 1 ) ;
+                driverTripCountThisMOn = String.valueOf(Integer.valueOf(driverTripCountThisMOn) + 1 ) ;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                Toast.makeText(getApplicationContext() , "Error" + databaseError.getMessage() , Toast.LENGTH_SHORT)
+                        .show();
+
+            }
+        });
+
+
+
+
+
+
     }
 
     public  void dwldUserData(){
 
+        DatabaseReference mref = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child("TEST");
+        mref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                userModel  model =  dataSnapshot.getValue(userModel.class) ;
+
+                    userFined = model.getUserFined();
+                    userTotalTrip = model.getUserTripCount() ;
+                    userSpent = model.getUserTotalSpent() ;
+
+
+                userSpent = String.valueOf(Integer.valueOf(userSpent)+ Integer.valueOf(fare) ) ;
+                userTotalTrip = String.valueOf(Integer.valueOf(userTotalTrip)+ 1 ) ;
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                Toast.makeText(getApplicationContext() , "Error" + databaseError.getMessage() , Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
 
 
     }

@@ -126,6 +126,7 @@ public class onGoingList extends Fragment {
                             o.putExtra("DRIVERUID", getItem(postion).getDriverId()) ;
                             o.putExtra("DRIVERNOTIFICATIONID", getItem(postion).getDriverNotificationID()) ;
                             o.putExtra("DESC", getItem(postion).getTripDetails()) ;
+                            o.putExtra("TYPE" , getItem(postion).getRideType()) ;
 
                             startActivity(o);
 
