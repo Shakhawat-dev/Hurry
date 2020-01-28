@@ -36,10 +36,7 @@ public class viewholderForPastTrips extends RecyclerView.ViewHolder {
 
     }
 
-    public   void setDataToView(Context context , String postId  , String userId  , String  userNotificationID  , String driverId  , String driverNotificationID ,
-                                String  toLoc , String fromLoc , String timeDate , String carModl , String driverName ,
-                                String status  , String carLicNum , String fare , String carType ,
-                                String reqDate , String tripDetails ,String returntime   ){
+    public   void setDataToView(Context context , String  toLoc , String fromLoc , String timeDate , String status   ){
 
         TextView dateView = mview.findViewById(R.id.dateOfRows);
         //  TextView fareView = mview.findViewById(R.id.fareRow);

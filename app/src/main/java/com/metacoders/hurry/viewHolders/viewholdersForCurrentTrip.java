@@ -56,7 +56,7 @@ public class viewholdersForCurrentTrip extends RecyclerView.ViewHolder {
                     setBackgroundTintList(context.getResources().getColorStateList(R.color.blue));
 
         }
-        else if (status.contains("Driver Found"))
+        else if (status.contains("Driver Found") || status.equals("Accepted"))
         {
 
             statusTv.

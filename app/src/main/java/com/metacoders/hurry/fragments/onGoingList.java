@@ -109,7 +109,7 @@ public class onGoingList extends Fragment {
             // TODo Remember there is  4 status now
 
 
-                        if ( Status.equals("Driver Found") )
+                        if ( Status.equals("Driver Found")  || Status.equals("Accepted"))
                         {
                             //go to the Trip details page to mark it done
 

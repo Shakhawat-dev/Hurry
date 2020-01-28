@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.metacoders.hurry.Constants.constants;
 import com.metacoders.hurry.R;
 import com.metacoders.hurry.model.driverProfileModel;
+import com.metacoders.hurry.model.modelForCarRequest;
 import com.metacoders.hurry.model.userModel;
 import com.shuhart.stepview.StepView;
 
@@ -157,7 +158,18 @@ String driverNewLifetimeEarn , driverNewThisMonthEarn  ;
             public void onClick(View view) {
 
                 Intent i = new Intent(getApplicationContext() , MakeAdvancePaymentActivity.class);
+                i.putExtra("ID" , postID) ;
                 startActivity(i);
+
+
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startCancel() ;
 
 
             }
@@ -179,9 +191,9 @@ String driverNewLifetimeEarn , driverNewThisMonthEarn  ;
                 final DatabaseReference userRef = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child(uid)
                         .child(constants.succfulllistDir);
 
-                final HashMap map = new HashMap();
+                final HashMap<String, String> map = new HashMap<>();
                 map.put("tripID"  , postID ) ;
-           //     map.put("status" , "Completed") ;
+                map.put("status" , "Completed") ;
                 map.put("fromLocation" ,fromLoc );
                 map.put("toLocation" , toLoc) ;
                 map.put("fareGained" , fare) ;
@@ -282,7 +294,36 @@ String driverNewLifetimeEarn , driverNewThisMonthEarn  ;
             @Override
             public void onClick(View view) {
 
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference(constants.carRequestLink).child(postID);
 
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                        modelForCarRequest   model =  dataSnapshot.getValue(modelForCarRequest.class) ;
+
+                        if(model.getStatus().equals("COMPLETED"))
+                        {
+                            //Trigger Dialogue
+                            Toast.makeText(getApplicationContext() , "All Ready Completed" , Toast.LENGTH_LONG)
+                                    .show();
+
+                        }
+
+                        else {
+
+                            startCancel();
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });
@@ -292,37 +333,66 @@ String driverNewLifetimeEarn , driverNewThisMonthEarn  ;
         dwldUserData();
     }
 
-    public  void updateTheDriver()
-    {
-        DatabaseReference driverRef  = FirebaseDatabase.getInstance().getReference(constants.driverProfileLink).child(driverID) ;
-
-        //TODO Upadate the Driver Profile For PAYMENT UPDATE  ;
-
-        driverRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+    private void startCancel() {
 
 
+        DatabaseReference mrrf = FirebaseDatabase.getInstance().getReference(constants.carRequestLink).child(postID);
+        final Map<String, Object> updatesuserMap = new HashMap<String,Object>();
+        updatesuserMap.put("status" ,"CANCELED BY USER" );
+
+         mrrf.updateChildren(updatesuserMap)
+                 .addOnCompleteListener(new OnCompleteListener<Void>() {
+                     @Override
+                     public void onComplete(@NonNull Task<Void> task) {
+
+                         DatabaseReference  updateRef = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child(uid);
+
+                         final Map<String, Object> updatesFineduserMap = new HashMap<String,Object>();
+
+                         // adding fine to user ;
+
+                         userFined = String.valueOf(Integer.valueOf(userFined) + 100 )  ;
+
+                String n = userFined ;
+
+                         updatesFineduserMap.put("userFined" , n ) ;
+
+                         updateRef.updateChildren(updatesFineduserMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                             @Override
+                             public void onComplete(@NonNull Task<Void> task) {
+
+
+                                 Toast.makeText(getApplicationContext()   ,  " DOne " , Toast.LENGTH_SHORT)
+                                 .show();
+                             }
+                         })
+                                 .addOnFailureListener(new OnFailureListener() {
+                                     @Override
+                                     public void onFailure(@NonNull Exception e) {
 
 
 
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+                                     }
+                                 });
 
 
 
 
+                     }
+                 }).addOnFailureListener(new OnFailureListener() {
+             @Override
+             public void onFailure(@NonNull Exception e) {
+
+             }
+         })  ;
 
 
 
 
     }
+
+
 
 
     public  void downloadDriverData(){

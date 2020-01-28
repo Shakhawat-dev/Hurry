@@ -18,8 +18,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.metacoders.hurry.Activity.PastTripDetails;
+import com.metacoders.hurry.Constants.constants;
 import com.metacoders.hurry.R;
-import com.metacoders.hurry.model.modelForCarRequest;
+import com.metacoders.hurry.model.completedTestModel;
 import com.metacoders.hurry.viewHolders.viewholderForPastTrips;
 
 
@@ -31,8 +32,8 @@ public class pastTripListFragment extends  Fragment {
         LinearLayoutManager linearLayoutManager ;
         DatabaseReference mref;
 
-FirebaseRecyclerOptions<modelForCarRequest > options ;
-FirebaseRecyclerAdapter<modelForCarRequest , viewholderForPastTrips>firebaseRecyclerAdapter ;
+FirebaseRecyclerOptions<completedTestModel > options ;
+FirebaseRecyclerAdapter<completedTestModel, viewholderForPastTrips>firebaseRecyclerAdapter ;
 
 
 
@@ -47,9 +48,11 @@ FirebaseRecyclerAdapter<modelForCarRequest , viewholderForPastTrips>firebaseRecy
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
+
+            uid = "TEST" ;
             view = inflater.inflate(R.layout.past_trip_fragment, container, false);
 
-            mref = FirebaseDatabase.getInstance().getReference("test"); // db link
+            mref = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child(uid).child("compeletedList"); // db link
 
 
             mrecyclerview = view.findViewById(R.id.recycerviewForCurrentList) ;
@@ -75,20 +78,14 @@ FirebaseRecyclerAdapter<modelForCarRequest , viewholderForPastTrips>firebaseRecy
 
     private void loadDataToFireBase() {
 
-            options = new FirebaseRecyclerOptions.Builder<modelForCarRequest>().setQuery(mref , modelForCarRequest.class).build();
-            firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<modelForCarRequest, viewholderForPastTrips>(options) {
+            options = new FirebaseRecyclerOptions.Builder<completedTestModel>().setQuery(mref , completedTestModel.class).build();
+            firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<completedTestModel, viewholderForPastTrips>(options) {
                 @Override
-                protected void onBindViewHolder(@NonNull viewholderForPastTrips viewholdersForCurrentTrip,final int i, @NonNull modelForCarRequest model) {
+                protected void onBindViewHolder(@NonNull viewholderForPastTrips viewholdersForCurrentTrip,final int i, @NonNull completedTestModel model) {
 
-
-                    viewholdersForCurrentTrip.setDataToView(getContext() ,
-                            model.getPostId() , model.getUserId()  ,model.getUserNotificationID()   , model.getDriverId()  , model.getDriverNotificationID() ,
-                              model.getToLoc() , model.getFromLoc() ,  model.getTimeDate() , model.getCarModl() , model.getDriverName() ,
-                             model.getStatus()  , model.getCarLicNum() , model.getFare() , model.getCarType() ,
-                            model.getReqDate() , model.getTripDetails(), model.getReturnTimee());
-
-
-
+               //     String  toLoc , String fromLoc , String timeDate , String status
+                    viewholdersForCurrentTrip.setDataToView(getContext() , model.getToLocation() , model.getFromLocation() , model.getCompleteDate()
+                     , "Completed");
 
                 }
 
@@ -105,8 +102,8 @@ FirebaseRecyclerAdapter<modelForCarRequest , viewholderForPastTrips>firebaseRecy
                         @Override
                         public void onItemClick(View view, final  int pos) {
 
-                            String DriverName  = getItem(pos).getDriverName() ;
-                            String Status = getItem(pos).getStatus() ;
+
+                          //  String Status = getItem(pos).getTripID() ;
 
 
                                 //go to the Trip details page to mark it done
@@ -115,15 +112,8 @@ FirebaseRecyclerAdapter<modelForCarRequest , viewholderForPastTrips>firebaseRecy
 
                                 Intent o = new Intent(getContext() , PastTripDetails.class );
                                 //carry data to their
-                                o.putExtra("DRIVERNAME" , getItem(pos).getDriverName()) ;
-                                o.putExtra("CARMODEL", getItem(pos).getCarModl()) ;
-                                o.putExtra("FORMLOC", getItem(pos).getFromLoc()) ;
-                                o.putExtra("TOLOC", getItem(pos).getToLoc()) ;
-                                o.putExtra("FARE", getItem(pos).getFare()) ;
-                                o.putExtra("TIME", getItem(pos).getTimeDate()) ;
-                                o.putExtra("POSTID", getItem(pos).getPostId()) ;
-                                o.putExtra("DRIVERUID", getItem(pos).getDriverId()) ;
-                                o.putExtra("DRIVERNOTIFICATIONID", getItem(pos).getDriverNotificationID()) ;
+                                o.putExtra("POSTID", getItem(pos).getTripID()) ;
+
 
                                 startActivity(o);
 
