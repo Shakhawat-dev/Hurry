@@ -190,9 +190,12 @@ public class Mobile_Varification extends AppCompatActivity {
                             startActivity(intent);
                             finish();
 
+
+
                         } else {
 
                             Toast.makeText(Mobile_Varification.this,"Eror: "+ task.getException().getMessage(), Toast.LENGTH_LONG).show();
+
                         }
                     }
 
