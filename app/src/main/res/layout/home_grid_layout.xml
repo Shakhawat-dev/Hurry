@@ -42,6 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="CARS"
+                    android:fontFamily="@font/poppins"
                     android:textColor="@color/black"
                     android:textSize="18dp"
                     android:textStyle="bold" />
@@ -60,9 +61,11 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
+            android:id="@+id/Trucks"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
             android:layout_weight="1"
+            android:foreground="?attr/selectableItemBackground"
             android:elevation="4dp"
             app:cardCornerRadius="0dp">
 
@@ -77,6 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="TRUCKS"
+                    android:fontFamily="@font/poppins"
                     android:textColor="@color/black"
                     android:textSize="18dp"
                     android:textStyle="bold" />
@@ -108,10 +112,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="1dp"
+            android:id="@+id/ambulanceID"
             android:elevation="4dp"
             app:cardCornerRadius="0dp">
 
             <LinearLayout
+                android:foreground="?attr/selectableItemBackground"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
@@ -129,6 +135,7 @@
                         android:layout_height="wrap_content"
                         android:text="AMBULANCE"
                         android:letterSpacing="0.2"
+                        android:fontFamily="@font/poppins"
                         android:textColor="@color/black"
                         android:textSize="24sp"
                         android:textStyle="bold" />
@@ -190,9 +197,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins"
         android:text="Select Your Need"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

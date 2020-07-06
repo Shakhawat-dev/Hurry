@@ -32,8 +32,8 @@ public class pastTripListFragment extends  Fragment {
         LinearLayoutManager linearLayoutManager ;
         DatabaseReference mref;
 
-FirebaseRecyclerOptions<completedTestModel > options ;
-FirebaseRecyclerAdapter<completedTestModel, viewholderForPastTrips>firebaseRecyclerAdapter ;
+        FirebaseRecyclerOptions<completedTestModel > options ;
+        FirebaseRecyclerAdapter<completedTestModel, viewholderForPastTrips>firebaseRecyclerAdapter ;
 
 
 
@@ -116,19 +116,6 @@ FirebaseRecyclerAdapter<completedTestModel, viewholderForPastTrips>firebaseRecyc
 
 
                                 startActivity(o);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                         }

@@ -1,5 +1,8 @@
 package com.metacoders.hurry.fragments;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -11,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.metacoders.hurry.R;
 
@@ -18,6 +22,9 @@ public class selectTripFragment  extends Fragment {
 
     View view;
     FirebaseAuth mauth ;
+    MaterialCardView ambulacneCard , TruckCard  ;
+    Context context ;
+
 
 
     public selectTripFragment() {
@@ -35,21 +42,20 @@ public class selectTripFragment  extends Fragment {
 
         view = inflater.inflate(R.layout.home_grid_layout, container, false);
 
-
+        context =view.getContext();
         car = (LinearLayout) view.findViewById(R.id.carLatout);
-
+        ambulacneCard =view.findViewById(R.id.ambulanceID);
         mauth = FirebaseAuth.getInstance() ;
+        TruckCard = view.findViewById(R.id.Trucks);
 
-
-       Toast.makeText(getContext() , "UID : " + mauth.getUid()  , Toast.LENGTH_LONG )
-      .show();
+     //  Toast.makeText(getContext() , "UID : " + mauth.getUid()  , Toast.LENGTH_LONG ).show();
 
         // getting the fare
         car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent i  = new Intent(getContext() , rentCar.class );
+                Intent i  = new Intent(context , rentCar.class );
                 startActivity(i);
 
 
@@ -57,7 +63,33 @@ public class selectTripFragment  extends Fragment {
             }
         });
 
+        ambulacneCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+
+                AlertDialog dialog = new AlertDialog.Builder(context).create();
+                dialog.setTitle("Ambulance Request Sent !!");
+                dialog.setCancelable(true);
+                dialog.setIcon(R.drawable.ambulance_icon);
+                dialog.setMessage("You Will Receive A Phone Call Soon..");
+                dialog.show();
+            }
+        });
+
+        TruckCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                AlertDialog dialog = new AlertDialog.Builder(context).create();
+
+                dialog.setTitle("To Be Implemented");
+                dialog.setCancelable(true);
+                dialog.setMessage("Coming Soon ..");
+                dialog.show();
+            }
+        });
 
 
         return view ;

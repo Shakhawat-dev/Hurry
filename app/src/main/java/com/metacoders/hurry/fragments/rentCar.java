@@ -209,24 +209,22 @@ public class rentCar extends AppCompatActivity {
             }
         });
 
-        adapter = new ArrayAdapter<String>(getApplicationContext() , android.R.layout.simple_spinner_item
+        adapter = new ArrayAdapter<String>(rentCar.this , android.R.layout.simple_list_item_activated_1
                 ,getResources().getStringArray(R.array.NoOFPPL));
-        adapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
+       // adapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
         noOfppl.setAdapter(adapter);
         noOfppl.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-              numofPPl =    noOfppl.getSelectedItem().toString() ;
+                numofPPl =    noOfppl.getSelectedItem().toString() ;
 
                 typeOfVehical.setVisibility(View.VISIBLE);
 
-                if(
-                    Integer.valueOf(numofPPl)>4
-                )
+                if(Integer.valueOf(numofPPl) > 4)
                 {
 
-                    arrayAdapter = new ArrayAdapter<String>(getApplicationContext() , android.R.layout.simple_spinner_item
+                    arrayAdapter = new ArrayAdapter<String>(rentCar.this , android.R.layout.simple_spinner_item
                             ,getResources().getStringArray(R.array.vehicleList2));
                     arrayAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
                     typeOfVehical.setAdapter(arrayAdapter);
@@ -235,11 +233,10 @@ public class rentCar extends AppCompatActivity {
 
 
                 }
-                else if(
-                        Integer.valueOf(numofPPl)<=4
-                )  {
+                else if(Integer.valueOf(numofPPl)<=4)
+                {
 
-                    arrayAdapter = new ArrayAdapter<String>(getApplicationContext() , android.R.layout.simple_spinner_item
+                    arrayAdapter = new ArrayAdapter<String>(rentCar.this  , android.R.layout.simple_spinner_item
                             ,getResources().getStringArray(R.array.vehicleList));
                     arrayAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
                     typeOfVehical.setAdapter(arrayAdapter);
@@ -306,7 +303,7 @@ public class rentCar extends AppCompatActivity {
                             amPmChecker = "AM";
 
                         }
-                        else  {
+                        else {
                             amPmChecker= "PM";
                         }
 

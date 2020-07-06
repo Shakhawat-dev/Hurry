@@ -26,7 +26,7 @@ public class homePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-       getSupportActionBar().hide();
+
 
 
         tabLayout= (TabLayout)findViewById(R.id.tabLayout) ;
