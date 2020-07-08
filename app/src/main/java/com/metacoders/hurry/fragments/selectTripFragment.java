@@ -1,7 +1,6 @@
 package com.metacoders.hurry.fragments;
 
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.metacoders.hurry.Activity.rentCar;
 import com.metacoders.hurry.R;
 
 public class selectTripFragment  extends Fragment {

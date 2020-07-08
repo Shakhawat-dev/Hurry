@@ -7,6 +7,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name=".myApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
@@ -19,8 +20,9 @@
         <activity android:name=".SignInController.accountSetupPage" />
         <activity android:name=".Activity.PastTripDetails" />
         <activity android:name=".Activity.Trip_Running_details" />
-        <activity android:name=".fragments.bidListPage" />
+        <activity android:name=".Activity.bidListPage" />
         <activity android:name=".Activity.homePage"
+            android:launchMode="singleTop"
             android:theme="@style/AppThemeNoAction"/>
         <activity android:name=".SignInController.Mobile_Varification" />
         <activity android:name=".SignInController.Sign_in">
@@ -30,7 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".fragments.rentCar"
+        <activity android:name=".Activity.rentCar"
             android:theme="@style/AppThemeNoAction"/>
         <activity android:name=".driverProfile.driverProfile" />
         <activity

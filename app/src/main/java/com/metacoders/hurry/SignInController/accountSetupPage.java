@@ -46,23 +46,21 @@ import id.zelory.compressor.Compressor;
 
 public class accountSetupPage extends AppCompatActivity {
 
-    EditText  fnameIn , snameIn ;
-    String    fname , sname ;
-    ImageButton imageButton ;
-    FirebaseAuth mauth ;
-    CircleImageView  proPicChooser ;
-    ProgressDialog mprogressDialog ;
-    TextView title ;
-    String uid ;
+    EditText fnameIn, snameIn;
+    String fname, sname;
+    ImageButton imageButton;
+    FirebaseAuth mauth;
+    CircleImageView proPicChooser;
+    ProgressDialog mprogressDialog;
+    TextView title;
+    String uid;
 
-    Button takePhotoBtn ;
-    StorageReference mStorageReference ;
+    Button takePhotoBtn;
+    StorageReference mStorageReference;
 
     private Bitmap compressedImageFile;
-    Uri mFilePathUri ;
-    DatabaseReference mref ;
-
-
+    Uri mFilePathUri;
+    DatabaseReference mref;
 
 
     @Override
@@ -72,18 +70,18 @@ public class accountSetupPage extends AppCompatActivity {
 
         fnameIn = findViewById(R.id.fnameIN);
         snameIn = findViewById(R.id.snameIN);
-        imageButton = findViewById(R.id.nextBtn) ;
-        proPicChooser = findViewById(R.id.imageViewOnProfileSetup) ;
+        imageButton = findViewById(R.id.nextBtn);
+        proPicChooser = findViewById(R.id.imageViewOnProfileSetup);
 
 
         mauth = FirebaseAuth.getInstance();
-        uid = "TEST" ;
+        uid = "TEST";
 
         mStorageReference = FirebaseStorage.getInstance().getReference(constants.userProfileDb).child(uid);
         mref = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child(uid);
 
         //pregress dialog
-        mprogressDialog = new ProgressDialog(accountSetupPage.this  );
+        mprogressDialog = new ProgressDialog(accountSetupPage.this);
 
         mprogressDialog.setCancelable(false);
 
@@ -101,7 +99,6 @@ public class accountSetupPage extends AppCompatActivity {
                         BringImagePicker();
 
 
-
                     } else {
 
                         BringImagePicker();
@@ -115,16 +112,8 @@ public class accountSetupPage extends AppCompatActivity {
                 }
 
 
-
             }
         });
-
-
-
-
-
-
-
 
 
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -134,10 +123,10 @@ public class accountSetupPage extends AppCompatActivity {
                 fname = fnameIn.getText().toString();
                 sname = snameIn.getText().toString();
 
-                Intent i  = new Intent(getApplicationContext()  , termsAndCondition.class);
+                Intent i = new Intent(getApplicationContext(), termsAndCondition.class);
 
                 i.putExtra("FNAME", fname);
-                i.putExtra("SNAME" , sname);
+                i.putExtra("SNAME", sname);
 
                 startActivity(i);
 
@@ -145,22 +134,20 @@ public class accountSetupPage extends AppCompatActivity {
         });
 
 
-
-
     }
-    private void BringImagePicker () {
+
+    private void BringImagePicker() {
 
 
         CropImage.activity()
                 .setGuidelines(CropImageView.Guidelines.ON)
-                .setAspectRatio(1,1)
+                .setAspectRatio(1, 1)
                 .setCropShape(CropImageView.CropShape.OVAL) //shaping the image
                 .start(accountSetupPage.this);
 
 
-
-
     }
+
     @Override
     protected void onActivityResult(/*int requestCode, int resultCode, @Nullable Intent data*/
             int requestCode, int resultCode, Intent data) {
@@ -177,15 +164,14 @@ public class accountSetupPage extends AppCompatActivity {
                 proPicChooser.setImageURI(mFilePathUri);
 
 
-
                 //sending data once  user select the image
-                uploadPicToServer(mFilePathUri) ;
+                uploadPicToServer(mFilePathUri);
 
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
 
                 Exception error = result.getError();
-                Toast.makeText(this, error.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
 
@@ -194,8 +180,7 @@ public class accountSetupPage extends AppCompatActivity {
 
     private void uploadPicToServer(Uri mFilePathUri) {
 
-        if(mFilePathUri != null)
-        {
+        if (mFilePathUri != null) {
             final String randomName = UUID.randomUUID().toString();
 
             // PHOTO UPLOAD
@@ -216,18 +201,16 @@ public class accountSetupPage extends AppCompatActivity {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             compressedImageFile.compress(Bitmap.CompressFormat.JPEG, 50, baos);
             byte[] imageData = baos.toByteArray();
-            UploadTask filePath = mStorageReference.child(randomName+uid + ".jpg").putBytes(imageData);
+            UploadTask filePath = mStorageReference.child(randomName + uid + ".jpg").putBytes(imageData);
 
             filePath.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
 
-
                     Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                     while (!uriTask.isSuccessful()) ;
                     Uri downloaduri = uriTask.getResult();
-
 
 
                     //   String ts =mref.push().getKey() ;
@@ -242,7 +225,7 @@ public class accountSetupPage extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     mprogressDialog.hide();
-                    Toast.makeText(getApplicationContext(), e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
 
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -260,6 +243,7 @@ public class accountSetupPage extends AppCompatActivity {
         }
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();

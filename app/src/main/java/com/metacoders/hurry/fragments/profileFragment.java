@@ -2,9 +2,11 @@ package com.metacoders.hurry.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,81 +29,70 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class profileFragment extends Fragment {
 
 
-
-        View view;
-        CircleImageView imageView ;
-        FirebaseAuth mauth ;
-        String  name , uid  ;
-        TextView nameTv , spentLifeTime, tripLifeTimeTv , tripThisMonthTv   ;
-
-
-        public profileFragment() {
-
-        }
-        @Nullable
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    View view;
+    CircleImageView imageView;
+    FirebaseAuth mauth;
+    String name, uid;
+    TextView nameTv, spentLifeTime, tripLifeTimeTv, tripThisMonthTv;
 
 
+    public profileFragment() {
+
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-            view = inflater.inflate(R.layout.profile_fragment, container, false);
+        view = inflater.inflate(R.layout.profile_fragment, container, false);
 
-            mauth = FirebaseAuth.getInstance();
+        mauth = FirebaseAuth.getInstance();
+        uid = FirebaseAuth.getInstance().getUid();
 
-
-            imageView = view.findViewById(R.id.imageViewOnProfileFragment) ;
-            nameTv = view.findViewById(R.id.nameTv) ;
-            spentLifeTime = view.findViewById(R.id.lifeTimeSpentCount);
-            tripLifeTimeTv = (TextView) view.findViewById(R.id.numberOFTotalTrip);
-            tripThisMonthTv  =view.findViewById(R.id.monty_trip_count);
-
-
-            dwldUserDataFromServer() ;
-
-
-
-
+        imageView = view.findViewById(R.id.imageViewOnProfileFragment);
+        nameTv = view.findViewById(R.id.nameTv);
+        spentLifeTime = view.findViewById(R.id.lifeTimeSpentCount);
+        tripLifeTimeTv = (TextView) view.findViewById(R.id.numberOFTotalTrip);
+        tripThisMonthTv = view.findViewById(R.id.monty_trip_count);
 
 
         imageView.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
 
 
-        mauth.signOut();
-        String action;
-       Intent i  = new Intent(getContext()  , Sign_in.class);
+                mauth.signOut();
 
-       startActivity(i);
-     getActivity().finish() ;
+                Intent i = new Intent(getContext(), Sign_in.class);
 
+                startActivity(i);
+                getActivity().finish();
+
+            }
+        });
+
+
+        return view;
     }
-});
-
-
-
-            return view ;
-        }
 
     private void dwldUserDataFromServer() {
 
-            uid = FirebaseAuth.getInstance().getUid() ;
 
+        DatabaseReference mref = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child("TEST");
 
-        DatabaseReference mref  =  FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child("TEST");
+        mref.keepSynced(true);
 
         mref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                userModel  model = dataSnapshot.getValue(userModel.class) ;
+                userModel model = dataSnapshot.getValue(userModel.class);
 
                 nameTv.setText(model.getUserName());
                 spentLifeTime.setText(model.getUserTotalSpent().toString());
                 tripLifeTimeTv.setText(model.getUserTripCount());
                 Picasso.get().load(model.getUserProPic()).into(imageView);
-
 
 
             }
@@ -113,10 +104,14 @@ public class profileFragment extends Fragment {
         });
 
 
-
     }
 
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        dwldUserDataFromServer();
+    }
 }
 
 

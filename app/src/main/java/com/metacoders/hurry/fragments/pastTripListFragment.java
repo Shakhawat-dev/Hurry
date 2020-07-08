@@ -136,6 +136,14 @@ public class pastTripListFragment extends  Fragment {
 
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        firebaseRecyclerAdapter.stopListening();
+
+    }
+
 
 }
 

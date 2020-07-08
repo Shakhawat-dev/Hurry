@@ -17,6 +17,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.metacoders.hurry.Activity.bidListPage;
 import com.metacoders.hurry.R;
 import com.metacoders.hurry.Activity.Trip_Running_details;
 import com.metacoders.hurry.model.modelForCarRequest;
@@ -28,11 +29,8 @@ public class onGoingList extends Fragment {
     RecyclerView mrecyclerview  ;
     LinearLayoutManager linearLayoutManager ;
     DatabaseReference mref;
-
     FirebaseRecyclerOptions<modelForCarRequest > options ;
     FirebaseRecyclerAdapter<modelForCarRequest , viewholdersForCurrentTrip>firebaseRecyclerAdapter ;
-
-
     View view;
 
     public onGoingList() {
@@ -75,7 +73,6 @@ public class onGoingList extends Fragment {
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<modelForCarRequest, viewholdersForCurrentTrip>(options) {
             @Override
             protected void onBindViewHolder(@NonNull viewholdersForCurrentTrip viewholdersForCurrentTrip,final int i, @NonNull modelForCarRequest model) {
-
 
                 viewholdersForCurrentTrip.setDataToView(getContext() ,
                         model.getPostId() , model.getUserId()  ,model.getUserNotificationID()   , model.getDriverId()  , model.getDriverNotificationID() ,
@@ -176,4 +173,11 @@ public class onGoingList extends Fragment {
     }
 
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        firebaseRecyclerAdapter.stopListening();
+
+    }
 }

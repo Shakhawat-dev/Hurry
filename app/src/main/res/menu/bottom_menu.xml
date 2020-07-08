@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/selectTripFragment"
+        android:title="Home"
+        android:menuCategory="secondary"/>
+    <item
+        android:id="@+id/onGoingList"
+        android:title="Ongoing Trips"
+        android:menuCategory="secondary"/>
+
+    <item
+        android:id="@+id/pastTripListFragment"
+        android:title="Past Trips"
+        android:menuCategory="secondary"/>
+
+    <item
+        android:id="@+id/profileFragment"
+        android:title="Profile"
+        android:menuCategory="secondary"
+        />
+
+</menu>

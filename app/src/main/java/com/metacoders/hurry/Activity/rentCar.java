@@ -1,4 +1,4 @@
-package com.metacoders.hurry.fragments;
+package com.metacoders.hurry.Activity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

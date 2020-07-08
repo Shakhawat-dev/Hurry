@@ -1,4 +1,4 @@
-package com.metacoders.hurry.fragments;
+package com.metacoders.hurry.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -139,7 +139,6 @@ firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<modelForBid, viewholderFor
 
                 Intent o = new Intent(getApplicationContext() , driverProfile.class);
                 // feed some data to the driverpage
-
                 o.putExtra("DRIVERUID" , getItem(position).getDriverUid()) ;
                 o.putExtra("FARE" , getItem(position).getBidPrice());
 
@@ -164,6 +163,8 @@ mrecyclerview.setAdapter(firebaseRecyclerAdapter);
 
 
     }
+
+
 
 
 }

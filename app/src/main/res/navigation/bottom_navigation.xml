@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@id/selectTripFragment">
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.metacoders.hurry.fragments.profileFragment"
+        android:label="profileFragment"
+        tools:layout="@layout/profile_fragment"/>
+    <fragment
+        android:id="@+id/onGoingList"
+        android:name="com.metacoders.hurry.fragments.onGoingList"
+        android:label="onGoingList"
+
+        tools:layout="@layout/fragment_ongoing_list"/>
+    <fragment
+        android:id="@+id/selectTripFragment"
+        android:name="com.metacoders.hurry.fragments.selectTripFragment"
+        android:label="selectTripFragment"
+        tools:layout="@layout/home_grid_layout"/>
+    <fragment
+        android:id="@+id/pastTripListFragment"
+        android:name="com.metacoders.hurry.fragments.pastTripListFragment"
+        android:label="pastTripListFragment"
+        tools:layout="@layout/past_trip_fragment"/>
+</navigation>
