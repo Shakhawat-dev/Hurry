@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -47,19 +48,17 @@ public class onGoingList extends Fragment {
 
 
         mrecyclerview = view.findViewById(R.id.currentList) ;
-
+        ((SimpleItemAnimator) mrecyclerview.getItemAnimator()).setSupportsChangeAnimations(false);
         linearLayoutManager = new LinearLayoutManager(getContext());
-
-
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.setReverseLayout(true);
 
         mrecyclerview.setLayoutManager(linearLayoutManager) ;
-        mrecyclerview.setHasFixedSize(true);
+
 
         mref.keepSynced(true);
 
-        loadDataToFireBase()  ;
+
 
 
 
@@ -79,10 +78,6 @@ public class onGoingList extends Fragment {
                         model.getToLoc() , model.getFromLoc() ,  model.getTimeDate() , model.getCarModl() , model.getDriverName() ,
                         model.getStatus()  , model.getCarLicNum() , model.getFare() , model.getCarType() ,
                         model.getReqDate() , model.getTripDetails() , model.getReturnTimee() );
-
-
-
-
 
 
             }
@@ -172,6 +167,13 @@ public class onGoingList extends Fragment {
 
     }
 
+    @Override
+    public void onStart() {
+
+        loadDataToFireBase()  ;
+        super.onStart();
+
+    }
 
     @Override
     public void onDestroyView() {

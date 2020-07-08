@@ -42,7 +42,7 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
 
     // firebase m
-    implementation 'com.firebaseui:firebase-ui-database:5.1.0'
+    implementation 'com.firebaseui:firebase-ui-database:6.2.1' // 5.1.0
     implementation 'com.google.firebase:firebase-database:19.3.1'
     implementation 'com.google.firebase:firebase-auth:19.3.1'
 
