@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,46 +19,43 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.metacoders.hurry.Activity.rentCar;
 import com.metacoders.hurry.R;
 
-public class selectTripFragment  extends Fragment {
+public class selectTripFragment extends Fragment {
 
     View view;
-    FirebaseAuth mauth ;
-    MaterialCardView ambulacneCard , TruckCard  ;
-    Context context ;
-
+    FirebaseAuth mauth;
+    MaterialCardView ambulacneCard, TruckCard;
+    Context context;
 
 
     public selectTripFragment() {
 
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-            LinearLayout car ;
-
-
+        LinearLayout car;
 
 
         view = inflater.inflate(R.layout.home_grid_layout, container, false);
 
-        context =view.getContext();
+        context = view.getContext();
         car = (LinearLayout) view.findViewById(R.id.carLatout);
-        ambulacneCard =view.findViewById(R.id.ambulanceID);
-        mauth = FirebaseAuth.getInstance() ;
+        ambulacneCard = view.findViewById(R.id.ambulanceID);
+        mauth = FirebaseAuth.getInstance();
         TruckCard = view.findViewById(R.id.Trucks);
 
-     //  Toast.makeText(getContext() , "UID : " + mauth.getUid()  , Toast.LENGTH_LONG ).show();
+        //  Toast.makeText(getContext() , "UID : " + mauth.getUid()  , Toast.LENGTH_LONG ).show();
 
         // getting the fare
         car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent i  = new Intent(context , rentCar.class );
+                Intent i = new Intent(context, rentCar.class);
                 startActivity(i);
-
 
 
             }
@@ -91,7 +90,7 @@ public class selectTripFragment  extends Fragment {
         });
 
 
-        return view ;
+        return view;
     }
 
 

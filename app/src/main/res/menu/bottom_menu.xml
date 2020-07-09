@@ -4,20 +4,24 @@
     <item
         android:id="@+id/selectTripFragment"
         android:title="Home"
+        android:icon="@mipmap/home_24"
         android:menuCategory="secondary"/>
     <item
         android:id="@+id/onGoingList"
         android:title="Ongoing Trips"
+        android:icon="@mipmap/ongoing_24"
         android:menuCategory="secondary"/>
 
     <item
         android:id="@+id/pastTripListFragment"
         android:title="Past Trips"
+        android:icon="@mipmap/trip_history_24"
         android:menuCategory="secondary"/>
 
     <item
         android:id="@+id/profileFragment"
         android:title="Profile"
+        android:icon="@mipmap/profile_24"
         android:menuCategory="secondary"
         />
 

@@ -14,84 +14,194 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <com.google.android.material.card.MaterialCardView
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:elevation="4dp"
-            app:cardCornerRadius="0dp">
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:text="SELECT YOUR RENT"
+            android:padding="16dp"
+            android:gravity="center"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
 
-            <LinearLayout
-                android:id="@+id/carLatout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clickable="true"
-                android:focusable="true"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="CARS"
-                    android:fontFamily="@font/poppins"
-                    android:textColor="@color/black"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="end"
-                    android:src="@drawable/car_color" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:id="@+id/Trucks"
             android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:foreground="?attr/selectableItemBackground"
-            android:elevation="4dp"
-            app:cardCornerRadius="0dp">
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:elevation="4dp"
+                app:cardCornerRadius="0dp">
 
-
-                <TextView
+                <LinearLayout
+                    android:id="@+id/carLatout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TRUCKS"
-                    android:fontFamily="@font/poppins"
-                    android:textColor="@color/black"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="end"
-                    android:src="@drawable/truck_color" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/car_black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CARS"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:id="@+id/Trucks"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:foreground="?attr/selectableItemBackground"
+                android:elevation="4dp"
+                app:cardCornerRadius="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="16dp"
+
+                        android:layout_gravity="center"
+                        android:src="@drawable/truck_black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TRUCKS"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/ambulanceID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:elevation="4dp"
+                app:cardCornerRadius="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ambulance_black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ambulance"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:foreground="?attr/selectableItemBackground"
+                android:elevation="4dp"
+                app:cardCornerRadius="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/truck_black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="XYZzzz"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
 
@@ -107,103 +217,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="1dp"
-            android:id="@+id/ambulanceID"
-            android:elevation="4dp"
-            app:cardCornerRadius="0dp">
 
-            <LinearLayout
-                android:foreground="?attr/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                android:weightSum="3">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="AMBULANCE"
-                        android:letterSpacing="0.2"
-                        android:fontFamily="@font/poppins"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Emergency Ambulance service."
-                        android:textColor="@color/black"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView2"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Click here"
-                        android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
-                        android:layout_marginTop="4dp"
-                        android:paddingLeft="8dp"
-                        android:gravity="center"
-                        android:background="@drawable/rounded_red_background"
-                        android:textColor="@color/white" />
-
-                </LinearLayout>
-
-
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="end"
-                    android:layout_weight="1"
-                    android:src="@drawable/ambulance_color"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:visibility="gone"
-                    android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
-                    android:tint="@color/black" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/poppins"
-        android:text="Select Your Need"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

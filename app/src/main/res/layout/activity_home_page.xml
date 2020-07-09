@@ -25,19 +25,17 @@ android:orientation="vertical">
 <!--    android:layout_height="match_parent">-->
 <!--</androidx.viewpager.widget.ViewPager>-->
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/appbarId"
-            android:layout_width="match_parent"
-            android:background="@color/colorPrimaryDark"
-            android:layout_height="wrap_content"
-            app:title="Hurry"
-            app:titleTextColor="@color/white"
-            android:fitsSystemWindows="true"
-           >
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/appbarId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true"
+        app:title="Hurry"
+        app:titleTextColor="@color/white">
 
 
-
-        </androidx.appcompat.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
         <LinearLayout
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
