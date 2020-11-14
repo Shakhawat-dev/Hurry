@@ -7,8 +7,9 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="115dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="116dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         app:cardElevation="8dp"
         >
 
@@ -95,11 +96,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Toyota Premio 2019"
-                            android:textSize="10sp" />
+                            android:textSize="12sp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:visibility="gone"
                             android:orientation="horizontal">
 
                             <TextView
@@ -107,13 +109,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Condition Rating: "
-                                android:textSize="10sp" />
+
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="8.5"
-                                android:textSize="10sp" />
+                                android:text=""
+                                android:textSize="12sp" />
                         </LinearLayout>
 
 
@@ -186,10 +189,11 @@
 
                         <Button
                             android:layout_width="120dp"
-                            android:text="Accept This Bid"
+                            android:text="Accept"
                             android:textColor="#fff"
-                            android:layout_marginBottom="6dp"
+                            android:layout_marginBottom="2dp"
                             android:textAllCaps="false"
+                            android:gravity="center"
                             android:background="@color/colorPrimary"
                             android:layout_height="35dp" />
 

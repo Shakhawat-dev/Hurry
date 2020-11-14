@@ -1,7 +1,7 @@
 package com.metacoders.hurry.model;
 
 public class userModel {
-    String userFined , userTripCount , userProPic  , userName  , userTripList , userWallet , userIdState  , userTotalSpent   ;
+    String userFined, phone, userTripCount, userProPic, userName, userTripList, userWallet, userIdState, userTotalSpent, userPhone;
 
 
     public userModel(String userFined, String userTripCount, String userProPic, String userName, String userTripList, String userWallet, String userIdState, String userTotalSpent) {
@@ -15,15 +15,31 @@ public class userModel {
         this.userTotalSpent = userTotalSpent;
     }
 
+    public userModel() {
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
     public String getUserTotalSpent() {
         return userTotalSpent;
     }
 
     public void setUserTotalSpent(String userTotalSpent) {
         this.userTotalSpent = userTotalSpent;
-    }
-
-    public userModel() {
     }
 
     public String getUserFined() {

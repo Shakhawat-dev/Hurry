@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,7 +59,7 @@ String driverNewLifetimeEarn , driverNewThisMonthEarn  ;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip__running_details);
 
-        getSupportActionBar().setTitle("Trip Details ");
+        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"#FFFFFF\">" + "Trip Details" + "</font>"));
 
 
         Intent i = getIntent();

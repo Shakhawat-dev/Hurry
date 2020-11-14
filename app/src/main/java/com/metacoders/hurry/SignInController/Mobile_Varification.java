@@ -1,16 +1,17 @@
 package com.metacoders.hurry.SignInController;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,9 +23,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.metacoders.hurry.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.metacoders.hurry.Activity.homePage;
+import com.metacoders.hurry.Constants.constants;
+import com.metacoders.hurry.R;
+
 import java.util.concurrent.TimeUnit;
+
 import in.aabhasjindal.otptextview.OtpTextView;
 import ir.samanjafari.easycountdowntimer.CountDownInterface;
 import ir.samanjafari.easycountdowntimer.EasyCountDownTextview;
@@ -32,22 +41,46 @@ import ir.samanjafari.easycountdowntimer.EasyCountDownTextview;
 
 public class Mobile_Varification extends AppCompatActivity {
 
-    EasyCountDownTextview countDownTextView ;
-    TextView  resendText ;
-    String phone ;
-    ImageButton backButton ;
-
+    private final static int RC_SIGN_IN = 2;
+    EasyCountDownTextview countDownTextView;
+    TextView resendText;
+    String phone;
+    ImageButton backButton;
+    FirebaseAuth.AuthStateListener mAuthListener;
+    SignInButton google_btn;
+    PhoneAuthProvider.OnVerificationStateChangedCallbacks mcallbacks;
+    ImageButton signInBtn;
+    FirebaseUser mUser;
     private String verificationid;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
-    private final static  int RC_SIGN_IN =2 ;
-    FirebaseAuth.AuthStateListener mAuthListener ;
-    SignInButton google_btn ;
     private OtpTextView editText;
-    PhoneAuthProvider.OnVerificationStateChangedCallbacks mcallbacks ;
-    ImageButton signInBtn ;
-    FirebaseUser mUser ;
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
+            mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
+        @Override
+        public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+            super.onCodeSent(s, forceResendingToken);
+            verificationid = s;
+        }
+
+        @Override
+        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+            String code = phoneAuthCredential.getSmsCode();
+            if (code != null) {
+
+
+                verifyCode(code);
+            }
+        }
+
+        @Override
+        public void onVerificationFailed(FirebaseException e) {
+            progressBar.setVisibility(View.INVISIBLE);
+            Toast.makeText(Mobile_Varification.this, e.getMessage(), Toast.LENGTH_LONG).show();
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,29 +89,23 @@ public class Mobile_Varification extends AppCompatActivity {
 
         getSupportActionBar().hide();
         //receiving  phone number from  the previous activity
-        Intent  o = getIntent();
-        phone = o.getStringExtra("PHONE") ;
+        Intent o = getIntent();
+        phone = o.getStringExtra("PHONE");
 
         sendVerificationCode(phone);
+
         //init view
-        countDownTextView = findViewById(R.id.easyCountDownTextview) ;
-        resendText = findViewById(R.id.resendTv) ;
+        countDownTextView = findViewById(R.id.easyCountDownTextview);
+        resendText = findViewById(R.id.resendTv);
         backButton = findViewById(R.id.backbtn);
-        signInBtn = findViewById(R.id.signin_btn) ;
-        editText = findViewById(R.id.otp_view) ;
+        signInBtn = findViewById(R.id.signin_btn);
+        editText = findViewById(R.id.otp_view);
         progressBar = findViewById(R.id.progrssBar);
-
-
-
 
 
         //setting my views
         countDownTextView.setVisibility(View.VISIBLE);
         resendText.setVisibility(View.GONE);
-
-
-
-
 
 
         countDownTextView.setOnTick(new CountDownInterface() {
@@ -96,24 +123,20 @@ public class Mobile_Varification extends AppCompatActivity {
 
             }
         });
-
-
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
-                if(firebaseAuth.getCurrentUser() !=null){
-                    Intent i = new Intent(getApplicationContext() , homePage.class);
+                if (firebaseAuth.getCurrentUser() != null) {
+                    Intent i = new Intent(getApplicationContext(), homePage.class);
                     startActivity(i);
+                    finish();
                 }
-
 
 
             }
         };
-
-
 
         // setting on click
 
@@ -124,19 +147,18 @@ public class Mobile_Varification extends AppCompatActivity {
 
                 String code = editText.getOTP();
 
-                if ((code.isEmpty() || code.length() < 6)){
+                if ((code.isEmpty() || code.length() < 6)) {
 
                     //  editText.setError("Enter code...");
-                    Toast.makeText(getApplicationContext() , "PLease Enter The 6 Digit Code Properly" , Toast.LENGTH_SHORT)
+                    Toast.makeText(getApplicationContext(), "PLease Enter The 6 Digit Code Properly", Toast.LENGTH_SHORT)
                             .show();
                 }
-               // progressBar.setVisibility(View.VISIBLE);
+                // progressBar.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.VISIBLE);
-                    verifyCode(code);
+                verifyCode(code);
 
             }
         });
-
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -160,20 +182,22 @@ public class Mobile_Varification extends AppCompatActivity {
         });
 
 
-
-
-
     }
 
-
-    private void verifyCode(String code){
+    private void verifyCode(String code) {
         try {
-            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationid, code);
-            signInWithCredential(credential);
-        }catch (Exception e){
+            if (!code.isEmpty()) {
+                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationid, code);
+                signInWithCredential(credential);
+            } else {
+                Log.d("TAG", "verifyCode: " + code);
+            }
+        } catch (Exception e) {
             Toast toast = Toast.makeText(this, "Verification Code is wrong", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER,0,0);
+            Log.d("TAG", "verifyCode: " + e.getMessage());
+            toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
+            progressBar.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -184,17 +208,13 @@ public class Mobile_Varification extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-
-                            Intent intent = new Intent(Mobile_Varification.this, homePage.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
-                            finish();
-
-
+                            mAuth = FirebaseAuth.getInstance();
+                            checkUser(mAuth.getUid());
+                            Log.d("TAG", "onComplete: " + mAuth.getUid());
 
                         } else {
 
-                            Toast.makeText(Mobile_Varification.this,"Eror: "+ task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(Mobile_Varification.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
 
                         }
                     }
@@ -202,7 +222,7 @@ public class Mobile_Varification extends AppCompatActivity {
                 });
     }
 
-    private void sendVerificationCode(String number){
+    private void sendVerificationCode(String number) {
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 number,
@@ -213,43 +233,41 @@ public class Mobile_Varification extends AppCompatActivity {
         );
     }
 
+    private void checkUser(String uid) {
+        DatabaseReference mref = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child(uid);
+        mref.keepSynced(true);
+        mref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    // user exist
+                    Intent intent = new Intent(Mobile_Varification.this, homePage.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    // user doesnt exist
+                    Intent intent = new Intent(Mobile_Varification.this, accountSetupPage.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
 
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
-            mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
-        @Override
-        public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-            super.onCodeSent(s, forceResendingToken);
-            verificationid = s;
-        }
-
-        @Override
-        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-            String code = phoneAuthCredential.getSmsCode();
-            if (code != null){
-
-
-                verifyCode(code);
+                }
             }
 
-            else {
-
-                progressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(Mobile_Varification.this,"Error: wrong Code  ", Toast.LENGTH_LONG).show();
-
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Error " + error, Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
             }
-        }
+        });
+    }
 
-        @Override
-        public void onVerificationFailed(FirebaseException e) {
-            progressBar.setVisibility(View.INVISIBLE);
-            Toast.makeText(Mobile_Varification.this, e.getMessage(),Toast.LENGTH_LONG).show();
-
-        }
-    };
-
-
-
-
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
 
 }

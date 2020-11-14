@@ -26,8 +26,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginTop="40dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/avatar"/>
+                        android:layout_gravity="center" />
 
                 <TextView
                     android:id="@+id/nameTv"
@@ -36,7 +35,8 @@
                     android:textAlignment="center"
                     android:layout_marginTop="20dp"
                     android:textSize="24sp"
-                    android:text="Maria Snow"/>
+                    android:fontFamily="@font/poppins"
+                    android:text=""/>
                 <TextView
                     android:visibility="gone"
                     android:layout_width="match_parent"
@@ -77,8 +77,9 @@
                             android:text="125"/>
                         <TextView
                             android:layout_width="match_parent"
+                            android:fontFamily="@font/poppins"
                             android:layout_height="wrap_content"
-                            android:textSize="11sp"
+                            android:textSize="12sp"
                             android:textAlignment="center"
                             android:text="Life-Time Trips"/>
                     </LinearLayout>
@@ -119,8 +120,9 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="11sp"
+                            android:textSize="12sp"
                             android:textAlignment="center"
+                            android:fontFamily="@font/poppins"
                             android:text="Life-Time Spent"/>
                     </LinearLayout>
 
@@ -145,6 +147,7 @@
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
                         android:layout_marginTop="4dp"
+                        android:fontFamily="@font/poppins"
                         android:textColor="@color/black"
                         android:text="Personal Information"/>
 
@@ -180,12 +183,14 @@
                         android:text="Phone Number"/>
 
                     <TextView
+                        android:id="@+id/phoneTv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:layout_marginBottom="4dp"
-                        android:textSize="20sp"
-                        android:text="01856508888"/>
+                        android:fontFamily="@font/poppins"
+                        android:text=""
+                        android:textSize="20sp" />
 
                     <View
                         android:layout_width="match_parent"

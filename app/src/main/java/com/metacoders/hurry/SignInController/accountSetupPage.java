@@ -1,10 +1,5 @@
 package com.metacoders.hurry.SignInController;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,9 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,7 +38,6 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import id.zelory.compressor.Compressor;
@@ -57,11 +55,9 @@ public class accountSetupPage extends AppCompatActivity {
 
     Button takePhotoBtn;
     StorageReference mStorageReference;
-
-    private Bitmap compressedImageFile;
     Uri mFilePathUri;
     DatabaseReference mref;
-
+    private Bitmap compressedImageFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +71,7 @@ public class accountSetupPage extends AppCompatActivity {
 
 
         mauth = FirebaseAuth.getInstance();
-        uid = "TEST";
+        uid = mauth.getUid();
 
         mStorageReference = FirebaseStorage.getInstance().getReference(constants.userProfileDb).child(uid);
         mref = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child(uid);
@@ -181,7 +177,7 @@ public class accountSetupPage extends AppCompatActivity {
     private void uploadPicToServer(Uri mFilePathUri) {
 
         if (mFilePathUri != null) {
-            final String randomName = UUID.randomUUID().toString();
+            //   final String randomName = UUID.randomUUID().toString();
 
             // PHOTO UPLOAD
             File newImageFile = new File(mFilePathUri.getPath());
@@ -201,7 +197,7 @@ public class accountSetupPage extends AppCompatActivity {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             compressedImageFile.compress(Bitmap.CompressFormat.JPEG, 50, baos);
             byte[] imageData = baos.toByteArray();
-            UploadTask filePath = mStorageReference.child(randomName + uid + ".jpg").putBytes(imageData);
+            UploadTask filePath = mStorageReference.child(System.currentTimeMillis() + uid + ".jpg").putBytes(imageData);
 
             filePath.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -211,11 +207,7 @@ public class accountSetupPage extends AppCompatActivity {
                     Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                     while (!uriTask.isSuccessful()) ;
                     Uri downloaduri = uriTask.getResult();
-
-
                     //   String ts =mref.push().getKey() ;
-
-
                     mref.child("userProPic").setValue(downloaduri.toString());
                     mprogressDialog.hide();
 
@@ -232,7 +224,7 @@ public class accountSetupPage extends AppCompatActivity {
                 @Override
                 public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
 
-                    mprogressDialog.setTitle("Uploading.......");
+                    mprogressDialog.setMessage("Uploading...");
                     mprogressDialog.show();
 
 

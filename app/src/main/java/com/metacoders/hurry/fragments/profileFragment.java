@@ -1,17 +1,19 @@
 package com.metacoders.hurry.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,7 +24,6 @@ import com.metacoders.hurry.Constants.constants;
 import com.metacoders.hurry.R;
 import com.metacoders.hurry.SignInController.Sign_in;
 import com.metacoders.hurry.model.userModel;
-import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -33,8 +34,9 @@ public class profileFragment extends Fragment {
     CircleImageView imageView;
     FirebaseAuth mauth;
     String name, uid;
-    TextView nameTv, spentLifeTime, tripLifeTimeTv, tripThisMonthTv;
+    TextView nameTv, spentLifeTime, tripLifeTimeTv, tripThisMonthTv, phoneTv;
 
+    Context context;
 
     public profileFragment() {
 
@@ -49,12 +51,13 @@ public class profileFragment extends Fragment {
 
         mauth = FirebaseAuth.getInstance();
         uid = FirebaseAuth.getInstance().getUid();
-
+        context = view.getContext();
         imageView = view.findViewById(R.id.imageViewOnProfileFragment);
         nameTv = view.findViewById(R.id.nameTv);
         spentLifeTime = view.findViewById(R.id.lifeTimeSpentCount);
         tripLifeTimeTv = (TextView) view.findViewById(R.id.numberOFTotalTrip);
         tripThisMonthTv = view.findViewById(R.id.monty_trip_count);
+        phoneTv = view.findViewById(R.id.phoneTv);
 
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +68,6 @@ public class profileFragment extends Fragment {
                 mauth.signOut();
 
                 Intent i = new Intent(getContext(), Sign_in.class);
-
                 startActivity(i);
                 getActivity().finish();
 
@@ -79,7 +81,7 @@ public class profileFragment extends Fragment {
     private void dwldUserDataFromServer() {
 
 
-        DatabaseReference mref = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child("TEST");
+        DatabaseReference mref = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child(uid);
 
         mref.keepSynced(true);
 
@@ -87,13 +89,18 @@ public class profileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                userModel model = dataSnapshot.getValue(userModel.class);
+                if (dataSnapshot.exists()) {
+                    userModel model = dataSnapshot.getValue(userModel.class);
+                    nameTv.setText(model.getUserName());
+                    spentLifeTime.setText(model.getUserTotalSpent().toString());
+                    tripLifeTimeTv.setText(model.getUserTripCount());
+                    Glide.with(context).load(model.getUserProPic())
+                            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                            .into(imageView);
+                    phoneTv.setText(model.getPhone());
 
-                nameTv.setText(model.getUserName());
-                spentLifeTime.setText(model.getUserTotalSpent().toString());
-                tripLifeTimeTv.setText(model.getUserTripCount());
-                Picasso.get().load(model.getUserProPic()).into(imageView);
 
+                }
 
             }
 
@@ -103,7 +110,7 @@ public class profileFragment extends Fragment {
             }
         });
 
-
+        //throw new RuntimeException("Test Crash");
     }
 
 

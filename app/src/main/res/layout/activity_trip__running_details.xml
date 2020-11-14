@@ -563,7 +563,7 @@
                         />
 
                     <Button
-
+                        android:visibility="gone"
                         android:id="@+id/sumbutBTnTripdetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -571,6 +571,13 @@
                         android:padding="16dp"
                         android:background="@drawable/complete_button"
                         android:text="Complete Trip"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="5dp"
+                        android:layout_height="wrap_content"
+                        android:text="*For Compeleting Your Trip ,Please Ask The Driver "/>
                     <Button
 
                         android:id="@+id/cancelBTnTripdetails"
