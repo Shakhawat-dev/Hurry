@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -25,11 +26,12 @@ import com.metacoders.hurry.fragments.viewPagerAdapter;
 public class homePage extends AppCompatActivity {
 
 
-//    TabLayout tabLayout  ;
+    //    TabLayout tabLayout  ;
 //    AppBarLayout appBarLayout ;
 //    ViewPager viewPager ;
-NavigationView navigationView ;
-    private NavController navController ;
+    NavigationView navigationView;
+    private NavController navController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,29 +40,22 @@ NavigationView navigationView ;
 
         BottomNavigationView navView = findViewById(R.id.navView);
 
-        navController = Navigation.findNavController(homePage.this , R.id.fragment_container_view_tag) ;
+        navController = Navigation.findNavController(homePage.this, R.id.fragment_container_view_tag);
 
-        NavigationUI.setupWithNavController(navView , navController);
+        NavigationUI.setupWithNavController(navView, navController);
 
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                 if(item.getItemId() == R.id.profileFragment)
-                {
-                    navController.navigate(R.id.profileFragment , null , getNavOptions()  );
-                }
-                else if(item.getItemId() == R.id.pastTripListFragment  )
-                {
-                    navController.navigate(R.id.pastTripListFragment, null , getNavOptions() );
-                }
-                else if(item.getItemId() == R.id.onGoingList)
-                {
-                    navController.navigate(R.id.onGoingList, null , getNavOptions() );
-                }
-                else if(item.getItemId() == R.id.selectTripFragment)
-                {
-                    navController.navigate(R.id.selectTripFragment, null , getNavOptions());
+                if (item.getItemId() == R.id.profileFragment) {
+                    navController.navigate(R.id.profileFragment, null, getNavOptions());
+                } else if (item.getItemId() == R.id.pastTripListFragment) {
+                    navController.navigate(R.id.pastTripListFragment, null, getNavOptions());
+                } else if (item.getItemId() == R.id.onGoingList) {
+                    navController.navigate(R.id.onGoingList, null, getNavOptions());
+                } else if (item.getItemId() == R.id.selectTripFragment) {
+                    navController.navigate(R.id.selectTripFragment, null, getNavOptions());
                 }
 
 

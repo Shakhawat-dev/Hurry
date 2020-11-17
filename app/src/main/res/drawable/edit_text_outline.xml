@@ -3,6 +3,6 @@
     <solid android:color="#fff"/>
     <stroke
         android:width="2dp"
-        android:color="@color/colorRegContButton"/>
+        android:color="@color/colorAccent"/>
     <size android:height="52dp"/>
 </shape>
