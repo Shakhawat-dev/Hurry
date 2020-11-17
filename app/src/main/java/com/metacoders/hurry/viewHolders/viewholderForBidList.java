@@ -2,6 +2,7 @@ package com.metacoders.hurry.viewHolders;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -14,7 +15,7 @@ import com.metacoders.hurry.R;
 public class viewholderForBidList extends RecyclerView.ViewHolder {
      View mview ;
     TextView  drivername , drivercarmodel ,  drivercarcondition , bidprice  ;
-
+    public Button acceptButton;
 
     public viewholderForBidList(@NonNull View itemView) {
         super(itemView);
@@ -46,18 +47,20 @@ public class viewholderForBidList extends RecyclerView.ViewHolder {
         ImageView driverimage ;
 
 
+
         drivername = mview.findViewById(R.id.driverNameOfBidRow);
 
         drivercarmodel = mview.findViewById(R.id.carModelBid);
         drivercarcondition = mview.findViewById(R.id.conditionRateBidRow) ;
         bidprice = mview.findViewById(R.id.priceViewInBidRow);
-
+        acceptButton = mview.findViewById(R.id.acceptBtn) ;
 
         //setting the data
         drivername.setText(driverName);
         drivercarmodel.setText(driverCarModel);
         drivercarcondition.setText(driverCarCondition);
         bidprice.setText(bidPrice);
+
 
         // loadthe image to the view
 

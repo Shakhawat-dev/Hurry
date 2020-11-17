@@ -38,7 +38,7 @@ public class termsAndCondition extends AppCompatActivity {
 
         nextButton = findViewById(R.id.signin_btn) ;
 
-        //TODO init nottificaiton id 
+        //TODO init nottificaiton id
 
 
         mauth = FirebaseAuth.getInstance();

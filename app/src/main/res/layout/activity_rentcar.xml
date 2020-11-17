@@ -327,6 +327,7 @@
 
                     <!--For truck-->
                     <LinearLayout
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="32dp"
                         android:gravity="start|center"
@@ -371,11 +372,10 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:visibility="visible"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
-
                         android:orientation="horizontal"
                         android:weightSum="2">
 

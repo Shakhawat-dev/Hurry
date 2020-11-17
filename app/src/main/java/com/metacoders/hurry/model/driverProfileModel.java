@@ -1,11 +1,11 @@
 package com.metacoders.hurry.model;
 
-public class driverProfileModel {
-    String carLic , driverEarnedLifeLong , driverEarnedThisMonth , driverFined , driverIdActivated ,
-            driverJoinedDate , driverName , driverRating , driver_license_image , email ,
-            fitness_license_image , nid_card_image , phone ,profile_picture ,  tax_token_image
-            , totalRides ,userID , vehicle_reg_image  , acType ,carType ,buildCompany ,carModel, carYear , truckSize
-            ,sitCount ,tripCounter;
+import java.io.Serializable;
+
+public class driverProfileModel implements Serializable {
+    String carLic, driverEarnedLifeLong, driverEarnedThisMonth, driverFined, driverIdActivated,
+            driverJoinedDate, driverName, driverRating, driver_license_image, email,
+            fitness_license_image, nid_card_image, phone, profile_picture, tax_token_image, totalRides, userID, vehicle_reg_image, acType, carType, buildCompany, carModel, carYear, truckSize, sitCount, tripCounter,driverNotificationID;
 
 
     public driverProfileModel() {
@@ -45,6 +45,16 @@ public class driverProfileModel {
         this.sitCount = sitCount;
         this.tripCounter = tripCounter;
     }
+
+    public String getDriverNotificationID() {
+        return driverNotificationID;
+    }
+
+    public void setDriverNotificationID(String driverNotificationID) {
+        this.driverNotificationID = driverNotificationID;
+    }
+
+
 
     public String getTripCounter() {
         return tripCounter;

@@ -67,11 +67,7 @@ public class Sign_in extends AppCompatActivity {
         super.onStart();
         FirebaseUser muser = FirebaseAuth.getInstance().getCurrentUser();
 
-        if (muser != null) {
-            Intent i = new Intent(getApplicationContext(), homePage.class);
-            startActivity(i);
-            finish();
-        }
+
 
     }
 }

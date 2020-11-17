@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,7 +39,7 @@ import java.util.Calendar;
 public class rentCar extends AppCompatActivity {
 
 
-           TextView  datePicker  , timePicker , endTime , endDate ;
+    TextView  datePicker  , timePicker , endTime , endDate ;
     DatePickerDialog  datePickerDialog ;
     String amPmChecker ;
     Spinner noOfppl , typeOfVehical , citySpinner , TownSpinner , citySpinnerTo , townSpinnerTO  ;
@@ -369,9 +370,9 @@ public class rentCar extends AppCompatActivity {
 
         String postId   = mref.push().getKey()  ;
 
-        modelForCarRequest  model = new modelForCarRequest(postId , "uId", "userNotfonID" , "dirveRID", "dirverNotiId"
-        , TripLocto  , TripLocFrom , TripTime + " at "+ TripDate , carType  , "drivernamee" , "Pending" , "carlice" , "fare00"
-                ,  carType , "TOday" , tripDetails , returnTime , numofPPl,rideType
+        modelForCarRequest  model = new modelForCarRequest(postId , FirebaseAuth.getInstance().getUid(), "userNotfonID" , "dirveRID", "dirverNotiId"
+        , TripLocto  , TripLocFrom , TripTime + " at "+ TripDate , carType  , "NULL" , "Pending" , "carlice" , "NULL"
+                ,  carType , TripDate, tripDetails , returnTime , numofPPl,rideType,"NULL"
 
         ) ;
 

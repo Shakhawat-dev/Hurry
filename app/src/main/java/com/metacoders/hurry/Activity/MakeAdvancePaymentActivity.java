@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.metacoders.hurry.Constants.constants;
 import com.metacoders.hurry.R;
 
 import java.text.DateFormat;
@@ -34,7 +36,7 @@ public class MakeAdvancePaymentActivity extends AppCompatActivity {
     String postID ;
     String uid ;
     RadioGroup acRadioGroup , carSeatNumber ;
-
+    String amt , tx , paymentType ;
 
 
     @Override
@@ -61,7 +63,7 @@ public class MakeAdvancePaymentActivity extends AppCompatActivity {
         mbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String amt , tx , paymentType ;
+
 
                 int i1 = acRadioGroup.getCheckedRadioButtonId();
                 RadioButton radioButton = findViewById(i1) ;
@@ -85,8 +87,10 @@ public class MakeAdvancePaymentActivity extends AppCompatActivity {
 
 
 
-public  void  uploadTransaction(String amt, String tx, String paymentType){
+public  void  uploadTransaction(String amt, final  String trx, String paymentType){
     final DatabaseReference transaction = FirebaseDatabase.getInstance().getReference("transaction_List").child(postID);
+    final DatabaseReference mref = FirebaseDatabase.getInstance().getReference(constants.carRequestLink).child(postID)
+            .child("transId");
 
    String date  = getDateTime();
 
@@ -94,7 +98,7 @@ public  void  uploadTransaction(String amt, String tx, String paymentType){
     HashMap  map = new HashMap();
     map.put("userUid" , uid) ;
     map.put("amountPaid",amt ) ;
-    map.put("trxID", tx) ;
+    map.put("trxID", trx) ;
     map.put("tripId",postID ) ;
     map.put("time" , date) ;
     map.put("payment_type" , paymentType) ;
@@ -103,10 +107,26 @@ public  void  uploadTransaction(String amt, String tx, String paymentType){
             .addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
+//
+//                    Toast.makeText(getApplicationContext() , "DONE!!" , Toast.LENGTH_SHORT)
+//                            .show();
+//                     finish();
+                    mref.setValue(trx).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
 
                     Toast.makeText(getApplicationContext() , "DONE!!" , Toast.LENGTH_SHORT)
                             .show();
-                    //  finish();
+                     finish();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    }) ;
+
+
 
                 }
             })

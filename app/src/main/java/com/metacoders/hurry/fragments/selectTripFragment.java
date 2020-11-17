@@ -81,9 +81,9 @@ public class selectTripFragment extends Fragment {
 
                 AlertDialog dialog = new AlertDialog.Builder(context).create();
 
-                dialog.setTitle("To Be Implemented");
+                dialog.setTitle("Error ");
                 dialog.setCancelable(true);
-                dialog.setMessage("Coming Soon ..");
+                dialog.setMessage("Firebase Limit Exceeded ..");
                 dialog.show();
             }
         });

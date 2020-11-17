@@ -4,12 +4,12 @@ public class modelForCarRequest {
 
      String postId  , userId  , userNotificationID  , driverId  , driverNotificationID ,
     toLoc , fromLoc ,  timeDate , carModl , driverName , status  , carLicNum , fare , carType ,
-    reqDate , tripDetails  , returnTimee  , numOfPpl , rideType;
+    reqDate , tripDetails  , returnTimee  , numOfPpl , rideType , transId  ;
 
     public modelForCarRequest() {
     }
 
-    public modelForCarRequest(String postId, String userId, String userNotificationID, String driverId, String driverNotificationID, String toLoc, String fromLoc, String timeDate, String carModl, String driverName, String status, String carLicNum, String fare, String carType, String reqDate, String tripDetails, String returnTimee, String numOfPpl, String rideType) {
+    public modelForCarRequest(String postId, String userId, String userNotificationID, String driverId, String driverNotificationID, String toLoc, String fromLoc, String timeDate, String carModl, String driverName, String status, String carLicNum, String fare, String carType, String reqDate, String tripDetails, String returnTimee, String numOfPpl, String rideType, String transId) {
         this.postId = postId;
         this.userId = userId;
         this.userNotificationID = userNotificationID;
@@ -29,6 +29,15 @@ public class modelForCarRequest {
         this.returnTimee = returnTimee;
         this.numOfPpl = numOfPpl;
         this.rideType = rideType;
+        this.transId = transId;
+    }
+
+    public String getTransId() {
+        return transId;
+    }
+
+    public void setTransId(String transId) {
+        this.transId = transId;
     }
 
     public String getPostId() {
