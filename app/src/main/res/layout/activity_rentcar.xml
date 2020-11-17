@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorBackground"
+    android:orientation="vertical"
     tools:context=".Activity.rentCar">
 
     <androidx.core.widget.NestedScrollView
@@ -20,11 +20,11 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#fff"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#fff"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="3dp">
 
@@ -43,8 +43,8 @@
                         android:layout_marginBottom="1dp"
                         android:text="Plan Your Trip"
                         android:textAlignment="center"
-                        android:textColor="@color/colorAccent"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textColor="@color/colorAccent" />
 
                     <!--<view
                         android:layout_width="100dp"
@@ -65,22 +65,21 @@
                         <Spinner
                             android:id="@+id/citySpinner"
                             android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_marginEnd="2dp"
                             android:layout_height="wrap_content"
-                            android:drawablePadding="10dp"
+                            android:layout_marginEnd="2dp"
+                            android:layout_weight="1"
                             android:background="@drawable/spinner_shadow_back"
-                            />
+                            android:drawablePadding="10dp" />
+
                         <Spinner
                             android:id="@+id/townSpinner"
                             android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_marginStart="2dp"
                             android:layout_height="wrap_content"
-                            android:drawablePadding="10dp"
-                            android:background="@drawable/spinner_shadow_back" />
+                            android:layout_marginStart="2dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/spinner_shadow_back"
+                            android:drawablePadding="10dp" />
                     </LinearLayout>
-
 
 
                     <TextView
@@ -97,22 +96,22 @@
                         <Spinner
                             android:id="@+id/citySpinnerTo"
                             android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_marginEnd="2dp"
-                            android:background="@drawable/spinner_shadow_back"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="2dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/spinner_shadow_back"
                             android:drawablePadding="10dp"
 
                             />
+
                         <Spinner
                             android:id="@+id/townSpinnerTo"
                             android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_marginStart="2dp"
-                            android:background="@drawable/spinner_shadow_back"
                             android:layout_height="wrap_content"
-                            android:drawablePadding="10dp"
-                            />
+                            android:layout_marginStart="2dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/spinner_shadow_back"
+                            android:drawablePadding="10dp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -138,16 +137,16 @@
                                 android:id="@+id/timeEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:background="@drawable/spinner_shadow_back"
                                 android:drawableLeft="@drawable/time_icon"
                                 android:drawablePadding="10dp"
-                                android:hint="00:00"
-                                android:background="@drawable/spinner_shadow_back"
-
                                 android:gravity="start|center"
-                                android:textSize="15sp"
+
+                                android:hint="00:00"
+                                android:padding="10dp"
                                 android:textColor="#000"
-                                android:textStyle="bold"
-                                android:padding="10dp" />
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
 
                         </LinearLayout>
@@ -169,15 +168,15 @@
                                 android:id="@+id/dateEdit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:background="@drawable/spinner_shadow_back"
                                 android:drawableStart="@drawable/date_icon"
                                 android:drawablePadding="10dp"
-                                android:background="@drawable/spinner_shadow_back"
                                 android:gravity="center|start"
-                                android:textSize="15sp"
-                                android:textColor="#000"
-                                android:textStyle="bold"
                                 android:hint="dd/mm/yyyy"
-                                android:padding="10dp" />
+                                android:padding="10dp"
+                                android:textColor="#000"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
 
                         </LinearLayout>
@@ -211,7 +210,6 @@
                         android:weightSum="2">
 
 
-
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -230,15 +228,15 @@
                                 android:id="@+id/tripEndingTime"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:background="@drawable/spinner_shadow_back"
                                 android:drawableLeft="@drawable/time_icon"
                                 android:drawablePadding="10dp"
-                                android:hint="00:00"
-                                android:background="@drawable/spinner_shadow_back"
                                 android:gravity="start|center"
-                                android:textSize="15sp"
+                                android:hint="00:00"
+                                android:padding="10dp"
                                 android:textColor="#000"
-                                android:textStyle="bold"
-                                android:padding="10dp" />
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
 
                         </LinearLayout>
@@ -260,15 +258,15 @@
                                 android:id="@+id/tripEndingDate"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:drawableStart="@drawable/date_icon"
                                 android:background="@drawable/spinner_shadow_back"
+                                android:drawableStart="@drawable/date_icon"
                                 android:drawablePadding="10dp"
                                 android:gravity="center|start"
-                                android:textSize="15sp"
-                                android:textColor="#000"
-                                android:textStyle="bold"
                                 android:hint="dd/mm/yyyy"
-                                android:padding="10dp" />
+                                android:padding="10dp"
+                                android:textColor="#000"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
 
                         </LinearLayout>
@@ -279,20 +277,20 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#fff"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#fff"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="3dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -313,8 +311,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:gravity="start|center"
                         android:layout_marginBottom="2dp"
+                        android:gravity="start|center"
                         android:orientation="vertical"
                         android:weightSum="2">
 
@@ -338,20 +336,20 @@
                         <Spinner
                             android:id="@+id/no_of_people_spinner"
                             android:layout_width="120dp"
-                            android:visibility="gone"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:visibility="gone" />
 
                     </LinearLayout>
 
 
                     <!--For truck-->
                     <LinearLayout
-                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="32dp"
-                        android:gravity="start|center"
                         android:layout_marginBottom="2dp"
+                        android:gravity="start|center"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         android:weightSum="2">
 
                         <TextView
@@ -382,26 +380,26 @@
                         <com.google.android.material.chip.ChipGroup
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            app:singleLine="true"
+                            android:layout_weight="0.8"
                             app:checkedChip="@id/chip4"
-                            app:singleSelection="true"
-                            android:layout_weight="0.8">
+                            app:singleLine="true"
+                            app:singleSelection="true">
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip4"
+                                style="@style/Widget.MaterialComponents.Chip.Entry"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                app:closeIconEnabled="false"
-                                style="@style/Widget.MaterialComponents.Chip.Entry"
-                                android:text="Private Car"/>
+                                android:text="Private Car"
+                                app:closeIconEnabled="false" />
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip2"
+                                style="@style/Widget.MaterialComponents.Chip.Entry"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                app:closeIconEnabled="false"
-                                style="@style/Widget.MaterialComponents.Chip.Entry"
-                                android:text="Private Card"/>
+                                android:text="Private Card"
+                                app:closeIconEnabled="false" />
 
 
                         </com.google.android.material.chip.ChipGroup>
@@ -411,17 +409,17 @@
                             android:id="@+id/type_of_vehicle_spinner"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                           android:visibility="gone"
-                            android:layout_gravity="center" />
+                            android:layout_gravity="center"
+                            android:visibility="gone" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         android:weightSum="2">
 
                         <TextView
@@ -443,16 +441,49 @@
                             android:layout_gravity="center" />
                     </LinearLayout>
 
+
+
+
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#fff"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="3dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:text="More About The Ride "
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tell us little about your trip: " />
 
                     <EditText
-                       android:id="@+id/cardetailsEdit"
+                        android:id="@+id/cardetailsEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="16dp"
                         android:background="@drawable/edit_text_outline"
                         android:inputType="textMultiLine"
                         android:minHeight="100dp"
@@ -461,15 +492,13 @@
                     <Button
                         android:id="@+id/sumbitBtn"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Submit"
                         android:elevation="10dp"
-                        android:layout_height="wrap_content" />
+                        android:text="Submit" />
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
-
-
 
 
         </LinearLayout>
