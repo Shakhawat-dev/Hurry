@@ -104,8 +104,7 @@ public class pastTripListFragment extends  Fragment {
 
 
                           //  String Status = getItem(pos).getTripID() ;
-
-
+                            
                                 //go to the Trip details page to mark it done
 
                       //      Toast.makeText(getContext() , "No One Has Bidded On Your Request"  , Toast.LENGTH_LONG).show();
