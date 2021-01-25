@@ -1,11 +1,12 @@
 package com.metacoders.hurry.model;
 
 public class userModel {
-    String userFined, phone, userTripCount, userProPic, userName, userTripList, userWallet, userIdState, userTotalSpent, userPhone;
+    String userFined, phone, userTripCount, userProPic, userName, userTripList, userWallet, userIdState, userTotalSpent, userPhone ;
+       boolean     is_completed;
 
-
-    public userModel(String userFined, String userTripCount, String userProPic, String userName, String userTripList, String userWallet, String userIdState, String userTotalSpent) {
+    public userModel(String userFined, String phone, String userTripCount, String userProPic, String userName, String userTripList, String userWallet, String userIdState, String userTotalSpent, String userPhone, boolean is_completed) {
         this.userFined = userFined;
+        this.phone = phone;
         this.userTripCount = userTripCount;
         this.userProPic = userProPic;
         this.userName = userName;
@@ -13,6 +14,16 @@ public class userModel {
         this.userWallet = userWallet;
         this.userIdState = userIdState;
         this.userTotalSpent = userTotalSpent;
+        this.userPhone = userPhone;
+        this.is_completed = is_completed;
+    }
+
+    public boolean isIs_completed() {
+        return is_completed;
+    }
+
+    public void setIs_completed(boolean is_completed) {
+        this.is_completed = is_completed;
     }
 
     public userModel() {

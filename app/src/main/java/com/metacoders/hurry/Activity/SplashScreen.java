@@ -36,7 +36,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 FirebaseUser muser = FirebaseAuth.getInstance().getCurrentUser();
-               String uid =  FirebaseAuth.getInstance().getUid() ;
+                String uid =  FirebaseAuth.getInstance().getUid() ;
                 Log.d("TAG", "run: "+ uid);
                 Intent i;
                 if (muser != null) {
@@ -49,7 +49,7 @@ public class SplashScreen extends AppCompatActivity {
                                 Gson gson = new Gson();
                                 String ProfileData = gson.toJson(model);
 
-                                Log.d("TAG", "onDataChange 1: "+ ProfileData);
+                                Log.d("TAGE", "onDataChange 1: "+ ProfileData);
                                 SharedPrefManager.getInstance(getApplicationContext())
                                         .userLogin(ProfileData);
 

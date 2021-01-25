@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SignInController.SignUpActivity">
+    tools:context=".SignInController.completeProfilePage">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,12 +15,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <pl.droidsonroids.gif.GifImageView
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/appbarId"
                 android:layout_width="match_parent"
-                android:layout_height="256dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/car_animation"
-                />
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:fitsSystemWindows="true"
+                app:title="Update Your Profile"
+                app:titleTextColor="@color/white"/>
 
             <!--<ImageView
                 android:id="@+id/login_image"
@@ -52,6 +54,7 @@
                         android:drawableLeft="@drawable/draweble_user"
                         android:drawablePadding="8dp"
                         android:padding="12dp"
+                        android:id="@+id/full_name_et"
                         android:hint="Enter Your Full Name "/>
 
 
@@ -65,27 +68,7 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
                     android:textColorHint="@color/colorAccent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableTint="@color/colorAccent"
-                        android:drawableLeft="@drawable/draweble_user"
-                        android:drawablePadding="8dp"
-                        android:padding="12dp"
-                        android:hint="Enter Your Email "/>
 
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="16dp"
-                    android:textColorHint="@color/colorAccent"
-                    app:passwordToggleEnabled="true"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -93,8 +76,10 @@
                         android:drawableTint="@color/colorAccent"
                         android:drawablePadding="8dp"
                         android:padding="12dp"
-                        android:inputType="textPassword"
-                        android:hint="Enter Your Password "/>
+                        android:id="@+id/city_name_et"
+                        android:drawableLeft="@drawable/ic_baseline_location_city_24"
+                        android:inputType="text"
+                        android:hint="Enter Your Home City  "/>
 
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -107,15 +92,20 @@
                     android:layout_marginTop="16dp"
                     android:textColorHint="@color/colorAccent"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                    <com.google.android.material.textfield.TextInputEditText
+
+
+                    <com.santalu.maskara.widget.MaskEditText
+                        android:id="@+id/birth"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableTint="@color/colorAccent"
-                        android:drawableLeft="@drawable/draweble_user"
-                        android:drawablePadding="8dp"
-                        android:padding="12dp"
                         android:inputType="number"
-                        android:hint="Enter Your National ID No  "/>
+                        android:drawableTint="@color/colorAccent"
+                        android:drawableLeft="@drawable/draweble_user"
+                        app:mask="__/__/____"
+                        app:maskCharacter="_"
+                        app:textInputLayoutFocusedRectEnabled="true"
+                        android:hint="Your Birth Date (dd/mm/yyyy)"
+                        app:maskStyle="completable" />
 
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -130,20 +120,22 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp">
                     <LinearLayout
+                        android:id="@+id/nid_front"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/front"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
+                            android:layout_marginEnd="16dp"
                             android:src="@drawable/nid_front"/>
 
                        <LinearLayout
+
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_gravity="center"
@@ -173,18 +165,19 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp">
                     <LinearLayout
+                        android:id="@+id/nid_back"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/back"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
-                            android:src="@drawable/nid_back"/>
+                            android:layout_marginEnd="16dp"
+                            android:src="@drawable/nid_back" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -208,16 +201,9 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="16dp"
-                    android:textColor="@color/colorAccent"
-                    android:text="I accept all the terms and conditions"/>
-
 
                 <Button
+                    android:id="@+id/compeleteBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -226,7 +212,7 @@
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/login_btn_background"
                     android:textColor="#fff"
-                    android:text="Create My Account"/>
+                    android:text="Compelete My Account"/>
 
 
 

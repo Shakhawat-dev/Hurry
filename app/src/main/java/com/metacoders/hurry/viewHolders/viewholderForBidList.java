@@ -10,7 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.metacoders.hurry.R;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class viewholderForBidList extends RecyclerView.ViewHolder {
      View mview ;
@@ -45,11 +49,12 @@ public class viewholderForBidList extends RecyclerView.ViewHolder {
 
         RatingBar ratingBar ;
         ImageView driverimage ;
+        CircleImageView profileImage ;
 
 
 
         drivername = mview.findViewById(R.id.driverNameOfBidRow);
-
+        profileImage = mview.findViewById(R.id.profileImage);
         drivercarmodel = mview.findViewById(R.id.carModelBid);
         drivercarcondition = mview.findViewById(R.id.conditionRateBidRow) ;
         bidprice = mview.findViewById(R.id.priceViewInBidRow);
@@ -63,6 +68,11 @@ public class viewholderForBidList extends RecyclerView.ViewHolder {
 
 
         // loadthe image to the view
+        Glide.with(context)
+                .load(driverImageLink)
+                .placeholder(R.drawable.placeholderman)
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                .into(profileImage) ;
 
 
 

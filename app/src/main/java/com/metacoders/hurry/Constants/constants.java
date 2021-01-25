@@ -8,6 +8,8 @@ public class constants {
 
     public  static  String  carRequestLink = "reqCarDb" ;
 
+    public  static  String ambulanceRequestLink = "req_ambulanceDb" ;
+
     public  static  String  acceptedRideList = "" ;
 
     public  static  String  succfulllistDir = "compeletedList" ;

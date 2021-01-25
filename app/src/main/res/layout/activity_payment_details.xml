@@ -100,13 +100,13 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/red"
                     android:checked="true"
-                    android:text="Bkash"/>
+                    android:text="Bkash( 01961666333 )"/>
                 <RadioButton
                     android:id="@+id/fff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/red"
-                    android:text="Rocket"/>
+                    android:text="Nagad( 01675110101 )"/>
 
 
             </RadioGroup>

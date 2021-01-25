@@ -13,8 +13,8 @@
         android:menuCategory="secondary"/>
 
     <item
-        android:id="@+id/pastTripListFragment"
-        android:title="Past Trips"
+        android:id="@+id/rentalFragment"
+        android:title="Rentals"
         android:icon="@mipmap/trip_history_24"
         android:menuCategory="secondary"/>
 

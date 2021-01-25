@@ -209,6 +209,10 @@ public class accountSetupPage extends AppCompatActivity {
                     Uri downloaduri = uriTask.getResult();
                     //   String ts =mref.push().getKey() ;
                     mref.child("userProPic").setValue(downloaduri.toString());
+                    mref.child("is_completed").setValue(false);
+                    mref.child("nid_front").setValue("c");
+                    mref.child("nid_back").setValue("c");
+
                     mprogressDialog.hide();
 
 
@@ -231,6 +235,9 @@ public class accountSetupPage extends AppCompatActivity {
                 }
             });
 
+
+        }
+        else {
 
         }
 

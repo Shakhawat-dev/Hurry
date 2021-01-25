@@ -1,15 +1,17 @@
 package com.metacoders.hurry.model;
 
-public class modelForCarRequest {
+import java.io.Serializable;
+
+public class modelForCarRequest implements Serializable {
 
      String postId  , userId  , userNotificationID  , driverId  , driverNotificationID ,
     toLoc , fromLoc ,  timeDate , carModl , driverName , status  , carLicNum , fare , carType ,
-    reqDate , tripDetails  , returnTimee  , numOfPpl , rideType , transId  ;
+    reqDate , tripDetails  , returnTimee  , numOfPpl , rideType , transId , hour_time  ;
 
     public modelForCarRequest() {
     }
 
-    public modelForCarRequest(String postId, String userId, String userNotificationID, String driverId, String driverNotificationID, String toLoc, String fromLoc, String timeDate, String carModl, String driverName, String status, String carLicNum, String fare, String carType, String reqDate, String tripDetails, String returnTimee, String numOfPpl, String rideType, String transId) {
+    public modelForCarRequest(String postId, String userId, String userNotificationID, String driverId, String driverNotificationID, String toLoc, String fromLoc, String timeDate, String carModl, String driverName, String status, String carLicNum, String fare, String carType, String reqDate, String tripDetails, String returnTimee, String numOfPpl, String rideType, String transId, String hour_time) {
         this.postId = postId;
         this.userId = userId;
         this.userNotificationID = userNotificationID;
@@ -30,6 +32,15 @@ public class modelForCarRequest {
         this.numOfPpl = numOfPpl;
         this.rideType = rideType;
         this.transId = transId;
+        this.hour_time = hour_time;
+    }
+
+    public String getHour_time() {
+        return hour_time;
+    }
+
+    public void setHour_time(String hour_time) {
+        this.hour_time = hour_time;
     }
 
     public String getTransId() {

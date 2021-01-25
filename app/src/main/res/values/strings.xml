@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Hurry</string>
-    <string name="from">From </string>
+    <string name="from">Pick Up Location </string>
     <string name="remember_me">Remember Me</string>
     <string name="having_trouble_login">Having Trouble Login?</string>
     <string name="login">Login</string>
@@ -20,14 +20,14 @@
         <item>11</item>
         <item>12</item>
     </string-array>
-    <string-array name="vehicleList">
-        <item>Model of Car</item>
-        <item>Private Car</item>
-        <item>Micro-Bus</item>
+    <string-array name="privateCar">
+        <item>Toyota Axio</item>
+        <item>Toyota Premio</item>
+
     </string-array>
-    <string-array name="vehicleList2">
-        <item>Model of Car</item>
-        <item>Micro-Bus</item>
+    <string-array name="micro">
+        <item>Hiace</item>
+        <item>Toyota Noah</item>
     </string-array>
 
     <string-array name="stepView">
@@ -36,4 +36,8 @@
         <item>Driver Selected</item>
         <item>Advance Payment</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="drop_location">Drop Location :</string>
+    <string name="select_hour">Select Hour</string>
 </resources>

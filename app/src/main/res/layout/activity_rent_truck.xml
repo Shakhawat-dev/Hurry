@@ -188,7 +188,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -210,6 +210,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:visibility="gone"
                         android:id="@+id/tripEndingLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -331,7 +332,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="No of People: " />
+                            android:text="Weight Of The Load (In Tons): " />
 
                         <com.warkiz.tickseekbar.TickSeekBar
                             android:id="@+id/seekBar"
@@ -389,6 +390,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
+                        android:visibility="visible"
                         android:orientation="vertical"
                         android:weightSum="2">
 
@@ -396,7 +398,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="Type of vehicle: " />
+                            android:text="Type of Truck: " />
 
                         <com.google.android.material.chip.ChipGroup
                             android:layout_width="match_parent"
@@ -411,7 +413,7 @@
                                 style="@style/Widget.MaterialComponents.Chip.Entry"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Private Car"
+                                android:text="Pick Up"
                                 app:chipIconTint="@color/red"
                                 app:closeIconEnabled="false"
                                 android:textColor="@color/white"
@@ -423,7 +425,7 @@
                                 style="@style/Widget.MaterialComponents.Chip.Entry"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Micro-Bus"
+                                android:text="Truck"
                                 android:textColor="@color/white"
                                 app:chipBackgroundColor="@color/red"
                                 app:closeIconEnabled="false" />
@@ -432,6 +434,7 @@
                         </com.google.android.material.chip.ChipGroup>
 
                         <TextView
+                            android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -439,12 +442,13 @@
                             android:layout_marginTop="4dp"
                             android:text="Model Of Car : " />
                         <Spinner
+                            android:visibility="gone"
                             android:id="@+id/type_of_vehicle_spinner"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="5dp"
-                            android:visibility="visible" />
+                            />
 
                     </LinearLayout>
 

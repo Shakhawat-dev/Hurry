@@ -11,6 +11,7 @@ public class LoginSignupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // use less
         setContentView(R.layout.activity_login_signup);
     }
 }

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,11 +30,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.metacoders.hurry.Constants.constants;
 import com.metacoders.hurry.R;
-import com.metacoders.hurry.Utils.SharedPrefManager;
 import com.metacoders.hurry.driverProfile.driverProfile;
 import com.metacoders.hurry.model.driverProfileModel;
 import com.metacoders.hurry.model.modelForBid;
-import com.metacoders.hurry.model.userModel;
+import com.metacoders.hurry.model.modelForCarRequest;
 import com.metacoders.hurry.viewHolders.viewholderForBidList;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
@@ -52,12 +50,13 @@ public class bidListPage extends AppCompatActivity {
     TextView textView;
     FirebaseRecyclerAdapter<modelForBid, viewholderForBidList> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<modelForBid> options;
+    ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bid_list_page);
-
+        dialog = new ProgressDialog(bidListPage.this);
         getSupportActionBar().setTitle(Html.fromHtml("<font color=\"#FFFFFF\">" + "Bid List" + "</font>"));
         textView = findViewById(R.id.textOnBidList);
         progressBar = findViewById(R.id.progressBarONBidList);
@@ -125,13 +124,10 @@ public class bidListPage extends AppCompatActivity {
                 viewholderForBidList.acceptButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-
-
                         /*
                          add the bid to the data
                          */
-                        addBidToData(getItem(postion).getBidPrice() , getItem(postion).getDriverUid());
+                        addBidToData(getItem(postion).getBidPrice(), getItem(postion).getDriverUid());
 
                     }
                 });
@@ -167,16 +163,16 @@ public class bidListPage extends AppCompatActivity {
         mrecyclerview.setLayoutManager(linearLayoutManager);
         firebaseRecyclerAdapter.startListening();
         mrecyclerview.setAdapter(firebaseRecyclerAdapter);
-     //   Log.d("TAG", "loadDataToFirebase: " +db);
+        //   Log.d("TAG", "loadDataToFirebase: " +db);
 
     }
 
-    private void addBidToData(final  String bidPrice, String driverUid) {
+    private void addBidToData(final String bidPrice, String driverUid) {
         Context context;
-        final ProgressDialog dialog = new ProgressDialog(bidListPage.this);
+
         dialog.setMessage("Accepting Bid...");
         dialog.show();
-      final  DatabaseReference mref2 = FirebaseDatabase.getInstance().getReference("reqCarDb")
+        final DatabaseReference mref2 = FirebaseDatabase.getInstance().getReference("reqCarDb")
                 .child(db);
         DatabaseReference driverRef = FirebaseDatabase.getInstance().getReference(constants.driverProfileLink)
                 .child(driverUid);
@@ -184,8 +180,8 @@ public class bidListPage extends AppCompatActivity {
         driverRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                driverProfileModel profile = snapshot.getValue(driverProfileModel.class) ;
-                Log.d("TAG", "addBidToData: " + profile.getAcType());
+                driverProfileModel profile = snapshot.getValue(driverProfileModel.class);
+                // Log.d("TAG", "addBidToData: " + profile.getAcType());
                 HashMap<String, Object> map = new HashMap<String, Object>();
                 map.put("carLicNum", profile.getCarLic());
                 map.put("carModl", profile.getCarModel());
@@ -194,33 +190,75 @@ public class bidListPage extends AppCompatActivity {
                 map.put("driverName", profile.getDriverName());
                 map.put("status", "Accepted");
                 map.put("driverNotificationID", profile.getDriverNotificationID());
-                map.put("fare" , bidPrice);
+                map.put("fare", bidPrice);
 
                 mref2.updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        dialog.dismiss();
-                        finish();
+
+                        gotoTripDetailsPage(db);
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         dialog.dismiss();
-                        FancyToast.makeText(getApplicationContext() , "Error : " + e.getMessage() , Toast.LENGTH_LONG , FancyToast.ERROR ,false).show();
+                        FancyToast.makeText(getApplicationContext(), "Error : " + e.getMessage(), Toast.LENGTH_LONG, FancyToast.ERROR, false).show();
                     }
                 });
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                FancyToast.makeText(getApplicationContext() , "Error : " + error.getMessage() , Toast.LENGTH_LONG , FancyToast.ERROR ,false).show();
+                FancyToast.makeText(getApplicationContext(), "Error : " + error.getMessage(), Toast.LENGTH_LONG, FancyToast.ERROR, false).show();
 
             }
         });
 
 
+    }
 
+    private void gotoTripDetailsPage(String db) {
 
+        DatabaseReference reqDb = FirebaseDatabase.getInstance().getReference("reqCarDb").child(db);
+
+        reqDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+
+                    modelForCarRequest model = snapshot.getValue(modelForCarRequest.class);
+                    Intent o = new Intent(getApplicationContext(), Trip_Running_details.class);
+                    //carry data to their
+                    o.putExtra("STATUS", model.getStatus());
+                    o.putExtra("DRIVERNAME", model.getDriverName());
+                    o.putExtra("CARMODEL", model.getCarModl());
+                    o.putExtra("FORMLOC", model.getFromLoc());
+                    o.putExtra("TOLOC", model.getToLoc());
+                    o.putExtra("FARE", model.getFare());
+                    o.putExtra("TIME", model.getTimeDate());
+                    o.putExtra("POSTID", model.getPostId());
+                    o.putExtra("DRIVERUID", model.getDriverId());
+                    o.putExtra("DRIVERNOTIFICATIONID", model.getDriverNotificationID());
+                    o.putExtra("DESC", model.getTripDetails());
+                    o.putExtra("TYPE", model.getRideType());
+                    o.putExtra("TRANS", model.getTransId());
+                    o.putExtra("MODEL", model);
+
+                    startActivity(o);
+
+                    dialog.dismiss();
+                    finish();
+                } else {
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 

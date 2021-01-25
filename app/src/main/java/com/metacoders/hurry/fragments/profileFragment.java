@@ -3,6 +3,7 @@ package com.metacoders.hurry.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.metacoders.hurry.Constants.constants;
 import com.metacoders.hurry.R;
 import com.metacoders.hurry.SignInController.Sign_in;
+import com.metacoders.hurry.model.CompeletedList;
 import com.metacoders.hurry.model.userModel;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -35,7 +37,7 @@ public class profileFragment extends Fragment {
     FirebaseAuth mauth;
     String name, uid;
     TextView nameTv, spentLifeTime, tripLifeTimeTv, tripThisMonthTv, phoneTv;
-
+    int total = 0 ;
     Context context;
 
     public profileFragment() {
@@ -113,11 +115,45 @@ public class profileFragment extends Fragment {
         //throw new RuntimeException("Test Crash");
     }
 
+    private void loadCounter(String uid) {
+         total = 0;
+        DatabaseReference mref = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child(uid).child("compeletedList");
+        mref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    tripLifeTimeTv.setText(snapshot.getChildrenCount() + "");
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                        CompeletedList post = postSnapshot.getValue(CompeletedList.class);
+                        try {
+                            total += Integer.parseInt(post.getFareGained()) ;
+                         //   Log.d("TAG", "onDataChange: " + total) ;
+                         //   Log.d("TAG", "onDataChange: " + post.getFareGained()) ;
+                        } catch (Exception e) {
+                           // Log.d("TAG", "onDataChange: " + e.getMessage()) ;
+                        }
+
+                    }
+                   // Log.d("TAG", "onDataChange: " + total) ;
+                    spentLifeTime.setText(total+" ");
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
 
     @Override
     public void onStart() {
         super.onStart();
         dwldUserDataFromServer();
+        loadCounter(uid);
     }
 }
 

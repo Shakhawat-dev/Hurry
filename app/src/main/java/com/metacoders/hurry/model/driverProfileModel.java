@@ -1,11 +1,12 @@
 package com.metacoders.hurry.model;
 
 import java.io.Serializable;
-
 public class driverProfileModel implements Serializable {
     String carLic, driverEarnedLifeLong, driverEarnedThisMonth, driverFined, driverIdActivated,
             driverJoinedDate, driverName, driverRating, driver_license_image, email,
             fitness_license_image, nid_card_image, phone, profile_picture, tax_token_image, totalRides, userID, vehicle_reg_image, acType, carType, buildCompany, carModel, carYear, truckSize, sitCount, tripCounter,driverNotificationID;
+
+    carPics carPics ;
 
 
     public driverProfileModel() {
@@ -55,6 +56,13 @@ public class driverProfileModel implements Serializable {
     }
 
 
+    public driverProfileModel.carPics getCarPics() {
+        return carPics;
+    }
+
+    public void setCarPics(driverProfileModel.carPics carPics) {
+        this.carPics = carPics;
+    }
 
     public String getTripCounter() {
         return tripCounter;
@@ -262,5 +270,51 @@ public class driverProfileModel implements Serializable {
 
     public void setVehicle_reg_image(String vehicle_reg_image) {
         this.vehicle_reg_image = vehicle_reg_image;
+    }
+
+    public  static  class  carPics implements  Serializable {
+        public  String car_back_image , car_front_image , car_inside_image ,car_side_image ;
+
+        public carPics() {
+        }
+
+        public carPics(String car_back_image, String car_front_image, String car_inside_image, String car_side_image) {
+            this.car_back_image = car_back_image;
+            this.car_front_image = car_front_image;
+            this.car_inside_image = car_inside_image;
+            this.car_side_image = car_side_image;
+        }
+
+        public String getCar_back_image() {
+            return car_back_image;
+        }
+
+        public void setCar_back_image(String car_back_image) {
+            this.car_back_image = car_back_image;
+        }
+
+        public String getCar_front_image() {
+            return car_front_image;
+        }
+
+        public void setCar_front_image(String car_front_image) {
+            this.car_front_image = car_front_image;
+        }
+
+        public String getCar_inside_image() {
+            return car_inside_image;
+        }
+
+        public void setCar_inside_image(String car_inside_image) {
+            this.car_inside_image = car_inside_image;
+        }
+
+        public String getCar_side_image() {
+            return car_side_image;
+        }
+
+        public void setCar_side_image(String car_side_image) {
+            this.car_side_image = car_side_image;
+        }
     }
 }

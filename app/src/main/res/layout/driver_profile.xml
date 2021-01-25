@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/pp"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
@@ -12,6 +14,7 @@
         android:src="@drawable/avatar"/>
 
     <TextView
+        android:id="@+id/drivername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -40,6 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
+                android:id="@+id/mbl"
                 android:text="+8801856508888"/>
         </LinearLayout>
         <LinearLayout
@@ -55,6 +59,7 @@
                 android:drawablePadding="8dp"
                 android:text="License: "/>
             <TextView
+                android:id="@+id/lic"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
@@ -74,6 +79,7 @@
                 android:textSize="18sp"
                 android:text="Car Model: "/>
             <TextView
+                android:id="@+id/carModel"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
@@ -117,6 +123,7 @@
                         android:text="Rides"
                         android:textSize="14sp"/>
                     <TextView
+                        android:id="@+id/totalRide"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="150"
@@ -141,6 +148,7 @@
                         android:text="Rides"
                         android:textSize="14sp"/>
                     <TextView
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="150"
@@ -194,6 +202,9 @@
                     android:layout_marginRight="8dp"
                     android:layout_weight="1"
                     android:numStars="5"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:rating="4" />
             </LinearLayout>
 
@@ -202,12 +213,24 @@
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
+        android:id="@+id/gallery_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Gallery"
-        android:textSize="20sp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="13dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="13dp"
         android:layout_marginBottom="8dp"
-        android:textAlignment="center"/>
+        android:background="@drawable/edit_text_outline"
+        android:drawableEnd="@drawable/arrow_right_24dp"
+        android:drawablePadding="40dp"
+        android:drawableTint="@color/red"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="Check Car Images "
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
 </LinearLayout>

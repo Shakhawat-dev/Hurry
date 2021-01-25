@@ -32,10 +32,10 @@ android:orientation="vertical">
         android:background="@color/colorPrimary"
         android:fitsSystemWindows="true"
         app:title="Hurry"
-        app:titleTextColor="@color/white">
+        app:titleTextColor="@color/white"/>
 
 
-    </androidx.appcompat.widget.Toolbar>
+
 
     <LinearLayout
             xmlns:tools="http://schemas.android.com/tools"

@@ -1,27 +1,19 @@
 package com.metacoders.hurry.Activity;
 
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.metacoders.hurry.R;
-import com.metacoders.hurry.fragments.onGoingList;
-import com.metacoders.hurry.fragments.pastTripListFragment;
-import com.metacoders.hurry.fragments.profileFragment;
-import com.metacoders.hurry.fragments.selectTripFragment;
-import com.metacoders.hurry.fragments.viewPagerAdapter;
 
 public class homePage extends AppCompatActivity {
 
@@ -50,8 +42,8 @@ public class homePage extends AppCompatActivity {
 
                 if (item.getItemId() == R.id.profileFragment) {
                     navController.navigate(R.id.profileFragment, null, getNavOptions());
-                } else if (item.getItemId() == R.id.pastTripListFragment) {
-                    navController.navigate(R.id.pastTripListFragment, null, getNavOptions());
+                } else if (item.getItemId() == R.id.rentalFragment) {
+                    navController.navigate(R.id.rentalFragment, null, getNavOptions());
                 } else if (item.getItemId() == R.id.onGoingList) {
                     navController.navigate(R.id.onGoingList, null, getNavOptions());
                 } else if (item.getItemId() == R.id.selectTripFragment) {

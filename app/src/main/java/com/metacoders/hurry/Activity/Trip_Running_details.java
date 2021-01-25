@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,9 +32,13 @@ import com.metacoders.hurry.model.modelForCarRequest;
 import com.metacoders.hurry.model.userModel;
 import com.shuhart.stepview.StepView;
 
+import org.joda.time.DateTimeComparator;
+
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,7 +46,7 @@ public class Trip_Running_details extends AppCompatActivity {
 
     String driverName, carModel, fromLoc, toLoc, fare, time, postID, driverID, driverNottificationID,
             tripDetails, status, triptype, driverFine, driverTotalTrip = "0", driverIncome = "0", driverTripCountThisMOn = "0",
-            driverLifeTimeIncome = "0" , transID ;
+            driverLifeTimeIncome = "0", transID;
     EditText description;
     String userTotalTrip = "0", userFined, userSpent = "0";
 
@@ -53,6 +58,7 @@ public class Trip_Running_details extends AppCompatActivity {
     StepView stepView;
     String driverNewLifetimeEarn, driverNewThisMonthEarn;
     LinearLayout ratingCOntainer;
+    modelForCarRequest modelForCarRequest;
 
 
     @Override
@@ -76,7 +82,7 @@ public class Trip_Running_details extends AppCompatActivity {
         tripDetails = i.getStringExtra("DESC");
         triptype = i.getStringExtra("TYPE");
         transID = i.getStringExtra("TRANS");
-
+        modelForCarRequest = (modelForCarRequest) i.getSerializableExtra("MODEL");
 
 
         //init The View ;
@@ -96,23 +102,23 @@ public class Trip_Running_details extends AppCompatActivity {
         mRateBar = findViewById(R.id.ratingBarBidTripDetails);
         fareTv = findViewById(R.id.fareTv);
         typeTv = findViewById(R.id.typeTv);
-        ratingCOntainer = findViewById(R.id.ratingCOntainer) ;
+        ratingCOntainer = findViewById(R.id.ratingCOntainer);
         descTv = findViewById(R.id.descTv);
 
 
         //determine what to show
 
-        if (status.equals("Driver Found")) {
+        if (status.toLowerCase().equals("driver found")) {
             //TODO Bring The Advance Payment App Tab
             payInfoCard.setVisibility(View.VISIBLE);
             stepView.setVisibility(View.VISIBLE);
             driverInfoCard.setVisibility(View.GONE);
-        }
-        else if(status.toLowerCase().equals("pending")){
+        } else if (status.toLowerCase().equals("pending")) {
             payInfoCard.setVisibility(View.GONE);
             stepView.setVisibility(View.VISIBLE);
             driverInfoCard.setVisibility(View.GONE);
         }
+
         else {
             //TODO Show Dirver Details
             driverInfoCard.setVisibility(View.VISIBLE);
@@ -133,15 +139,29 @@ public class Trip_Running_details extends AppCompatActivity {
         FARE.setText(fare);
         descTv.setText(tripDetails);
         fareTv.setText(fare);
-        typeTv.setText(triptype);
+        if (modelForCarRequest.getRideType().toLowerCase().contains("hourly")) {
+
+            typeTv.setText("Hourly " + modelForCarRequest.getHour_time());
+        } else {
+            typeTv.setText(triptype);
+        }
+
 
         // setting the step view  listeners
 
-        stepView.getState()
-                .animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime))
-                .commit();
 
-        setAnimationtoStepVIews();
+
+        if(!modelForCarRequest.getStatus().toLowerCase().equals("completed")){
+
+            stepView.getState()
+                    .animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime))
+                    .commit();
+            setAnimationtoStepVIews();
+        }else
+        {
+            stepView.setVisibility(View.GONE);
+        }
+
 
 
         // listening for submit button click
@@ -152,18 +172,6 @@ public class Trip_Running_details extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), MakeAdvancePaymentActivity.class);
                 i.putExtra("ID", postID);
                 startActivity(i);
-
-
-            }
-        });
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                startCancel();
-
-
             }
         });
 
@@ -174,8 +182,7 @@ public class Trip_Running_details extends AppCompatActivity {
 
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 Calendar cal = Calendar.getInstance();
-                String date = "016/11/16 12:08:43"; //2016/11/16 12:08:43
-
+                String date = dateFormat.format(new Date()); //2016/11/16 12:08:43
                 //1st Upload It To The Driver profile
                 DatabaseReference driverRef = FirebaseDatabase.getInstance().getReference(constants.driverProfileLink).child(driverID)
                         .child(constants.succfulllistDir);
@@ -191,91 +198,93 @@ public class Trip_Running_details extends AppCompatActivity {
                 map.put("fareGained", fare);
                 map.put("CompleteDate", date);
 
-                driverRef.child(postID).setValue(map)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
 
-                                // Writing in user dir
-                                userRef.child(postID).updateChildren(map)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-
-
-                                                DatabaseReference mreff = FirebaseDatabase.getInstance().getReference(constants.driverProfileLink).child(driverID);
-
-                                                final Map<String, Object> updates = new HashMap<String, Object>();
-                                                updates.put("driverEarnedLifeLong", driverNewLifetimeEarn);
-                                                updates.put("driverEarnedThisMonth", driverNewThisMonthEarn);
-                                                updates.put("totalRides", driverTotalTrip);
-                                                updates.put("tripCounter", driverTripCountThisMOn);
-
-
-                                                mreff.updateChildren(updates).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                        DatabaseReference updateUserref = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child(uid);
-                                                        Map<String, Object> updatesuserData = new HashMap<String, Object>();
-
-                                                        updatesuserData.put("userTotalSpent", userSpent);
-                                                        updatesuserData.put("userTripCount", userTotalTrip);
-
-
-                                                        updateUserref.updateChildren(updatesuserData).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<Void> task) {
-
-                                                                //TODO DONE ! ! UPDATING DATA
-                                                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT)
-                                                                        .show();
-
-
-                                                            }
-                                                        })
-                                                                .addOnFailureListener(new OnFailureListener() {
-                                                                    @Override
-                                                                    public void onFailure(@NonNull Exception e) {
-
-
-                                                                    }
-                                                                });
-
-
-                                                    }
-                                                })
-                                                        .addOnFailureListener(new OnFailureListener() {
-                                                            @Override
-                                                            public void onFailure(@NonNull Exception e) {
-
-
-                                                            }
-                                                        });
-
-
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-
-
-                                            }
-                                        });
-
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-
-
-                            }
-                        });
+//                driverRef.child(postID).setValue(map)
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//
+//                                // Writing in user dir
+//                                userRef.child(postID).updateChildren(map)
+//                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                            @Override
+//                                            public void onComplete(@NonNull Task<Void> task) {
+//
+//
+//                                                DatabaseReference mreff = FirebaseDatabase.getInstance().getReference(constants.driverProfileLink).child(driverID);
+//
+//                                                final Map<String, Object> updates = new HashMap<String, Object>();
+//                                                updates.put("driverEarnedLifeLong", driverNewLifetimeEarn);
+//                                                updates.put("driverEarnedThisMonth", driverNewThisMonthEarn);
+//                                                updates.put("totalRides", driverTotalTrip);
+//                                                updates.put("tripCounter", driverTripCountThisMOn);
+//
+//
+//                                                mreff.updateChildren(updates).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                                    @Override
+//                                                    public void onComplete(@NonNull Task<Void> task) {
+//                                                        DatabaseReference updateUserref = FirebaseDatabase.getInstance().getReference(constants.userProfileDb).child(uid);
+//                                                        Map<String, Object> updatesuserData = new HashMap<String, Object>();
+//
+//                                                        updatesuserData.put("userTotalSpent", userSpent);
+//                                                        updatesuserData.put("userTripCount", userTotalTrip);
+//
+//
+//                                                        updateUserref.updateChildren(updatesuserData).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                                            @Override
+//                                                            public void onComplete(@NonNull Task<Void> task) {
+//
+//                                                                //TODO DONE ! ! UPDATING DATA
+//                                                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT)
+//                                                                        .show();
+//
+//
+//                                                            }
+//                                                        })
+//                                                                .addOnFailureListener(new OnFailureListener() {
+//                                                                    @Override
+//                                                                    public void onFailure(@NonNull Exception e) {
+//
+//
+//                                                                    }
+//                                                                });
+//
+//
+//                                                    }
+//                                                })
+//                                                        .addOnFailureListener(new OnFailureListener() {
+//                                                            @Override
+//                                                            public void onFailure(@NonNull Exception e) {
+//
+//
+//                                                            }
+//                                                        });
+//
+//
+//                                            }
+//                                        })
+//                                        .addOnFailureListener(new OnFailureListener() {
+//                                            @Override
+//                                            public void onFailure(@NonNull Exception e) {
+//
+//
+//                                            }
+//                                        });
+//
+//                            }
+//                        })
+//                        .addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//
+//
+//                            }
+//                        });
 
 
             }
         });
+
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -286,7 +295,6 @@ public class Trip_Running_details extends AppCompatActivity {
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
 
                         modelForCarRequest model = dataSnapshot.getValue(modelForCarRequest.class);
 
@@ -313,8 +321,56 @@ public class Trip_Running_details extends AppCompatActivity {
         });
 
 
+        if(modelForCarRequest.getStatus().equals("completed")){
+
+            cancel.setVisibility(View.GONE);
+            stepView.setVisibility(View.GONE);
+        }
+        else {
+            determineCancelAble();
+        }
+
         downloadDriverData();
         dwldUserData();
+
+
+    }
+
+    private void determineCancelAble() {
+        DateTimeComparator comparator = DateTimeComparator.getDateOnlyInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+        Date date = new Date();
+
+        Date startDate = new Date();
+        try {
+            startDate = sdf.parse(modelForCarRequest.getReqDate());
+            date = new Date(System.currentTimeMillis()); //16/11/2020
+        } catch (ParseException e) {
+            e.printStackTrace();
+            //       date2 = new Date(System.currentTimeMillis());
+        }
+
+        int retVal = comparator.compare(startDate, date);
+        if (retVal == 0) {
+            //both dates are equal
+            cancel.setVisibility(View.GONE);
+
+
+        } else if (retVal < 0) {
+            //myDateOne is before myDateTwo
+            // start day  is smaller
+
+            cancel.setVisibility(View.GONE);
+
+
+        } else if (retVal > 0) {
+            //myDateOne is after myDateTwo
+            // start day is bigger
+            cancel.setVisibility(View.VISIBLE);
+
+        }
+
+        Log.d("TAG", "onCliccck: " + retVal);
     }
 
     private void startCancel() {
@@ -386,10 +442,10 @@ public class Trip_Running_details extends AppCompatActivity {
                 driverIncome = model.getDriverEarnedThisMonth();
                 driverTripCountThisMOn = model.getTripCounter();
                 driverLifeTimeIncome = model.getDriverEarnedLifeLong();
-                driverNewLifetimeEarn = String.valueOf(Integer.valueOf(driverLifeTimeIncome) + Integer.valueOf(fare));
-                driverNewThisMonthEarn = String.valueOf(Integer.valueOf(driverIncome) + Integer.valueOf(fare));
-                driverTotalTrip = String.valueOf(Integer.valueOf(driverTotalTrip) + 1);
-                driverTripCountThisMOn = String.valueOf(Integer.valueOf(driverTripCountThisMOn) + 1);
+            //    driverNewLifetimeEarn = String.valueOf(Integer.valueOf(driverLifeTimeIncome) + Integer.valueOf(fare));
+            //    driverNewThisMonthEarn = String.valueOf(Integer.valueOf(driverIncome) + Integer.valueOf(fare));
+            //    driverTotalTrip = String.valueOf(Integer.valueOf(driverTotalTrip) + 1);
+            //    driverTripCountThisMOn = String.valueOf(Integer.valueOf(driverTripCountThisMOn) + 1);
             }
 
             @Override
@@ -481,6 +537,7 @@ public class Trip_Running_details extends AppCompatActivity {
                 @Override
                 public void run() {
                     stepView.go(3, true);
+                    stepView.done(true);
                 }
             }, 1600);
 

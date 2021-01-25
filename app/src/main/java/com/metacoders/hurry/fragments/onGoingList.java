@@ -98,7 +98,7 @@ public class onGoingList extends Fragment {
                         String DriverName = getItem(postion).getDriverName();
                         String Status = getItem(postion).getStatus();
 
-                        // TODo Remember there is  4 status now
+
 
                         if (Status.equals("Driver Found") || Status.equals("Accepted")) {
                             //go to the Trip details page to mark it done
@@ -118,21 +118,47 @@ public class onGoingList extends Fragment {
                             o.putExtra("DESC", getItem(postion).getTripDetails());
                             o.putExtra("TYPE", getItem(postion).getRideType());
                             o.putExtra("TRANS", getItem(postion).getTransId());
+                            modelForCarRequest carRequest = getItem(postion) ;
+                            o.putExtra("MODEL" ,carRequest ) ;
 
                             startActivity(o);
 
 
-                        } else if (Status.contains("Bid Found")) {
+                        }
+                        else if (Status.contains("Bid Found")) {
 
                             Intent o = new Intent(getContext(), bidListPage.class);
                             String postID = getItem(postion).getPostId();
-
-
                             o.putExtra("POSTID", postID);
 
                             startActivity(o);
 
-                        } else {
+                        }
+                        else if (Status.toLowerCase().equals("completed")){
+                          //  viewholders.itemView.setVisibility(View.GONE);
+                            Intent o = new Intent(getContext(), Trip_Running_details.class);
+                            //carry data to their
+                            o.putExtra("STATUS", getItem(postion).getStatus());
+                            o.putExtra("DRIVERNAME", getItem(postion).getDriverName());
+                            o.putExtra("CARMODEL", getItem(postion).getCarModl());
+                            o.putExtra("FORMLOC", getItem(postion).getFromLoc());
+                            o.putExtra("TOLOC", getItem(postion).getToLoc());
+                            o.putExtra("FARE", getItem(postion).getFare());
+                            o.putExtra("TIME", getItem(postion).getTimeDate());
+                            o.putExtra("POSTID", getItem(postion).getPostId());
+                            o.putExtra("DRIVERUID", getItem(postion).getDriverId());
+                            o.putExtra("DRIVERNOTIFICATIONID", getItem(postion).getDriverNotificationID());
+                            o.putExtra("DESC", getItem(postion).getTripDetails());
+                            o.putExtra("TYPE", getItem(postion).getRideType());
+                            o.putExtra("TRANS", getItem(postion).getTransId());
+                            modelForCarRequest carRequest = getItem(postion) ;
+                            o.putExtra("MODEL" ,carRequest ) ;
+
+                            startActivity(o);
+
+                        }
+
+                        else {
                             Toast.makeText(getContext(), "No One Has Bidded On Your Request", Toast.LENGTH_SHORT).show();
                         }
 

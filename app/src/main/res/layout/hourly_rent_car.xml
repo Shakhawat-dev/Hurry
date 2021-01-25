@@ -39,11 +39,11 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:fontFamily="@font/poppins_medium"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
                         android:text="Plan Your Trip"
                         android:textAlignment="center"
+                        android:fontFamily="@font/poppins_medium"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textColor="@color/colorAccent" />
 
@@ -165,12 +165,12 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/poppins_medium"
                                 android:layout_marginTop="20dp"
                                 android:text="Date : " />
 
                             <TextView
                                 android:id="@+id/dateEdit"
+                                android:fontFamily="@font/poppins_medium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/spinner_shadow_back"
@@ -187,29 +187,32 @@
                         </LinearLayout>
                     </LinearLayout>
 
+
+
                     <LinearLayout
 
                         android:layout_width="match_parent"
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <CheckBox
+
                             android:id="@+id/oneWay_check"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_medium"
                             android:text="One Way" />
 
                         <CheckBox
                             android:id="@+id/round_check"
                             android:layout_width="wrap_content"
-                            android:fontFamily="@font/poppins_medium"
                             android:layout_height="wrap_content"
                             android:text="Round Trip" />
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:visibility="gone"
                         android:id="@+id/tripEndingLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -218,6 +221,7 @@
 
 
                         <LinearLayout
+
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="2dp"
@@ -229,7 +233,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                android:fontFamily="@font/poppins_medium"
                                 android:text="Return Time : " />
 
                             <TextView
@@ -259,7 +262,6 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/poppins_medium"
                                 android:layout_marginTop="8dp"
                                 android:text="Return Date : " />
 
@@ -280,6 +282,29 @@
 
                         </LinearLayout>
                     </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/select_hour" />
+
+                        <Spinner
+                            android:id="@+id/HourSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:background="@drawable/spinner_shadow_back"
+                            android:drawablePadding="10dp" />
+                    </LinearLayout>
+
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -306,8 +331,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
-                        android:fontFamily="@font/poppins_medium"
                         android:text="Select Your Ride"
+                        android:fontFamily="@font/poppins_medium"
                         android:textAlignment="center"
                         android:textSize="20dp" />
 
@@ -435,8 +460,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:fontFamily="@font/poppins_medium"
                             android:layout_marginTop="4dp"
+                            android:fontFamily="@font/poppins_medium"
                             android:text="Model Of Car : " />
                         <Spinner
                             android:id="@+id/type_of_vehicle_spinner"
@@ -504,9 +529,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
-                        android:fontFamily="@font/poppins_medium"
                         android:text="More About The Ride "
                         android:textAlignment="center"
+                        android:fontFamily="@font/poppins_medium"
                         android:textSize="20dp" />
 
                     <TextView
