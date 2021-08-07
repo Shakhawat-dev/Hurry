@@ -17,5 +17,6 @@
     <color name="red">#D41F26</color>
     <color name="blue">#4A90E2</color>
     <color name="purple">#7B1FA2</color>
+    <color name="lightRed">#FF5252</color>
 
 </resources>

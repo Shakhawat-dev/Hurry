@@ -1,15 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
-        applicationId "com.metacoders.hurry"
+        applicationId "com.hubit.hurry"
         minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 3
-        versionName "1.4"
+        targetSdkVersion 30
+        versionCode 5
+        versionName "1.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
@@ -54,7 +55,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:19.3.1'
 
     //lottie anim
-
+    implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]'
     implementation 'com.airbnb.android:lottie:3.5.0'
 
 
@@ -79,7 +80,7 @@ dependencies {
     implementation 'id.zelory:compressor:2.1.0'
 
     // image loader
-  //  implementation 'com.squareup.picasso:picasso:2.71828'
+    //  implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
@@ -90,7 +91,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
     implementation 'com.github.warkiz.tickseekbar:tickseekbar:0.1.4'
     implementation 'com.github.santalu:maskara:1.0.0'
- //   debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+    //   debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.21'
 

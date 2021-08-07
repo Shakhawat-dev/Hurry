@@ -7,23 +7,23 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.metacoders.hurry.fragments.profileFragment"
+        android:name="com.hubit.hurry.fragments.profileFragment"
         android:label="profileFragment"
         tools:layout="@layout/profile_fragment"/>
     <fragment
         android:id="@+id/onGoingList"
-        android:name="com.metacoders.hurry.fragments.onGoingList"
+        android:name="com.hubit.hurry.fragments.onGoingList"
         android:label="onGoingList"
 
         tools:layout="@layout/fragment_ongoing_list"/>
     <fragment
         android:id="@+id/selectTripFragment"
-        android:name="com.metacoders.hurry.fragments.selectTripFragment"
+        android:name="com.hubit.hurry.fragments.selectTripFragment"
         android:label="selectTripFragment"
         tools:layout="@layout/home_grid_layout"/>
     <fragment
         android:id="@+id/rentalFragment"
-        android:name="com.metacoders.hurry.fragments.TripFragment"
+        android:name="com.hubit.hurry.fragments.TripFragment"
         android:label="fragment_rental"
         tools:layout="@layout/fragment_rental" />
 </navigation>

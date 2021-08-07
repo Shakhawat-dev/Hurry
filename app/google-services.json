@@ -8,17 +8,54 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:460978793525:android:8920fd3f2c6d53f9",
+        "mobilesdk_app_id": "1:460978793525:android:2b2694d763231b3d68957c",
         "android_client_info": {
-          "package_name": "com.metacoders.hurry"
+          "package_name": "com.hubit.hurry"
         }
       },
       "oauth_client": [
         {
-          "client_id": "460978793525-m7vnu2jd9sf3onhk9vkt2soeqhrr5rr8.apps.googleusercontent.com",
+          "client_id": "460978793525-memc1l3j2al5246ci7eqmt0bs2o4vp22.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.metacoders.hurry",
+            "package_name": "com.hubit.hurry",
+            "certificate_hash": "e7134e9e771c4552820851631487affe4d0ba29b"
+          }
+        },
+        {
+          "client_id": "460978793525-n3imrb27e5q18ueti825v1kkste0l4m6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCU9OrvF8r3FMZP9BAN2CNbRfDUiBHBEiQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "460978793525-n3imrb27e5q18ueti825v1kkste0l4m6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:460978793525:android:a010ba507ed3294768957c",
+        "android_client_info": {
+          "package_name": "com.metacoders.hurryadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "460978793525-m756dmmpvm8j2fsmd4t3i9mvr073fmma.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.metacoders.hurryadmin",
             "certificate_hash": "e7134e9e771c4552820851631487affe4d0ba29b"
           }
         },

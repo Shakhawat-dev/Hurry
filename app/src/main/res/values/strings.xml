@@ -5,7 +5,8 @@
     <string name="having_trouble_login">Having Trouble Login?</string>
     <string name="login">Login</string>
     <string name="sign_up">Sign Up</string>
-
+    <string name="agree_terms_privacy">By clicking, you agree to our
+        <a href="http://link1/terms">Terms of Use</a> and read the <a href="http://link1/privacy">Privacy Policy</a></string>
     <string-array name="NoOFPPL">
         <item>1</item>
         <item>2</item>

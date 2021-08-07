@@ -41,7 +41,7 @@
                             android:id="@+id/dateOfTripDetails"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="27 jun 2019 at 2:30 AM"
+                            android:text=""
                             android:textColor="#000000"
                             android:textAlignment="textStart"
                             android:textSize="18sp"
@@ -160,7 +160,7 @@
                                 android:id="@+id/fareTv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="1205 Taka "
+                                android:text="0 Taka "
                                 android:textColor="@color/white"
                                 android:textStyle="bold"/>
                         </LinearLayout>
@@ -213,7 +213,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:id="@+id/descTv"
-                        android:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+                        tools:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
                         android:textColor="@color/black" />
 
                 </LinearLayout>
@@ -332,10 +332,11 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/driveImage"
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/avatar"/>
+                                />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -472,6 +473,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -483,7 +485,87 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text="Price: "
+                            android:text="Advance Payment: "
+                            android:textAlignment="center"
+                            android:textColor="#000"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/advancePayment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="4dp"
+                            android:text="00"
+                            android:textAlignment="center"
+                            android:textColor="@color/green"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="4dp"
+                            android:text="Tk"
+                            android:textAlignment="center"
+                            android:textColor="@color/green"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Payment To Driver: "
+                            android:textAlignment="center"
+                            android:textColor="#000"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/priceToDriver"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="4dp"
+                            android:text="1050"
+                            android:textAlignment="center"
+                            android:textColor="@color/green"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="4dp"
+                            android:text="Tk"
+                            android:textAlignment="center"
+                            android:textColor="@color/green"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Total Payment: "
+                            android:textStyle="bold"
                             android:textAlignment="center"
                             android:textColor="#000"
                             android:textSize="20sp" />
@@ -511,6 +593,7 @@
                             android:textColor="@color/green"
                             android:textSize="16sp" />
                     </LinearLayout>
+
 
                     <LinearLayout
                         android:id="@+id/ratingCOntainer"

@@ -1,29 +1,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-android:layout_height="match_parent"
-android:orientation="vertical">
+    android:orientation="vertical">
 
-<!--<com.google.android.material.tabs.TabLayout-->
-<!--    android:id="@+id/tabLayout"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:background="@color/colorPrimary"-->
-<!--    app:tabGravity="fill"-->
-<!--    android:fitsSystemWindows="true"-->
-<!--    android:layout_gravity="center_horizontal"-->
-<!--    app:tabIndicatorColor="#fff"-->
-<!--    app:tabTextColor="#fff"-->
-<!--    app:tabMaxWidth="0dp"-->
-<!--    app:tabMode="scrollable">-->
-<!--</com.google.android.material.tabs.TabLayout>-->
+    <!--<com.google.android.material.tabs.TabLayout-->
+    <!--    android:id="@+id/tabLayout"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:background="@color/colorPrimary"-->
+    <!--    app:tabGravity="fill"-->
+    <!--    android:fitsSystemWindows="true"-->
+    <!--    android:layout_gravity="center_horizontal"-->
+    <!--    app:tabIndicatorColor="#fff"-->
+    <!--    app:tabTextColor="#fff"-->
+    <!--    app:tabMaxWidth="0dp"-->
+    <!--    app:tabMode="scrollable">-->
+    <!--</com.google.android.material.tabs.TabLayout>-->
 
-<!--<androidx.viewpager.widget.ViewPager-->
-<!--    android:id="@+id/viewPager"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent">-->
-<!--</androidx.viewpager.widget.ViewPager>-->
+    <!--<androidx.viewpager.widget.ViewPager-->
+    <!--    android:id="@+id/viewPager"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent">-->
+    <!--</androidx.viewpager.widget.ViewPager>-->
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/appbarId"
@@ -32,43 +32,40 @@ android:orientation="vertical">
         android:background="@color/colorPrimary"
         android:fitsSystemWindows="true"
         app:title="Hurry"
-        app:titleTextColor="@color/white"/>
-
-
+        app:titleTextColor="@color/white" />
 
 
     <LinearLayout
-            xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <fragment
+            android:id="@+id/fragment_container_view_tag"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:fitsSystemWindows="true"
-            android:layout_height="match_parent">
-            <fragment
-                android:id="@+id/fragment_container_view_tag"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                app:navGraph = "@navigation/bottom_navigation"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                app:defaultNavHost="true"
-                />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/bottom_navigation" />
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:layout_width="match_parent"
-                app:menu="@menu/bottom_menu"
-                android:id="@+id/navView"
-                app:labelVisibilityMode="labeled"
-                android:background="@color/white"
-                android:layout_height="wrap_content"/>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_menu" />
 
 
-        </LinearLayout>
+    </LinearLayout>
 
-        <!--        <androidx.viewpager.widget.ViewPager-->
-        <!--            android:id="@+id/viewPagerID2"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+    <!--        <androidx.viewpager.widget.ViewPager-->
+    <!--            android:id="@+id/viewPagerID2"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
 
 
 </LinearLayout>
