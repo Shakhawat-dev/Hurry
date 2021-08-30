@@ -62,7 +62,7 @@ dependencies {
 //otp viewer
     implementation 'com.github.aabhasr1:OtpView:1.0.6'
 //count down timer
-    implementation 'ir.samanjafari.easycountdowntimer:easycountdowntimer:2.1'
+    implementation 'ir.samanjafari.easycountdowntimer:easycountdowntimer:2.5.0'
 
     //stepview
     implementation 'com.shuhart.stepview:stepview:1.5.1'

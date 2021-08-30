@@ -72,8 +72,6 @@ public class Mobile_Varification extends AppCompatActivity {
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
             String code = phoneAuthCredential.getSmsCode();
             if (code != null) {
-
-
                 verifyCode(code);
             }
         }
